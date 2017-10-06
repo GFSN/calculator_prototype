@@ -236,8 +236,10 @@ layerA.placeBefore(layerB2);
 
 layerA.placeBefore(layerB3);
 
-layerA.onTap(function() {
+layerA.onClick(function() {
+  print("Tap");
   if (layerA.y === 0) {
+    print("Tap + if");
     textLayer.input.value = textLayer.input.value + "1";
     layerB2.animate("stateTap");
     return layerB2.onAnimationEnd(function() {
@@ -252,7 +254,7 @@ layerA.on(Events.DragMove, function() {
   if (layerA.draggable.direction === "down") {
     if (layerA.draggable.direction !== directionA) {
       directionA = layerA.draggable.direction;
-      textLayer.input.value = textLayer.input.value + "sin";
+      textLayer.input.value = textLayer.input.value + "2";
       layerB1.animate("stateMiddle");
       layerB2.animate("stateDown");
       layerB3.animate("stateDdown");
@@ -261,7 +263,7 @@ layerA.on(Events.DragMove, function() {
   if (layerA.draggable.direction === "up") {
     if (layerA.draggable.direction !== directionA) {
       directionA = layerA.draggable.direction;
-      textLayer.input.value = textLayer.input.value + "arctg";
+      textLayer.input.value = textLayer.input.value + "3";
       layerB1.animate("stateFly");
       layerB2.animate("stateUp");
       return layerB3.animate("stateMiddle");

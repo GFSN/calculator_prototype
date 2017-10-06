@@ -22,7 +22,6 @@ class InputTextLayer extends Framer.Layer
 			width: "#{@width}px"
 			height: "#{@height}px"
 
-
 textLayer = new InputTextLayer width:Screen.width , height:120, y:300, x:0
 textLayer.states.animationOptions = curve: "spring(250, 20, 0)"
 
@@ -172,8 +171,10 @@ layerA.placeBefore(layerB1)
 layerA.placeBefore(layerB2)
 layerA.placeBefore(layerB3)
 
-layerA.onTap ->
+layerA.onClick ->
+  print "Tap"
   if (layerA.y is 0)
+    print "Tap + if"
     textLayer.input.value = textLayer.input.value + "1"
     layerB2.animate("stateTap")
     layerB2.onAnimationEnd ->
@@ -184,14 +185,14 @@ layerA.on Events.DragMove, ->
   if (layerA.draggable.direction is "down")
     if (layerA.draggable.direction isnt directionA)
       directionA = layerA.draggable.direction
-      textLayer.input.value = textLayer.input.value + "sin"
+      textLayer.input.value = textLayer.input.value + "2"
       layerB1.animate("stateMiddle")
       layerB2.animate("stateDown")
       layerB3.animate("stateDdown")
   if (layerA.draggable.direction is "up")
     if (layerA.draggable.direction isnt directionA)
       directionA = layerA.draggable.direction
-      textLayer.input.value = textLayer.input.value + "arctg"
+      textLayer.input.value = textLayer.input.value + "3"
       layerB1.animate("stateFly")
       layerB2.animate("stateUp")
       layerB3.animate("stateMiddle")
