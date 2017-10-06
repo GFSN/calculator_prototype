@@ -230,6 +230,12 @@ layerB3.states.stateDdown = {
   }
 };
 
+layerA.placeBefore(layerB1);
+
+layerA.placeBefore(layerB2);
+
+layerA.placeBefore(layerB3);
+
 layerA.onTap(function() {
   if (layerA.y === 0) {
     textLayer.input.value = textLayer.input.value + "1";

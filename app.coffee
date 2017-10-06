@@ -168,6 +168,10 @@ layerB3.states.stateDdown =
       time: timeAnimation
       curve: curveAnimation
 
+layerA.placeBefore(layerB1)
+layerA.placeBefore(layerB2)
+layerA.placeBefore(layerB3)
+
 layerA.onTap ->
   if (layerA.y is 0)
     textLayer.input.value = textLayer.input.value + "1"
