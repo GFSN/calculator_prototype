@@ -575,7 +575,7 @@ layer14.onClick ->
 		textLayer.input.value = textLayer.input.value + "^2"
 		layer14Delite.animate("stateTap")
 		layer14Delite.onStateSwitchEnd ->
-			if layer14Delite.states.current.name is "stateTap"
+			if (layer14Delite.states.current.name is "stateTap")
 				layer14Delite.stateCycle("stateTap", "stateMiddle")
 
 layer14.onSwipeDown ->
@@ -587,3 +587,29 @@ layer14.onSwipeDown ->
 layer14.onSwipeEnd ->
 	layer14Cancel.animate("stateUp")
 	layer14Delite.animate("stateMiddle")
+
+# 7 button
+
+layer7Numeral = new Layer
+	x: 28
+	y: 588
+	width: 148
+	height: 148
+	image: "images/007_numeral.png"
+layer7Numeral.states.stateTap =
+	x: 37
+	y: 597
+	width: 130
+	height: 130
+layer7Numeral.states.stateMiddle =
+	x: 28
+	y: 588
+	width: 148
+	height: 148
+layer7Numeral.stateSwitch("stateMiddle")
+layer7Numeral.onClick ->
+	textLayer.input.value = textLayer.input.value + "7"
+	layer7Numeral.stateCycle("stateMiddle", "stateTap")
+	layer7Numeral.onStateSwitchEnd ->
+		if (layer7Numeral.states.current.name is "stateTap")
+			layer7Numeral.stateCycle("stateTap", "stateMiddle")

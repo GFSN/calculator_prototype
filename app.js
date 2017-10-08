@@ -162,7 +162,7 @@ layerA.onDragEnd ->
   layerB2.animate("stateMiddle")
   layerB3.animate("stateDown")
  */
-var InputTextLayer, backgroundLayer, curveAnimation, layer12, layer12Exp, layer12Pi, layer13, layer13Exponent, layer13Radical, layer13Square, layer14, layer14Cancel, layer14Delite, style, textLayer, timeAnimation, weight,
+var InputTextLayer, backgroundLayer, curveAnimation, layer12, layer12Exp, layer12Pi, layer13, layer13Exponent, layer13Radical, layer13Square, layer14, layer14Cancel, layer14Delite, layer7Numeral, style, textLayer, timeAnimation, weight,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -718,4 +718,38 @@ layer14.onSwipeDown(function() {
 layer14.onSwipeEnd(function() {
   layer14Cancel.animate("stateUp");
   return layer14Delite.animate("stateMiddle");
+});
+
+layer7Numeral = new Layer({
+  x: 28,
+  y: 588,
+  width: 148,
+  height: 148,
+  image: "images/007_numeral.png"
+});
+
+layer7Numeral.states.stateTap = {
+  x: 37,
+  y: 597,
+  width: 130,
+  height: 130
+};
+
+layer7Numeral.states.stateMiddle = {
+  x: 28,
+  y: 588,
+  width: 148,
+  height: 148
+};
+
+layer7Numeral.stateSwitch("stateMiddle");
+
+layer7Numeral.onClick(function() {
+  textLayer.input.value = textLayer.input.value + "7";
+  layer7Numeral.stateCycle("stateMiddle", "stateTap");
+  return layer7Numeral.onStateSwitchEnd(function() {
+    if (layer7Numeral.states.current.name === "stateTap") {
+      return layer7Numeral.stateCycle("stateTap", "stateMiddle");
+    }
+  });
 });
