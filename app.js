@@ -162,7 +162,7 @@ layerA.onDragEnd ->
   layerB2.animate("stateMiddle")
   layerB3.animate("stateDown")
  */
-var InputTextLayer, backgroundLayer, curveAnimation, direction12, layer12, layer12Exp, layer12Pi, style, textLayer, timeAnimation, weight,
+var InputTextLayer, backgroundLayer, curveAnimation, layer12, layer12Exp, layer12Pi, layer13, layer13Exponent, layer13Radical, layer13Square, layer14, layer14Cancel, layer14Delite, style, textLayer, timeAnimation, weight,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -210,7 +210,7 @@ textLayer.states.animationOptions = {
 
 textLayer.input.style.font = "56px/1.35em Helvetica";
 
-textLayer.input.style.font - (style = "bold");
+textLayer.input.style.font - (style = "normal");
 
 textLayer.input.style.font - (weight = "100");
 
@@ -228,7 +228,7 @@ textLayer.input.style.border = "0px solid";
 
 textLayer.backgroundColor = "rgba(255, 255, 255, 0)";
 
-timeAnimation = 0.3;
+timeAnimation = 0.15;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -239,7 +239,7 @@ backgroundLayer = new Layer({
 });
 
 layer12 = new Layer({
-  x: 25,
+  x: 28,
   y: 416,
   width: 148,
   height: 148,
@@ -251,7 +251,7 @@ layer12.draggable.enabled = true;
 layer12.draggable.horizontal = false;
 
 layer12.draggable.constraints = {
-  x: 25,
+  x: 28,
   y: 416,
   width: 148,
   height: 148
@@ -259,7 +259,7 @@ layer12.draggable.constraints = {
 
 layer12Pi = new Layer({
   image: "images/012_pi.png",
-  x: 25,
+  x: 28,
   y: 416,
   width: 148,
   height: 148
@@ -296,14 +296,14 @@ layer12Pi.states.stateTap = {
   height: 130,
   opacity: 1,
   animationOptions: {
-    time: timeAnimation * 0.25,
+    time: timeAnimation * 0.5,
     curve: curveAnimation
   }
 };
 
 layer12Exp = new Layer({
   image: "images/012_e.png",
-  x: 66,
+  x: 69,
   y: 403,
   width: 70,
   height: 70,
@@ -311,7 +311,7 @@ layer12Exp = new Layer({
 });
 
 layer12Exp.states.stateUp = {
-  x: 66,
+  x: 69,
   y: 403,
   width: 70,
   height: 70,
@@ -323,7 +323,7 @@ layer12Exp.states.stateUp = {
 };
 
 layer12Exp.states.stateMiddle = {
-  x: 25,
+  x: 28,
   y: 416,
   width: 148,
   height: 148,
@@ -334,21 +334,11 @@ layer12Exp.states.stateMiddle = {
   }
 };
 
-layer12Exp.states.stateFly = {
-  width: 8,
-  height: 8,
-  x: 103,
-  y: 245,
-  opacity: 0,
-  animationOptions: {
-    time: timeAnimation,
-    curve: curveAnimation
-  }
-};
-
 layer12.placeBefore(layer12Pi);
 
 layer12.placeBefore(layer12Exp);
+
+layer12Pi.placeBefore(layer12Exp);
 
 textLayer.placeBefore(backgroundLayer);
 
@@ -356,27 +346,376 @@ layer12.onClick(function() {
   if (layer12.y === 416) {
     textLayer.input.value = textLayer.input.value + "π";
     layer12Pi.animate("stateTap");
-    return layer12Pi.onAnimationEnd(function() {
-      return layer12Pi.animate("stateMiddle");
+    return layer12Pi.onStateSwitchEnd(function() {
+      if (layer12Pi.states.current.name === "stateTap") {
+        return layer12Pi.stateCycle("stateTap", "stateMiddle");
+      }
     });
   }
 });
 
-direction12 = 0;
-
-layer12.on(Events.DragMove, function() {
-  if (layer12.draggable.direction === "down") {
-    if (layer12.draggable.direction !== direction12) {
-      direction12 = layer12.draggable.direction;
-      textLayer.input.value = textLayer.input.value + "e";
-      layer12Exp.animate("stateMiddle");
-      return layer12Pi.animate("stateDown");
-    }
+layer12.onSwipeDown(function() {
+  if (layer12Pi.states.current.name === "stateMiddle") {
+    textLayer.input.value = textLayer.input.value + "e";
+    layer12Exp.animate("stateMiddle");
+    return layer12Pi.animate("stateDown");
   }
 });
 
-layer12.onDragEnd(function() {
-  direction12 = 0;
+layer12.onSwipeEnd(function() {
   layer12Exp.animate("stateUp");
   return layer12Pi.animate("stateMiddle");
+});
+
+layer13 = new Layer({
+  x: 200,
+  y: 416,
+  width: 148,
+  height: 148,
+  opacity: 0
+});
+
+layer13.draggable.enabled = true;
+
+layer13.draggable.horizontal = false;
+
+layer13.draggable.constraints = {
+  x: 200,
+  y: 416,
+  width: 148,
+  height: 148
+};
+
+layer13Square = new Layer({
+  image: "images/013_square.png",
+  x: layer13.x,
+  y: layer13.y,
+  width: 148,
+  height: 148
+});
+
+layer13Square.states.stateDown = {
+  x: layer13.x + 41,
+  y: layer13.y + 83,
+  width: 70,
+  height: 70,
+  opacity: 0.4,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Square.states.stateMiddle = {
+  x: layer13.x,
+  y: layer13.y,
+  width: 148,
+  height: 148,
+  opacity: 1,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Square.states.stateTap = {
+  x: layer13.x + 9,
+  y: layer13.y + 9,
+  width: 130,
+  height: 130,
+  opacity: 1,
+  animationOptions: {
+    time: timeAnimation * 0.5,
+    curve: curveAnimation
+  }
+};
+
+layer13Square.states.stateUp = {
+  x: layer13.x + 41,
+  y: layer13.y - 13,
+  width: 70,
+  height: 70,
+  opacity: 0.4,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Exponent = new Layer({
+  image: "images/013_exponent.png",
+  x: layer13.x + 41,
+  y: layer13.y - 13,
+  width: 70,
+  height: 70,
+  opacity: 0.4
+});
+
+layer13Exponent.states.stateUp = {
+  x: layer13.x + 41,
+  y: layer13.y - 13,
+  width: 70,
+  height: 70,
+  opacity: 0.4,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Exponent.states.stateMiddle = {
+  x: layer13.x,
+  y: layer13.y,
+  width: 148,
+  height: 148,
+  opacity: 1,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Exponent.states.stateFly = {
+  x: layer13.x + 72,
+  y: layer13.y - 40,
+  width: 8,
+  height: 8,
+  opacity: 0,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Radical = new Layer({
+  image: "images/013_radical.png",
+  x: layer13.x + 41,
+  y: layer13.y + 83,
+  width: 70,
+  height: 70,
+  opacity: 0.4
+});
+
+layer13Radical.states.stateDown = {
+  x: layer13.x + 41,
+  y: layer13.y + 83,
+  width: 70,
+  height: 70,
+  opacity: 0.4,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Radical.states.stateMiddle = {
+  x: layer13.x,
+  y: layer13.y,
+  width: 148,
+  height: 148,
+  opacity: 1,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13Radical.states.stateDdown = {
+  x: layer13.x + 72,
+  y: layer13.y + 120,
+  width: 8,
+  height: 8,
+  opacity: 0,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer13.placeBefore(layer13Square);
+
+layer13.placeBefore(layer13Exponent);
+
+layer13.placeBefore(layer13Radical);
+
+layer13Square.placeBefore(layer13Exponent);
+
+layer13Square.placeBefore(layer13Radical);
+
+layer13.onClick(function() {
+  if (layer13.y === 416) {
+    textLayer.input.value = textLayer.input.value + "^2";
+    layer13Square.animate("stateTap");
+    return layer13Square.onStateSwitchEnd(function() {
+      if (layer13Square.states.current.name === "stateTap") {
+        return layer13Square.stateCycle("stateTap", "stateMiddle");
+      }
+    });
+  }
+});
+
+layer13.onSwipeUpStart(function() {
+  if (layer13Square.states.current.name === "stateMiddle") {
+    textLayer.input.value = textLayer.input.value + "√";
+    layer13Exponent.animate("stateFly");
+    layer13Square.animate("stateUp");
+    return layer13Radical.animate("stateMiddle");
+  }
+});
+
+layer13.onSwipeDown(function() {
+  if (layer13Square.states.current.name === "stateMiddle") {
+    textLayer.input.value = textLayer.input.value + "^";
+    layer13Exponent.animate("stateMiddle");
+    layer13Square.animate("stateDown");
+    return layer13Radical.animate("stateDdown");
+  }
+});
+
+layer13.onSwipeEnd(function() {
+  layer13Exponent.animate("stateUp");
+  layer13Square.animate("stateMiddle");
+  return layer13Radical.animate("stateDown");
+});
+
+layer14 = new Layer({
+  x: 372,
+  y: 416,
+  width: 148,
+  height: 148,
+  opacity: 0
+});
+
+layer12.draggable.enabled = true;
+
+layer12.draggable.horizontal = false;
+
+layer12.draggable.constraints = {
+  x: 372,
+  y: 416,
+  width: 148,
+  height: 148
+};
+
+layer14Delite = new Layer({
+  image: "images/014_delite.png",
+  x: 372,
+  y: 416,
+  width: 148,
+  height: 148
+});
+
+layer14Delite.states.stateDown = {
+  x: layer14Delite.x + 41,
+  y: layer14Delite.y + 83,
+  width: 70,
+  height: 70,
+  opacity: 0.4,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer14Delite.states.stateMiddle = {
+  x: layer14Delite.x,
+  y: layer14Delite.y,
+  width: 148,
+  height: 148,
+  opacity: 1,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer14Delite.states.stateTap = {
+  x: layer14Delite.x + 9,
+  y: layer14Delite.y + 9,
+  width: 130,
+  height: 130,
+  opacity: 1,
+  animationOptions: {
+    time: timeAnimation * 0.5,
+    curve: curveAnimation
+  }
+};
+
+layer14Cancel = new Layer({
+  image: "images/014_cancel.png",
+  x: layer14.x + 41,
+  y: layer14.y - 13,
+  width: 70,
+  height: 70,
+  opacity: 0.4
+});
+
+layer14Cancel.states.stateUp = {
+  x: layer14.x + 41,
+  y: layer14.y - 13,
+  width: 70,
+  height: 70,
+  opacity: 0.4,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer14Cancel.states.stateMiddle = {
+  x: layer14.x,
+  y: layer14.y,
+  width: 148,
+  height: 148,
+  opacity: 1,
+  animationOptions: {
+    time: timeAnimation,
+    curve: curveAnimation
+  }
+};
+
+layer14.placeBefore(layer14Cancel);
+
+layer14.placeBefore(layer14Delite);
+
+layer14Delite.placeBefore(layer14Cancel);
+
+
+/*
+layer14.onClick ->
+	print "Click"
+	if (layer14.y is 416)
+		print "If click"
+		#textLayer.input.value = textLayer.input.value + "π"
+		layer14Delite.animate("stateTap")
+		layer14Delite.onStateSwitchEnd ->
+			print "onStateSwitchEnd"
+			if layer14Delite.states.current.name is "stateTap"
+				print "layer14Delite.states.current.name is stateTap"
+				print layer14.y
+				layer14Delite.stateCycle("stateTap", "stateMiddle")
+ */
+
+layer14.onClick(function() {
+  if (layer14.y === 416) {
+    textLayer.input.value = textLayer.input.value + "^2";
+    layer14Delite.animate("stateTap");
+    return layer14Delite.onStateSwitchEnd(function() {
+      if (layer14Delite.states.current.name === "stateTap") {
+        return layer14Delite.stateCycle("stateTap", "stateMiddle");
+      }
+    });
+  }
+});
+
+layer14.onSwipeDown(function() {
+  if (layer14Delite.states.current.name === "stateMiddle") {
+    layer14Cancel.animate("stateMiddle");
+    return layer14Delite.animate("stateDown");
+  }
+});
+
+layer14.onSwipeEnd(function() {
+  layer14Cancel.animate("stateUp");
+  return layer14Delite.animate("stateMiddle");
 });
