@@ -469,7 +469,7 @@ layer7.onClick ->
  */
 var layerA, layerB, screenScale;
 
-screenScale = 4;
+screenScale = 1.5;
 
 layerA = new Layer({
   width: 1125,

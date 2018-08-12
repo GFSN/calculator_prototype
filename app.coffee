@@ -466,7 +466,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 4
+screenScale = 1.5
 
 layerA = new Layer
 	width: 1125
