@@ -467,6 +467,25 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var layerA;
+var b, layerA, layerB;
 
-layerA = new Layer;
+b = 0.1;
+
+layerA = new Layer({
+  width: 1125,
+  height: 2436,
+  scale: 1 / 1.5
+});
+
+layerA.x = 0 - layerA.width * (1 / 2 - 1 / 3);
+
+layerA.y = 0 - layerA.height * (1 / 2 - 1 / 3);
+
+layerB = new Layer({
+  parent: layerA,
+  x: 500,
+  y: 500,
+  width: 500,
+  height: 500,
+  scale: 1
+});
