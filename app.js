@@ -467,25 +467,29 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var b, layerA, layerB;
+var layerA, layerB, screenScale;
 
-b = 0.1;
+screenScale = 4;
 
 layerA = new Layer({
   width: 1125,
   height: 2436,
-  scale: 1 / 1.5
+  scale: 1 / screenScale,
+  opacity: 1,
+  image: "images/iPhone-X.png"
 });
 
-layerA.x = 0 - layerA.width * (1 / 2 - 1 / 3);
+layerA.x = 0 - (layerA.width - layerA.width / screenScale) / 2;
 
-layerA.y = 0 - layerA.height * (1 / 2 - 1 / 3);
+layerA.y = 0 - (layerA.height - layerA.height / screenScale) / 2;
 
 layerB = new Layer({
   parent: layerA,
-  x: 500,
-  y: 500,
-  width: 500,
-  height: 500,
-  scale: 1
+  x: 0,
+  y: 0,
+  width: 1000,
+  height: 1000,
+  scale: 1,
+  opacity: 0,
+  backgroundColor: "pink"
 });
