@@ -467,29 +467,104 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var layerA, layerB, screenScale;
+var curveAnimation, degBG, layerBG, rad, rounding, roundingBG, rounding_margin, screenScale, time;
 
 screenScale = 1.5;
 
-layerA = new Layer({
+curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
+
+time = 0.3;
+
+layerBG = new Layer({
   width: 1125,
   height: 2436,
   scale: 1 / screenScale,
   opacity: 1,
-  image: "images/iPhone-X.png"
+  image: "images/iPhone-X-bg.png"
 });
 
-layerA.x = 0 - (layerA.width - layerA.width / screenScale) / 2;
+layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2;
 
-layerA.y = 0 - (layerA.height - layerA.height / screenScale) / 2;
+layerBG.y = 0 - (layerBG.height - layerBG.height / screenScale) / 2;
 
-layerB = new Layer({
-  parent: layerA,
+rounding_margin = new Layer({
+  parent: layerBG,
   x: 0,
-  y: 0,
-  width: 1000,
-  height: 1000,
-  scale: 1,
-  opacity: 0,
-  backgroundColor: "pink"
+  y: 150,
+  width: 150,
+  height: 132,
+  opacity: 0
+});
+
+roundingBG = new Layer({
+  parent: layerBG,
+  x: 36,
+  y: 168,
+  width: 96,
+  height: 96,
+  borderRadius: 48,
+  backgroundColor: "#333333"
+});
+
+roundingBG.states.active = {
+  backgroundColor: "#b3b3b3",
+  animationOptions: {
+    time: time,
+    curve: "ease-out"
+  }
+};
+
+roundingBG.states["default"] = {
+  backgroundColor: "#333333",
+  animationOptions: {
+    time: time / 2,
+    curve: "ease-in"
+  }
+};
+
+rounding = new Layer({
+  parent: roundingBG,
+  width: 96,
+  height: 96,
+  image: "images/rounding.png",
+  opacity: 0.8
+});
+
+rounding.states.active = {
+  image: "images/rounding-black.png",
+  animationOptions: {
+    time: time,
+    curve: "ease-out"
+  }
+};
+
+rounding.states["default"] = {
+  image: "images/rounding.png",
+  animationOptions: {
+    time: time / 2,
+    curve: "ease-in"
+  }
+};
+
+degBG = new Layer({
+  parent: layerBG,
+  x: 168,
+  y: 168,
+  width: 138,
+  height: 96,
+  borderRadius: 48,
+  backgroundColor: "#333333"
+});
+
+rad = new Layer({
+  parent: degBG,
+  width: 138,
+  height: 96,
+  image: "images/rad.png",
+  opacity: 0.8
+});
+
+rounding_margin.onClick(function() {
+  roundingBG.states.next();
+  return rounding.states.next();
 });
