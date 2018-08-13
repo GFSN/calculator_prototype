@@ -467,16 +467,16 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, degBG, layerBG, rad, rounding, roundingBG, rounding_margin, screenScale, time;
+var curveAnimation, deg, degBG, deg_margin, layerBG, rounding, roundingBG, rounding_margin, screenScale, time;
 
 screenScale = 1.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
-time = 0.3;
+time = 0.2;
 
 layerBG = new Layer({
-  width: 1125,
+  width: 1126,
   height: 2436,
   scale: 1 / screenScale,
   opacity: 1,
@@ -517,7 +517,7 @@ roundingBG.states.active = {
 roundingBG.states["default"] = {
   backgroundColor: "#333333",
   animationOptions: {
-    time: time / 2,
+    time: time * 0.7,
     curve: "ease-in"
   }
 };
@@ -541,8 +541,8 @@ rounding.states.active = {
 rounding.states["default"] = {
   image: "images/rounding.png",
   animationOptions: {
-    time: time / 2,
-    curve: "ease-in"
+    time: time,
+    curve: "ease-out"
   }
 };
 
@@ -556,15 +556,65 @@ degBG = new Layer({
   backgroundColor: "#333333"
 });
 
-rad = new Layer({
+deg = new Layer({
   parent: degBG,
   width: 138,
   height: 96,
-  image: "images/rad.png",
+  image: "images/deg.png",
   opacity: 0.8
 });
+
+deg_margin = new Layer({
+  parent: layerBG,
+  x: 150,
+  y: 150,
+  width: 174,
+  height: 132,
+  opacity: 0
+});
+
+degBG.states.tap = {
+  backgroundColor: "#666666",
+  animationOptions: {
+    time: time * 1,
+    curve: "ease-out"
+  }
+};
+
+degBG.states["default"] = {
+  backgroundColor: "#333333",
+  animationOptions: {
+    time: time * 1,
+    curve: "ease-in"
+  }
+};
+
+deg.states.rad = {
+  image: "images/rad.png",
+  animationOptions: {
+    delay: 1
+  }
+};
+
+deg.states["default"] = {
+  image: "images/deg.png",
+  animationOptions: {
+    time: 0.5,
+    delay: time * 0.7
+  }
+};
 
 rounding_margin.onClick(function() {
   roundingBG.states.next();
   return rounding.states.next();
+});
+
+deg_margin.onTap(function() {
+  degBG.states.next();
+  deg.states.next();
+  return degBG.onStateSwitchEnd(function() {
+    if (degBG.states.current.name === "tap") {
+      return degBG.stateCycle("tap", "default");
+    }
+  });
 });

@@ -468,10 +468,10 @@ layer7.onClick ->
 ###
 screenScale = 1.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
-time = 0.3
+time = 0.2
 
 layerBG = new Layer
-	width: 1125
+	width: 1126
 	height: 2436
 	scale: 1 / screenScale
 	opacity: 1
@@ -505,7 +505,7 @@ roundingBG.states.active =
 roundingBG.states.default =
 	backgroundColor : "#333333"
 	animationOptions:
-		time: time / 2
+		time: time * 0.7
 		curve: "ease-in"
 
 rounding = new Layer
@@ -524,8 +524,10 @@ rounding.states.active =
 rounding.states.default =
 	image: "images/rounding.png"
 	animationOptions:
-		time: time / 2
-		curve: "ease-in"
+		time: time
+		curve: "ease-out"
+
+
 
 degBG = new Layer
 	parent: layerBG
@@ -536,14 +538,52 @@ degBG = new Layer
 	borderRadius: 48
 	backgroundColor : "#333333"
 
-rad = new Layer
+deg = new Layer
 	parent: degBG
 	width: 138
 	height: 96
-	image: "images/rad.png"
+	image: "images/deg.png"
 	opacity: 0.8
+
+deg_margin = new Layer
+	parent: layerBG
+	x: 150
+	y: 150
+	width: 174
+	height: 132
+	opacity: 0
+
+degBG.states.tap =
+	backgroundColor : "#666666"
+	animationOptions:
+		time: time * 1
+		curve: "ease-out"
+
+degBG.states.default =
+	backgroundColor : "#333333"
+	animationOptions:
+		time: time * 1
+		curve: "ease-in"
+
+deg.states.rad =
+	image: "images/rad.png"
+	animationOptions:
+		delay: 1
+
+deg.states.default =
+	image: "images/deg.png"
+	animationOptions:
+		time: 0.5
+		delay: time * 0.7
 
 
 rounding_margin.onClick ->
 	roundingBG.states.next()
 	rounding.states.next()
+
+deg_margin.onTap ->
+	degBG.states.next()
+	deg.states.next()
+	degBG.onStateSwitchEnd ->
+		if (degBG.states.current.name is "tap")
+			degBG.stateCycle("tap", "default")
