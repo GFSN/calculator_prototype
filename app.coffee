@@ -563,7 +563,7 @@ degBG.states.default =
 	backgroundColor : "#333333"
 	animationOptions:
 		time: time * 1
-		curve: "ease-in"
+		curve: "ease-out"
 
 deg.states.rad =
 	image: "images/rad.png"
@@ -581,9 +581,10 @@ rounding_margin.onClick ->
 	roundingBG.states.next()
 	rounding.states.next()
 
-deg_margin.onTap ->
+deg_margin.onTouchStart ->
 	degBG.states.next()
 	deg.states.next()
-	degBG.onStateSwitchEnd ->
-		if (degBG.states.current.name is "tap")
-			degBG.stateCycle("tap", "default")
+	deg_margin.onTouchEnd  ->
+		degBG.onStateSwitchEnd ->
+			if (degBG.states.current.name is "tap")
+				degBG.stateCycle("tap", "default")

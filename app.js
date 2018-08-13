@@ -585,7 +585,7 @@ degBG.states["default"] = {
   backgroundColor: "#333333",
   animationOptions: {
     time: time * 1,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -609,12 +609,14 @@ rounding_margin.onClick(function() {
   return rounding.states.next();
 });
 
-deg_margin.onTap(function() {
+deg_margin.onTouchStart(function() {
   degBG.states.next();
   deg.states.next();
-  return degBG.onStateSwitchEnd(function() {
-    if (degBG.states.current.name === "tap") {
-      return degBG.stateCycle("tap", "default");
-    }
+  return deg_margin.onTouchEnd(function() {
+    return degBG.onStateSwitchEnd(function() {
+      if (degBG.states.current.name === "tap") {
+        return degBG.stateCycle("tap", "default");
+      }
+    });
   });
 });
