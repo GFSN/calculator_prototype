@@ -467,13 +467,24 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, deg, degBG, deg_margin, layerBG, rounding, roundingBG, rounding_margin, screenScale, time;
+var EaseOff, EaseOn, InputTextLayer, curveAnimation, deg, degBG, deg_margin, eOff, eOn, layerBG, rounding, roundingBG, rounding_margin, screenScale, textLayer, textLayer2, textLayer3, textLayer4, time, timeOff, timeOffMinus, timeOffPlus, timeOn, timeOnMinus, timeOnPlus,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
-screenScale = 1.5;
+screenScale = 5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
-time = 0.2;
+time = 0.3;
+
+timeOn = 0.3;
+
+timeOff = 0.3;
+
+eOn = "ease-out";
+
+eOff = "ease-in";
 
 layerBG = new Layer({
   width: 1126,
@@ -576,47 +587,271 @@ deg_margin = new Layer({
 degBG.states.tap = {
   backgroundColor: "#666666",
   animationOptions: {
-    time: time * 1,
-    curve: "ease-out"
+    time: timeOn,
+    curve: eOn
   }
 };
 
 degBG.states["default"] = {
   backgroundColor: "#333333",
   animationOptions: {
-    time: time * 1,
-    curve: "ease-out"
+    time: timeOff,
+    curve: eOff
   }
 };
 
 deg.states.rad = {
-  image: "images/rad.png",
-  animationOptions: {
-    delay: 1
-  }
+  image: "images/rad.png"
 };
 
 deg.states["default"] = {
-  image: "images/deg.png",
-  animationOptions: {
-    time: 0.5,
-    delay: time * 0.7
-  }
+  image: "images/deg.png"
 };
+
+InputTextLayer = (function(superClass) {
+  extend(InputTextLayer, superClass);
+
+  function InputTextLayer(options) {
+    this._update = bind(this._update, this);
+    InputTextLayer.__super__.constructor.call(this, options);
+    this.ignoreEvents = false;
+    this.input = document.createElement("input");
+    _.extend(this.input.style, {
+      "-webkit-user-select": "text",
+      "-webkit-box-sizing": "border-box",
+      "cursor": "auto"
+    });
+    this._update();
+    this._element.appendChild(this.input);
+    this.on("change:width", this._update);
+    this.on("change:height", this._update);
+  }
+
+  InputTextLayer.prototype._update = function() {
+    return _.extend(this.input.style, {
+      width: this.width + "px",
+      height: this.height + "px"
+    });
+  };
+
+  return InputTextLayer;
+
+})(Framer.Layer);
+
+textLayer = new InputTextLayer({
+  parent: layerBG,
+  width: 150,
+  height: 200,
+  y: 2005,
+  x: 107,
+  opacity: 0.1
+});
+
+textLayer.input.style.font = "50px/1.35em Helvetica";
+
+textLayer.input.style.textAlign = "center";
+
+textLayer.input.style.background = "transparent";
+
+textLayer.input.style.color = "#FFF";
+
+textLayer.input.value = timeOn;
+
+textLayer.backgroundColor = "rgba(255, 255, 255, 0)";
+
+textLayer2 = new InputTextLayer({
+  parent: layerBG,
+  width: 150,
+  height: 200,
+  y: 2005,
+  x: 465,
+  opacity: 0.1
+});
+
+textLayer2.input.style.font = "50px/1.35em Helvetica";
+
+textLayer2.input.style.textAlign = "center";
+
+textLayer2.input.style.background = "transparent";
+
+textLayer2.input.style.color = "#FFF";
+
+textLayer2.input.value = timeOff;
+
+textLayer2.backgroundColor = "rgba(255, 255, 255, 0)";
+
+textLayer3 = new InputTextLayer({
+  parent: layerBG,
+  width: 150,
+  height: 200,
+  y: 2005,
+  x: 740,
+  opacity: 0.1
+});
+
+textLayer3.input.style.font = "50px/1.35em Helvetica";
+
+textLayer3.input.style.textAlign = "center";
+
+textLayer3.input.style.background = "transparent";
+
+textLayer3.input.style.color = "#FFF";
+
+textLayer3.input.value = eOn;
+
+textLayer3.backgroundColor = "rgba(255, 255, 255, 0)";
+
+textLayer4 = new InputTextLayer({
+  parent: layerBG,
+  width: 150,
+  height: 200,
+  y: 2005,
+  x: 910,
+  opacity: 0.1
+});
+
+textLayer4.input.style.font = "50px/1.35em Helvetica";
+
+textLayer4.input.style.textAlign = "center";
+
+textLayer4.input.style.background = "transparent";
+
+textLayer4.input.style.color = "#FFF";
+
+textLayer4.input.value = eOff;
+
+textLayer4.backgroundColor = "rgba(255, 255, 255, 0)";
+
+timeOnMinus = new Layer({
+  parent: layerBG,
+  x: 0,
+  y: 2000,
+  opacity: 0,
+  borderRadius: 10,
+  width: 180
+});
+
+timeOnPlus = new Layer({
+  parent: layerBG,
+  x: 180,
+  y: 2000,
+  opacity: 0,
+  borderRadius: 10,
+  width: 180
+});
+
+timeOffMinus = new Layer({
+  parent: layerBG,
+  x: 360,
+  y: 2000,
+  opacity: 0,
+  borderRadius: 10,
+  width: 180
+});
+
+timeOffPlus = new Layer({
+  parent: layerBG,
+  x: 540,
+  y: 2000,
+  opacity: 0,
+  borderRadius: 10,
+  width: 180
+});
+
+EaseOn = new Layer({
+  parent: layerBG,
+  x: 720,
+  y: 2000,
+  opacity: 0,
+  borderRadius: 10,
+  width: 180
+});
+
+EaseOff = new Layer({
+  parent: layerBG,
+  x: 900,
+  y: 2000,
+  opacity: 0,
+  borderRadius: 10,
+  width: 180
+});
+
+timeOnMinus.onTap(function() {
+  timeOn = timeOn - 0.05;
+  degBG.states["default"].animationOptions.time = timeOn;
+  return textLayer.input.value = timeOn;
+});
+
+timeOnPlus.onTap(function() {
+  timeOn = timeOn + 0.05;
+  degBG.states["default"].animationOptions.time = timeOn;
+  return textLayer.input.value = timeOn;
+});
+
+timeOffMinus.onTap(function() {
+  timeOff = timeOff - 0.05;
+  degBG.states.tap.animationOptions.time = timeOff;
+  return textLayer2.input.value = timeOff;
+});
+
+timeOffPlus.onTap(function() {
+  timeOff = timeOff + 0.05;
+  degBG.states.tap.animationOptions.time = timeOff;
+  return textLayer2.input.value = timeOff;
+});
+
+EaseOn.onTap(function() {
+  if (eOn === "ease-in") {
+    textLayer3.input.value = "out";
+    eOn = "ease-out";
+    return degBG.states["default"].animationOptions.curve = eOn;
+  } else {
+    textLayer3.input.value = "in";
+    eOn = "ease-in";
+    return degBG.states["default"].animationOptions.curve = eOn;
+  }
+});
+
+EaseOff.onTap(function() {
+  if (eOff === "ease-in") {
+    textLayer4.input.value = "out";
+    eOff = "ease-out";
+    return degBG.states.tap.animationOptions.curve = eOff;
+  } else {
+    textLayer4.input.value = "in";
+    eOff = "ease-in";
+    return degBG.states.tap.animationOptions.curve = eOff;
+  }
+});
 
 rounding_margin.onClick(function() {
   roundingBG.states.next();
   return rounding.states.next();
 });
 
-deg_margin.onTouchStart(function() {
-  degBG.states.next();
+deg_margin.onTap(function() {
+  print(degBG.states["default"].animationOptions.curve);
   deg.states.next();
-  return deg_margin.onTouchEnd(function() {
-    return degBG.onStateSwitchEnd(function() {
-      if (degBG.states.current.name === "tap") {
-        return degBG.stateCycle("tap", "default");
-      }
-    });
+  degBG.states.next();
+  return degBG.onStateSwitchEnd(function() {
+    if (degBG.states.current.name === "tap") {
+      return degBG.stateCycle("tap", "default");
+    }
   });
 });
+
+degBG.states.tap = {
+  backgroundColor: "#666666",
+  animationOptions: {
+    time: timeOn,
+    curve: eOn
+  }
+};
+
+degBG.states["default"] = {
+  backgroundColor: "#333333",
+  animationOptions: {
+    time: timeOff,
+    curve: eOff
+  }
+};

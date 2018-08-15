@@ -466,9 +466,15 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 1.5
+screenScale = 5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
-time = 0.2
+time = 0.3
+
+timeOn = 0.3
+timeOff = 0.3
+
+eOn = "ease-out"
+eOff = "ease-in"
 
 layerBG = new Layer
 	width: 1126
@@ -478,6 +484,8 @@ layerBG = new Layer
 	image: "images/iPhone-X-bg.png"
 layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2
 layerBG.y = 0 - (layerBG.height - layerBG.height / screenScale) / 2
+
+
 
 rounding_margin = new Layer
 	parent: layerBG
@@ -556,35 +564,222 @@ deg_margin = new Layer
 degBG.states.tap =
 	backgroundColor : "#666666"
 	animationOptions:
-		time: time * 1
-		curve: "ease-out"
+		time: timeOn
+		curve: eOn
 
 degBG.states.default =
 	backgroundColor : "#333333"
 	animationOptions:
-		time: time * 1
-		curve: "ease-out"
+		time: timeOff
+		curve: eOff
 
 deg.states.rad =
 	image: "images/rad.png"
-	animationOptions:
-		delay: 1
+
 
 deg.states.default =
 	image: "images/deg.png"
-	animationOptions:
-		time: 0.5
-		delay: time * 0.7
 
+
+
+
+
+
+# Кнопки управления
+
+class InputTextLayer extends Framer.Layer
+
+	constructor: (options) ->
+
+		super options
+
+		@ignoreEvents = false
+		@input = document.createElement("input")
+
+		_.extend @input.style,
+			"-webkit-user-select": "text"
+			"-webkit-box-sizing": "border-box"
+			"cursor": "auto"
+		@_update()
+		@_element.appendChild(@input)
+
+		@on "change:width", @_update
+		@on "change:height", @_update
+
+	_update: =>
+		_.extend @input.style,
+			width: "#{@width}px"
+			height: "#{@height}px"
+
+textLayer = new InputTextLayer
+	parent: layerBG
+	width:150
+	height:200
+	y:2005
+	x:107
+	opacity: 0.1
+#textLayer.states.animationOptions = curve: "spring(250, 20, 0)"
+textLayer.input.style.font = "50px/1.35em Helvetica"
+#textLayer.input.style.font-style = "normal"
+#textLayer.input.style.font-weight = "100"
+#textLayer.input.style.padding = "24px"
+textLayer.input.style.textAlign = "center"
+textLayer.input.style.background = "transparent"
+#textLayer.input.style.outline = '0.1'
+textLayer.input.style.color = "#FFF"
+#textLayer.input.style.border = "0px solid"
+# textLayer.input.style.display = "none"
+textLayer.input.value = timeOn
+# textLayer.input.placeholder = "Search Me"
+textLayer.backgroundColor = "rgba(255, 255, 255, 0)"
+
+textLayer2 = new InputTextLayer
+	parent: layerBG
+	width:150
+	height:200
+	y:2005
+	x:465
+	opacity: 0.1
+textLayer2.input.style.font = "50px/1.35em Helvetica"
+textLayer2.input.style.textAlign = "center"
+textLayer2.input.style.background = "transparent"
+textLayer2.input.style.color = "#FFF"
+textLayer2.input.value = timeOff
+textLayer2.backgroundColor = "rgba(255, 255, 255, 0)"
+
+textLayer3 = new InputTextLayer
+	parent: layerBG
+	width:150
+	height:200
+	y:2005
+	x:740
+	opacity: 0.1
+textLayer3.input.style.font = "50px/1.35em Helvetica"
+textLayer3.input.style.textAlign = "center"
+textLayer3.input.style.background = "transparent"
+textLayer3.input.style.color = "#FFF"
+textLayer3.input.value = eOn
+textLayer3.backgroundColor = "rgba(255, 255, 255, 0)"
+
+textLayer4 = new InputTextLayer
+	parent: layerBG
+	width:150
+	height:200
+	y:2005
+	x:910
+	opacity: 0.1
+textLayer4.input.style.font = "50px/1.35em Helvetica"
+textLayer4.input.style.textAlign = "center"
+textLayer4.input.style.background = "transparent"
+textLayer4.input.style.color = "#FFF"
+textLayer4.input.value = eOff
+textLayer4.backgroundColor = "rgba(255, 255, 255, 0)"
+
+
+timeOnMinus = new Layer
+	parent: layerBG
+	x: 0
+	y: 2000
+	opacity: 0
+	borderRadius: 10
+	width: 180
+timeOnPlus = new Layer
+	parent: layerBG
+	x: 180
+	y: 2000
+	opacity: 0
+	borderRadius: 10
+	width: 180
+timeOffMinus = new Layer
+	parent: layerBG
+	x: 360
+	y: 2000
+	opacity: 0
+	borderRadius: 10
+	width: 180
+timeOffPlus = new Layer
+	parent: layerBG
+	x: 540
+	y: 2000
+	opacity: 0
+	borderRadius: 10
+	width: 180
+EaseOn = new Layer
+	parent: layerBG
+	x: 720
+	y: 2000
+	opacity: 0
+	borderRadius: 10
+	width: 180
+EaseOff = new Layer
+	parent: layerBG
+	x: 900
+	y: 2000
+	opacity: 0
+	borderRadius: 10
+	width: 180
+
+
+
+
+
+timeOnMinus.onTap ->
+	timeOn = timeOn - 0.05
+	degBG.states.default.animationOptions.time = timeOn
+	textLayer.input.value = timeOn
+timeOnPlus.onTap ->
+	timeOn = timeOn + 0.05
+	degBG.states.default.animationOptions.time = timeOn
+	textLayer.input.value = timeOn
+
+timeOffMinus.onTap ->
+	timeOff = timeOff - 0.05
+	degBG.states.tap.animationOptions.time = timeOff
+	textLayer2.input.value = timeOff
+timeOffPlus.onTap ->
+	timeOff = timeOff + 0.05
+	degBG.states.tap.animationOptions.time = timeOff
+	textLayer2.input.value = timeOff
+EaseOn.onTap ->
+	if (eOn is "ease-in")
+		textLayer3.input.value = "out"
+		eOn = "ease-out"
+		degBG.states.default.animationOptions.curve = eOn
+	else
+		textLayer3.input.value = "in"
+		eOn = "ease-in"
+		degBG.states.default.animationOptions.curve = eOn
+
+EaseOff.onTap ->
+	if (eOff is "ease-in")
+		textLayer4.input.value = "out"
+		eOff = "ease-out"
+		degBG.states.tap.animationOptions.curve = eOff
+	else
+		textLayer4.input.value = "in"
+		eOff = "ease-in"
+		degBG.states.tap.animationOptions.curve = eOff
 
 rounding_margin.onClick ->
 	roundingBG.states.next()
 	rounding.states.next()
 
-deg_margin.onTouchStart ->
-	degBG.states.next()
+
+deg_margin.onTap ->
+	print degBG.states.default.animationOptions.curve
 	deg.states.next()
-	deg_margin.onTouchEnd  ->
-		degBG.onStateSwitchEnd ->
-			if (degBG.states.current.name is "tap")
-				degBG.stateCycle("tap", "default")
+	degBG.states.next()
+	degBG.onStateSwitchEnd ->
+		if (degBG.states.current.name is "tap")
+			degBG.stateCycle("tap", "default")
+degBG.states.tap =
+	backgroundColor : "#666666"
+	animationOptions:
+		time: timeOn
+		curve: eOn
+
+degBG.states.default =
+	backgroundColor : "#333333"
+	animationOptions:
+		time: timeOff
+		curve: eOff
