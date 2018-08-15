@@ -466,7 +466,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 5
+screenScale = 1.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -766,7 +766,7 @@ rounding_margin.onClick ->
 
 
 deg_margin.onTap ->
-	print degBG.states.default.animationOptions.curve
+	#print degBG.states.default.animationOptions.curve
 	deg.states.next()
 	degBG.states.next()
 	degBG.onStateSwitchEnd ->

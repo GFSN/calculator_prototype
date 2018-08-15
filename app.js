@@ -472,7 +472,7 @@ var EaseOff, EaseOn, InputTextLayer, curveAnimation, deg, degBG, deg_margin, eOf
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 
-screenScale = 5;
+screenScale = 1.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -830,7 +830,6 @@ rounding_margin.onClick(function() {
 });
 
 deg_margin.onTap(function() {
-  print(degBG.states["default"].animationOptions.curve);
   deg.states.next();
   degBG.states.next();
   return degBG.onStateSwitchEnd(function() {
