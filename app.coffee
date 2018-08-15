@@ -555,10 +555,10 @@ deg = new Layer
 
 deg_margin = new Layer
 	parent: layerBG
-	x: 150
-	y: 150
-	width: 174
-	height: 132
+	x: 0 #150
+	y: 1500 #150
+	width: 1126 #174
+	height: 500 #132
 	opacity: 0
 
 degBG.states.tap =
