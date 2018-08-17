@@ -469,11 +469,11 @@ layer7.onClick ->
  */
 var curveAnimation, deg, degBG, deg_margin, eOff, eOn, layer1, layer2, layer3, layer4, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, rounding, roundingBG, rounding_margin, screenScale, time, timeOff, timeOn;
 
-screenScale = 4;
+screenScale = 1.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
-time = 0.25;
+time = 0.3;
 
 timeOn = 0.3;
 
@@ -642,7 +642,7 @@ memory2 = new Layer({
   width: 298,
   height: 96,
   image: "images/memory-1.png",
-  opacity: 1
+  opacity: 0.9
 });
 
 memoryBG.states.create = {
