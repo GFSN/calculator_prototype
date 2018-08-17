@@ -466,9 +466,9 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 1.5
+screenScale = 4
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
-time = 0.3
+time = 0.25
 
 timeOn = 0.3
 timeOff = 0.3
@@ -476,6 +476,7 @@ timeOff = 0.3
 eOn = "ease-out"
 eOff = "ease-in"
 
+# Фон
 layerBG = new Layer
 	width: 1126
 	height: 2436
@@ -486,7 +487,9 @@ layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2
 layerBG.y = 0 - (layerBG.height - layerBG.height / screenScale) / 2
 
 
-
+#
+# Округление #
+# Площадь
 rounding_margin = new Layer
 	parent: layerBG
 	x: 0
@@ -494,7 +497,7 @@ rounding_margin = new Layer
 	width: 150
 	height: 132
 	opacity: 0
-
+# Фон кнопки округления
 roundingBG = new Layer
 	parent: layerBG
 	x: 36
@@ -503,40 +506,31 @@ roundingBG = new Layer
 	height: 96
 	borderRadius: 48
 	backgroundColor : "#333333"
-
-roundingBG.states.active =
-	backgroundColor : "#b3b3b3"
-	animationOptions:
-		time: time
-		curve: "ease-out"
-
-roundingBG.states.default =
-	backgroundColor : "#333333"
-	animationOptions:
-		time: time * 0.7
-		curve: "ease-in"
-
+# Иконка кнопки округления
 rounding = new Layer
 	parent: roundingBG
 	width: 96
 	height: 96
 	image: "images/rounding.png"
 	opacity: 0.8
-
+# состояния кнопки округления
+roundingBG.states.active =
+	backgroundColor : "#b3b3b3"
+	animationOptions:
+		time: 0.3
+		curve: "ease-out"
+roundingBG.states.default =
+	backgroundColor : "#333333"
+	animationOptions:
+		time: time
+		curve: "ease-out"
 rounding.states.active =
 	image: "images/rounding-black.png"
-	animationOptions:
-		time: time
-		curve: "ease-out"
-
 rounding.states.default =
 	image: "images/rounding.png"
-	animationOptions:
-		time: time
-		curve: "ease-out"
-
-
-
+#
+# Углы #
+# Фон кнопки углов
 degBG = new Layer
 	parent: layerBG
 	x: 168
@@ -545,47 +539,199 @@ degBG = new Layer
 	height: 96
 	borderRadius: 48
 	backgroundColor : "#333333"
-
+# Иконка кнопки углов
 deg = new Layer
 	parent: degBG
 	width: 138
 	height: 96
 	image: "images/deg.png"
 	opacity: 0.8
-
+# Площадь кнопки углов
 deg_margin = new Layer
 	parent: layerBG
-	x: 0 #150
-	y: 1500 #150
-	width: 1126 #174
-	height: 500 #132
+	x: 150
+	y: 150
+	width: 174
+	height: 132
 	opacity: 0
-
+# состояния кнопки углов
+# tap background Rad
 degBG.states.tap =
 	backgroundColor : "#666666"
 	animationOptions:
-		time: timeOn
-		curve: eOn
-
+		time: 0.25
+		curve: "ease-in"
+#default background Rad
 degBG.states.default =
 	backgroundColor : "#333333"
 	animationOptions:
-		time: timeOff
-		curve: eOff
-
+		time: 0.2
+		curve: "ease-out"
+#tap icon Rad
 deg.states.rad =
 	image: "images/rad.png"
-
-
+#default icon Rad
 deg.states.default =
 	image: "images/deg.png"
+#
+# memory 1 #
+# background memory 1
+memoryBG = new Layer
+	parent: layerBG
+	#x: 342
+	#y: 168
+	#width: 298
+	#height: 96
+	borderRadius: 48
+	backgroundColor : "rgba(255,255,255,0.35)"
+	opacity: 0
+	width: 180
+	opacity: 0
+	height: 50
+	x: 300
+	y: 191
+# icon mempry 1
+memory = new Layer
+	parent: memoryBG
+	width: 298
+	height: 96
+	image: "images/memory-1.png"
+	opacity: 0
+# margin memory 1
+memory_margin = new Layer
+	parent: layerBG
+	x: 0#324
+	y: 500#150
+	width: 1126#334
+	height: 300#132
+	opacity: 0.5
+# memory 2 #
+# background memory 2
+memoryBG2 = new Layer
+	parent: layerBG
+	x: 342
+	y: 168
+	width: 298
+	height: 96
+	borderRadius: 48
+	backgroundColor : "rgba(255,255,255,0.35)"
+	opacity: 1
+# icon mempry 2
+memory2 = new Layer
+	parent: memoryBG2
+	width: 298
+	height: 96
+	image: "images/memory-1.png"
+	opacity: 1
+# states memory 1
+#states background
+memoryBG.states.create =
+	width: 298
+	height: 96
+	opacity: 1
+	scale: 1
+	x: 342
+	y: 168
+	animationOptions:
+		time: time
+		curve: "ease-in-out"
+memoryBG.states.default =
+	width: 180
+	opacity: 0
+	#scale: 0.5
+	height: 50
+	x: 300
+	y: 191
+	animationOptions:
+		time: 0.6 * time
+		curve: "ease-in-out"
+# states memory 2
+memoryBG2.states.create =
+	x: 676
+	animationOptions:
+		time: 0.8 * time
+		curve: "ease-in-out"
+memoryBG2.states.default =
+	x: 342
+	animationOptions:
+		time: 0.8 * time
+		curve: "ease-in-out"
+
+
+#
+#test
+layer1 = new Layer
+	parent: layerBG
+	x: 0
+	y: 1000
+layer2 = new Layer
+	parent: layerBG
+	x: 0
+	y: 1201
+layer3 = new Layer
+	parent: layerBG
+	x: 0
+	y: 1402
+layer4 = new Layer
+	parent: layerBG
+	x: 0
+	y: 1603
+#states
+layer1.states.tap =
+	x: 800
+	animationOptions:
+		time: time * 5
+		#curve: "spring"
+layer2.states.tap =
+	x: 800
+	animationOptions:
+		time: time * 5
+		curve: "ease-in"
+layer3.states.tap =
+	x: 800
+	animationOptions:
+		time: time * 5
+		curve: "ease-out"
+layer4.states.tap =
+	x: 800
+	animationOptions:
+		time: time * 4.3
+		curve: "ease-in-out"
+layer1.states.default =
+	x: 0
+	animationOptions:
+		time: time * 5
+		curve: "Bezier(.25,.1,.25,1)"
+layer2.states.default =
+	x: 0
+	animationOptions:
+		time: time * 5
+		curve: "ease-in"
+layer3.states.default =
+	x: 0
+	animationOptions:
+		time: time * 5
+		curve: "ease-out"
+layer4.states.default =
+	x: 0
+	animationOptions:
+		time: time * 4.3
+		curve: "ease-in-out"
+
+
+memory_margin.onTap ->
+	memoryBG.states.next()
+	memoryBG2.states.next()
+	layer1.states.next()
+	layer2.states.next()
+	layer3.states.next()
+	layer4.states.next()
+	#print layer1.states.tap.animationOptions.curve
 
 
 
 
-
-
-# Кнопки управления
+### Кнопки управления
 
 class InputTextLayer extends Framer.Layer
 
@@ -759,27 +905,15 @@ EaseOff.onTap ->
 		textLayer4.input.value = "in"
 		eOff = "ease-in"
 		degBG.states.tap.animationOptions.curve = eOff
-
+###
 rounding_margin.onClick ->
 	roundingBG.states.next()
 	rounding.states.next()
 
 
 deg_margin.onTap ->
-	#print degBG.states.default.animationOptions.curve
 	deg.states.next()
 	degBG.states.next()
 	degBG.onStateSwitchEnd ->
 		if (degBG.states.current.name is "tap")
 			degBG.stateCycle("tap", "default")
-degBG.states.tap =
-	backgroundColor : "#666666"
-	animationOptions:
-		time: timeOn
-		curve: eOn
-
-degBG.states.default =
-	backgroundColor : "#333333"
-	animationOptions:
-		time: timeOff
-		curve: eOff
