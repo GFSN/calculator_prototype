@@ -597,14 +597,17 @@ memory = new Layer
 	height: 96
 	image: "images/memory-1.png"
 	opacity: 0
+	scale: 0.5
+	x: -110
+	y: -23
 # margin memory 1
 memory_margin = new Layer
 	parent: layerBG
-	x: 0#324
-	y: 500#150
-	width: 1126#334
-	height: 300#132
-	opacity: 0.5
+	x: 324
+	y: 150
+	width: 334
+	height: 132
+	opacity: 0
 # memory 2 #
 # background memory 2
 memoryBG2 = new Layer
@@ -645,6 +648,22 @@ memoryBG.states.default =
 	animationOptions:
 		time: 0.6 * time
 		curve: "ease-in-out"
+memory.states.create =
+	scale: 1
+	opacity: 0.9
+	x: 0
+	y: 0
+	animationOptions:
+		time: time
+		curve: "ease-in-out"
+memory.states.default =
+	opacity: 0
+	scale: 0.5
+	x: -110
+	y: -23
+	animationOptions:
+		time: 0.6 * time
+		curve: "ease-in-out"
 # states memory 2
 memoryBG2.states.create =
 	x: 676
@@ -656,76 +675,103 @@ memoryBG2.states.default =
 	animationOptions:
 		time: 0.8 * time
 		curve: "ease-in-out"
-
-
 #
-#test
-layer1 = new Layer
+# minus
+minusBG = new Layer
+	parent: memoryBG
+	x: 260
+	y: -32
+	width: 66
+	height: 66
+	borderRadius: 33
+	backgroundColor : "#eb4e3d"
+	scale: 1
+
+# minus
+minus = new Layer
+	parent: minusBG
+	x: 16
+	y: 31
+	width: 34
+	height: 4
+	backgroundColor : "#fff"
+minusMargin = new Layer
 	parent: layerBG
-	x: 0
-	y: 1000
-layer2 = new Layer
-	parent: layerBG
-	x: 0
-	y: 1201
-layer3 = new Layer
-	parent: layerBG
-	x: 0
-	y: 1402
-layer4 = new Layer
-	parent: layerBG
-	x: 0
-	y: 1603
-#states
-layer1.states.tap =
-	x: 800
-	animationOptions:
-		time: time * 5
-		#curve: "spring"
-layer2.states.tap =
-	x: 800
-	animationOptions:
-		time: time * 5
-		curve: "ease-in"
-layer3.states.tap =
-	x: 800
-	animationOptions:
-		time: time * 5
-		curve: "ease-out"
-layer4.states.tap =
-	x: 800
-	animationOptions:
-		time: time * 4.3
-		curve: "ease-in-out"
-layer1.states.default =
-	x: 0
-	animationOptions:
-		time: time * 5
-		curve: "Bezier(.25,.1,.25,1)"
-layer2.states.default =
-	x: 0
-	animationOptions:
-		time: time * 5
-		curve: "ease-in"
-layer3.states.default =
-	x: 0
-	animationOptions:
-		time: time * 5
-		curve: "ease-out"
-layer4.states.default =
-	x: 0
-	animationOptions:
-		time: time * 4.3
-		curve: "ease-in-out"
+	x: 186 + 342
+	y: -32 + 168
+	width: 140
+	height: 130
+	opacity: 0
 
 
-memory_margin.onTap ->
+
+# minus states
+minusBG.states.tap =
+	scale: 1
+	animationOptions:
+		time: 0.5 * time
+		curve: "ease-out"
+minusBG.states.default =
+	scale: 0
+	animationOptions:
+		time: 0.3 * time
+minusBG.states.switchInstant "default"
+minusMargin.states.tap =
+	scale: 1
+	animationOptions:
+		time: 0
+minusMargin.states.default =
+	scale: 0
+	animationOptions:
+		time: 0
+minusMargin.states.switchInstant "default"
+
+
+
+memory_margin.states.create =
+	scale: 1
+	animationOptions:
+		time: 0
+memory_margin.states.default =
+	scale: 0
+	animationOptions:
+		time: 0
+memory_margin.states.switchInstant "default"
+minusMargin.placeBefore (memory_margin)
+save = new Layer
+	parent: layerBG
+	x: 36
+	y: 888
+	width: 195
+	height: 96
+	backgroundColor : "rgba(255,255,255,0.20)"
+	borderRadius: 50
+saveMargin = new Layer
+	parent: layerBG
+	x: 48
+	y: 870
+	width: 198
+	height: 132
+	opacity: 0
+
+saveMargin.onTap ->
+	memoryBG.states.switch "create"
+	memory.states.switch "create"
+	memoryBG2.states.switch "create"
+	memory_margin.states.switch "create"
+memory_margin.onLongPress ->
+	#print "Click"
+	minusBG.states.switch "tap"
+	minusMargin.states.switch "tap"
+
+minusMargin.onTap ->
+	minusBG.states.switch "default"
+	memory_margin.states.switch "default"
+	minusMargin.states.switch "default"
 	memoryBG.states.next()
+	memory.states.next()
 	memoryBG2.states.next()
-	layer1.states.next()
-	layer2.states.next()
-	layer3.states.next()
-	layer4.states.next()
+
 	#print layer1.states.tap.animationOptions.curve
 
 
