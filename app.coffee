@@ -740,7 +740,7 @@ memory_margin.states.switchInstant "default"
 minusMargin.placeBefore (memory_margin)
 save = new Layer
 	parent: layerBG
-	x: 36
+	x: 36 #kjb
 	y: 888
 	width: 195
 	height: 96
