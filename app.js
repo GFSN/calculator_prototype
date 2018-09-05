@@ -467,7 +467,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_ln, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeOff, timeOn;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeOff, timeOn;
 
 screenScale = 1.5;
 
@@ -488,7 +488,7 @@ layerBG = new Layer({
   height: 2436,
   scale: 1 / screenScale,
   opacity: 1,
-  image: "images/iPhone-X.png"
+  image: "images/iPhone-X-bg.png"
 });
 
 layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2;
@@ -1034,7 +1034,37 @@ l7.states["default"] = {
   width: 270,
   height: 234,
   opacity: 1,
-  scale: 1
+  scale: 1,
+  animationOptions: {
+    time: 0.85 * time,
+    curve: "ease-in"
+  }
+};
+
+l7.states.swipe = {
+  x: 24,
+  y: 1340,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: 0.4 * time,
+    curve: "ease-out"
+  }
+};
+
+l7.states.tap = {
+  x: 24,
+  y: 1260,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 0.75,
+  animationOptions: {
+    time: 0.225 * time,
+    curve: "ease-out"
+  }
 };
 
 l7.states.switchInstant("default");
@@ -1045,12 +1075,73 @@ l7_ln = new Layer({
 });
 
 l7_ln.states["default"] = {
-  x: 240,
+  x: 24,
   y: 1190,
   width: 270,
   height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: 0.85 * time,
+    curve: "ease-in"
+  }
+};
+
+l7_ln.states.swipe = {
+  x: 24,
+  y: 1260,
+  width: 270,
+  height: 234,
   opacity: 1,
-  scale: 0.45
+  scale: 1,
+  animationOptions: {
+    time: 0.4 * time,
+    curve: "ease-out"
+  }
 };
 
 l7_ln.states.switchInstant("default");
+
+l7_bg = new Layer({
+  parent: layerBG,
+  x: 48,
+  y: 1260,
+  width: 246,
+  height: 234,
+  opacity: 0
+});
+
+l7_bg.draggable.enabled = true;
+
+l7_bg.draggable.horizontal = false;
+
+l7_bg.draggable.constraints = {
+  x: 48,
+  y: 1260,
+  width: 246,
+  height: 234
+};
+
+l7_bg.onClick(function() {
+  if (l7_bg.y === 1260) {
+    l7.animate("tap");
+    return l7.onStateSwitchEnd(function() {
+      if (l7.states.current.name === "tap") {
+        return l7.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l7_bg.onSwipeDown(function() {
+  if (l7.states.current.name === "default") {
+    l7_ln.animate("swipe");
+    return l7.animate("swipe");
+  }
+});
+
+l7_bg.onSwipeEnd(function() {
+  l7_ln.animate("default");
+  l7.animate("default");
+  return l7_bg.y = 1260;
+});

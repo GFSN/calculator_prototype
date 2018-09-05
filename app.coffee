@@ -482,7 +482,7 @@ layerBG = new Layer
 	height: 2436
 	scale: 1 / screenScale
 	opacity: 1
-	image: "images/iPhone-X.png"
+	image: "images/iPhone-X-bg.png"
 layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2
 layerBG.y = 0 - (layerBG.height - layerBG.height / screenScale) / 2
 
@@ -964,10 +964,14 @@ deg_margin.onTap ->
 		if (degBG.states.current.name is "tap")
 			degBG.stateCycle("tap", "default")
 
-
+#
+# Button 7 and ln
+#
+# Button 7
 l7 = new Layer
 	parent: layerBG
 	image: "images/7.png"
+# Button 7 States
 l7.states.default =
 	x: 24
 	y: 1260
@@ -975,16 +979,89 @@ l7.states.default =
 	height: 234
 	opacity: 1
 	scale: 1
-l7.states.switchInstant "default"
-
-l7_ln = new Layer
-	parent: layerBG
-	image: "images/ln.png"
-l7_ln.states.default =
-	x: 240
-	y: 1190
+	animationOptions:
+		time: 0.85 * time
+		curve: "ease-in"
+l7.states.swipe =
+	x: 24
+	y: 1340
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: 0.4 * time
+		curve: "ease-out"
+l7.states.tap =
+	x: 24
+	y: 1260
 	width: 270
 	height: 234
 	opacity: 1
+	scale: 0.75
+	animationOptions:
+		time: 0.225 * time
+		curve: "ease-out"
+l7.states.switchInstant "default"
+# Button ln
+l7_ln = new Layer
+	parent: layerBG
+	image: "images/ln.png"
+# Button ln States
+l7_ln.states.default =
+	x: 24
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
 	scale: 0.45
+	animationOptions:
+		time: 0.85 * time
+		curve: "ease-in"
+l7_ln.states.swipe =
+	x: 24
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.4 * time
+		curve: "ease-out"
 l7_ln.states.switchInstant "default"
+# Button 7 Masc
+l7_bg = new Layer
+	parent: layerBG
+	x: 48
+	y: 1260
+	width: 246
+	height: 234
+	opacity: 0
+# Button 7 draggable
+l7_bg.draggable.enabled = true
+l7_bg.draggable.horizontal = false
+l7_bg.draggable.constraints =
+ x: 48
+ y: 1260
+ width: 246
+ height: 234
+# Button 7 Animation
+#
+# Tap Animation
+l7_bg.onClick ->
+	if (l7_bg.y is 1260)
+		l7.animate("tap")
+		l7.onStateSwitchEnd ->
+			if (l7.states.current.name is "tap")
+				l7.stateCycle("tap", "default")
+# Swipe Animation
+l7_bg.onSwipeDown ->
+	if (l7.states.current.name is "default")
+		#textLayer.input.value = textLayer.input.value + "e"
+		l7_ln.animate("swipe")
+		l7.animate("swipe")
+
+l7_bg.onSwipeEnd ->
+	l7_ln.animate("default")
+	l7.animate("default")
+	l7_bg.y = 1260
