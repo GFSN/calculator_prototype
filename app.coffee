@@ -466,7 +466,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 1.5
+screenScale = 4
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -482,7 +482,7 @@ layerBG = new Layer
 	height: 2436
 	scale: 1 / screenScale
 	opacity: 1
-	image: "images/iPhone-X-bg.png"
+	image: "images/iPhone-X.png"
 layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2
 layerBG.y = 0 - (layerBG.height - layerBG.height / screenScale) / 2
 
@@ -963,3 +963,28 @@ deg_margin.onTap ->
 	degBG.onStateSwitchEnd ->
 		if (degBG.states.current.name is "tap")
 			degBG.stateCycle("tap", "default")
+
+
+l7 = new Layer
+	parent: layerBG
+	image: "images/7.png"
+l7.states.default =
+	x: 24
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+l7.states.switchInstant "default"
+
+l7_ln = new Layer
+	parent: layerBG
+	image: "images/ln.png"
+l7_ln.states.default =
+	x: 240
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 0.45
+l7_ln.states.switchInstant "default"

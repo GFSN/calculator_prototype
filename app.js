@@ -467,9 +467,9 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeOff, timeOn;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_ln, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeOff, timeOn;
 
-screenScale = 1.5;
+screenScale = 4;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -488,7 +488,7 @@ layerBG = new Layer({
   height: 2436,
   scale: 1 / screenScale,
   opacity: 1,
-  image: "images/iPhone-X-bg.png"
+  image: "images/iPhone-X.png"
 });
 
 layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2;
@@ -1022,3 +1022,35 @@ deg_margin.onTap(function() {
     }
   });
 });
+
+l7 = new Layer({
+  parent: layerBG,
+  image: "images/7.png"
+});
+
+l7.states["default"] = {
+  x: 24,
+  y: 1260,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1
+};
+
+l7.states.switchInstant("default");
+
+l7_ln = new Layer({
+  parent: layerBG,
+  image: "images/ln.png"
+});
+
+l7_ln.states["default"] = {
+  x: 240,
+  y: 1190,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 0.45
+};
+
+l7_ln.states.switchInstant("default");
