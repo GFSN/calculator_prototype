@@ -469,7 +469,7 @@ layer7.onClick ->
  */
 var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_ln, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeOff, timeOn;
 
-screenScale = 4;
+screenScale = 1.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
