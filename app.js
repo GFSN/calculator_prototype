@@ -469,7 +469,7 @@ layer7.onClick ->
  */
 var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeBig, timeSmall;
 
-screenScale = 2.5;
+screenScale = 1.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -1246,7 +1246,7 @@ l7_bg.draggable.constraints = {
 };
 
 l7_bg.onClick(function() {
-  if ((l7_bg.y === 1260) && (!l_sqrt.isAnimating)) {
+  if ((l7_bg.y === 1260) && (l_sqrt_bg.y === 1026)) {
     l7.animate("tap");
     return l7.onStateSwitchEnd(function() {
       if (l7.states.current.name === "tap") {

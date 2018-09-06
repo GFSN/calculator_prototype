@@ -466,7 +466,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 2.5
+screenScale = 1.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -1154,7 +1154,7 @@ l7_bg.draggable.constraints =
 #
 # Tap Animation
 l7_bg.onClick ->
-	if ((l7_bg.y is 1260) && (!l_sqrt.isAnimating))
+	if ((l7_bg.y is 1260) && (l_sqrt_bg.y is 1026))
 		l7.animate("tap")
 		l7.onStateSwitchEnd ->
 			if (l7.states.current.name is "tap")
