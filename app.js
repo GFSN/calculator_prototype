@@ -467,7 +467,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeBig, timeSmall;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_pow, l_pow_bg, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, time, timeBig, timeSmall;
 
 screenScale = 1.5;
 
@@ -1019,9 +1019,11 @@ deg_margin.onTap(function() {
   });
 });
 
-timeBig = 0.2;
+timeBig = 0.15;
 
 timeSmall = 0.15;
+
+scaleTap = 0.8;
 
 l_sqrt = new Layer({
   parent: layerBG,
@@ -1062,7 +1064,7 @@ l_sqrt.states.tap = {
   width: 270,
   height: 234,
   opacity: 1,
-  scale: 0.75,
+  scale: scaleTap,
   animationOptions: {
     time: timeSmall * 0.5,
     curve: "ease-out"
@@ -1146,6 +1148,232 @@ l_sqrt_bg.onSwipeEnd(function() {
   return l_sqrt_bg.y = 1026;
 });
 
+l_pow = new Layer({
+  parent: layerBG,
+  image: "images/pow.png",
+  x: 294,
+  width: 270,
+  height: 234
+});
+
+l_pow.states["default"] = {
+  y: 1026,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l_pow.states.switchInstant("default");
+
+l_pow.states.swipe = {
+  y: 1106,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l_pow.states.tap = {
+  y: 1026,
+  opacity: 1,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l_pow_n = new Layer({
+  parent: layerBG,
+  image: "images/pow_n.png",
+  x: 294,
+  width: 270,
+  height: 234
+});
+
+l_pow_n.states["default"] = {
+  y: 956,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l_pow_n.states.swipe = {
+  y: 1026,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l_pow_n.states.switchInstant("default");
+
+l_pow_bg = new Layer({
+  parent: layerBG,
+  x: 294,
+  y: 1026,
+  width: 270,
+  height: 234,
+  opacity: 0
+});
+
+l_pow_bg.draggable.enabled = true;
+
+l_pow_bg.draggable.horizontal = false;
+
+l_pow_bg.draggable.constraints = {
+  x: 294,
+  y: 1026,
+  width: 270,
+  height: 234
+};
+
+l_pow_bg.onClick(function() {
+  if (l_pow_bg.y === 1026) {
+    l_pow.animate("tap");
+    return l_pow.onStateSwitchEnd(function() {
+      if (l_pow.states.current.name === "tap") {
+        return l_pow.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l_pow_bg.onSwipeDown(function() {
+  if (l_pow.states.current.name === "default") {
+    l_pow_n.animate("swipe");
+    return l_pow.animate("swipe");
+  }
+});
+
+l_pow_bg.onSwipeEnd(function() {
+  l_pow_n.animate("default");
+  l_pow.animate("default");
+  return l_pow_bg.y = 1026;
+});
+
+l_del = new Layer({
+  parent: layerBG,
+  image: "images/del.png",
+  x: 564,
+  width: 270,
+  height: 234
+});
+
+l_del.states["default"] = {
+  y: 1026,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l_del.states.switchInstant("default");
+
+l_del.states.swipe = {
+  y: 1106,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l_del.states.tap = {
+  y: 1026,
+  opacity: 1,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l_cancel = new Layer({
+  parent: layerBG,
+  image: "images/cancel.png",
+  x: 564,
+  width: 270,
+  height: 234
+});
+
+l_cancel.states["default"] = {
+  y: 956,
+  scale: 0.45,
+  opacity: 0.4,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l_cancel.states.swipe = {
+  y: 1026,
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l_cancel.states.switchInstant("default");
+
+l_del_bg = new Layer({
+  parent: layerBG,
+  x: 564,
+  y: 1026,
+  width: 270,
+  height: 234,
+  opacity: 0
+});
+
+l_del_bg.draggable.enabled = true;
+
+l_del_bg.draggable.horizontal = false;
+
+l_del_bg.draggable.constraints = {
+  x: 564,
+  y: 1026,
+  width: 270,
+  height: 234
+};
+
+l_del_bg.onClick(function() {
+  if (l_del_bg.y === 1026) {
+    l_del.animate("tap");
+    return l_del.onStateSwitchEnd(function() {
+      if (l_del.states.current.name === "tap") {
+        return l_del.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l_del_bg.onSwipeDown(function() {
+  if (l_del.states.current.name === "default") {
+    l_cancel.animate("swipe");
+    return l_del.animate("swipe");
+  }
+});
+
+l_del_bg.onSwipeEnd(function() {
+  l_cancel.animate("default");
+  l_del.animate("default");
+  return l_del_bg.y = 1026;
+});
+
 l7 = new Layer({
   parent: layerBG,
   image: "images/7.png"
@@ -1159,7 +1387,7 @@ l7.states["default"] = {
   opacity: 1,
   scale: 1,
   animationOptions: {
-    time: timeBig,
+    time: timeSmall,
     curve: "ease-in"
   }
 };
@@ -1172,7 +1400,7 @@ l7.states.swipe = {
   opacity: 0,
   scale: 0.4,
   animationOptions: {
-    time: timeSmall,
+    time: timeBig,
     curve: "ease-out"
   }
 };
@@ -1183,7 +1411,7 @@ l7.states.tap = {
   width: 270,
   height: 234,
   opacity: 1,
-  scale: 0.75,
+  scale: scaleTap,
   animationOptions: {
     time: timeSmall * 0.5,
     curve: "ease-out"

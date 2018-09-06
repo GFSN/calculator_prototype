@@ -966,8 +966,9 @@ deg_margin.onTap ->
 #
 # Button 7 and ln
 #
-timeBig = 0.2
+timeBig = 0.15
 timeSmall = 0.15
+scaleTap = 0.8
 
 #
 # Button √ adn !
@@ -1004,7 +1005,7 @@ l_sqrt.states.tap =
 	width: 270
 	height: 234
 	opacity: 1
-	scale: 0.75
+	scale: scaleTap
 	animationOptions:
 		time: timeSmall * 0.5
 		curve: "ease-out"
@@ -1012,7 +1013,7 @@ l_sqrt.states.tap =
 l_sqrt_factorial = new Layer
 	parent: layerBG
 	image: "images/!.png"
-# Button ln States
+# Button ! States
 l_sqrt_factorial.states.default =
 	x: 24
 	y: 956
@@ -1059,20 +1060,200 @@ l_sqrt_bg.onClick ->
 		l_sqrt.onStateSwitchEnd ->
 			if (l_sqrt.states.current.name is "tap")
 				l_sqrt.stateCycle("tap", "default")
-
-
 # Swipe Animation
 l_sqrt_bg.onSwipeDown ->
 	if (l_sqrt.states.current.name is "default")
 		l_sqrt_factorial.animate("swipe")
 		l_sqrt.animate("swipe")
-
 l_sqrt_bg.onSwipeEnd ->
 	l_sqrt_factorial.animate("default")
 	l_sqrt.animate("default")
 	l_sqrt_bg.y = 1026
+#
+# Button pow and pow_n
+#
+#Button pow
+l_pow = new Layer
+	parent: layerBG
+	image: "images/pow.png"
+	x: 294
+	width: 270
+	height: 234
+# Button pow States
+l_pow.states.default =
+	y: 1026
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l_pow.states.switchInstant "default"
+l_pow.states.swipe =
+	y: 1106
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l_pow.states.tap =
+	y: 1026
+	opacity: 1
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+# Button pow_n
+l_pow_n = new Layer
+	parent: layerBG
+	image: "images/pow_n.png"
+	x: 294
+	width: 270
+	height: 234
+# Button pow_n States
+l_pow_n.states.default =
+	y: 956
+	scale: 0.45
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l_pow_n.states.swipe =
+	y: 1026
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l_pow_n.states.switchInstant "default"
+# Button pow Masc
+l_pow_bg = new Layer
+	parent: layerBG
+	x: 294
+	y: 1026
+	width: 270
+	height: 234
+	opacity: 0
+# Button pow draggable
+l_pow_bg.draggable.enabled = true
+l_pow_bg.draggable.horizontal = false
+l_pow_bg.draggable.constraints =
+ x: 294
+ y: 1026
+ width: 270
+ height: 234
+# Button pow Animation
+#
+# Tap Animation
+l_pow_bg.onClick ->
+	if (l_pow_bg.y is 1026)
+		l_pow.animate("tap")
+		l_pow.onStateSwitchEnd ->
+			if (l_pow.states.current.name is "tap")
+				l_pow.stateCycle("tap", "default")
+# Swipe Animation
+l_pow_bg.onSwipeDown ->
+	if (l_pow.states.current.name is "default")
+		l_pow_n.animate("swipe")
+		l_pow.animate("swipe")
+l_pow_bg.onSwipeEnd ->
+	l_pow_n.animate("default")
+	l_pow.animate("default")
+	l_pow_bg.y = 1026
 
+#
+# Button del and cancel
+#
+#Button del
+l_del = new Layer
+	parent: layerBG
+	image: "images/del.png"
+	x: 564
+	width: 270
+	height: 234
+# Button del States
+l_del.states.default =
+	y: 1026
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l_del.states.switchInstant "default"
+l_del.states.swipe =
+	y: 1106
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l_del.states.tap =
+	y: 1026
+	opacity: 1
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+# Button cancel
+l_cancel = new Layer
+	parent: layerBG
+	image: "images/cancel.png"
+	x: 564
+	width: 270
+	height: 234
+# Button cancel States
+l_cancel.states.default =
+	y: 956
+	scale: 0.45
+	opacity: 0.4
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l_cancel.states.swipe =
+	y: 1026
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l_cancel.states.switchInstant "default"
+
+# Button del Masc
+l_del_bg = new Layer
+	parent: layerBG
+	x: 564
+	y: 1026
+	width: 270
+	height: 234
+	opacity: 0
+# Button del draggable
+l_del_bg.draggable.enabled = true
+l_del_bg.draggable.horizontal = false
+l_del_bg.draggable.constraints =
+ x: 564
+ y: 1026
+ width: 270
+ height: 234
+# Button del Animation
+#
+# Tap Animation
+l_del_bg.onClick ->
+	if (l_del_bg.y is 1026)
+		l_del.animate("tap")
+		l_del.onStateSwitchEnd ->
+			if (l_del.states.current.name is "tap")
+				l_del.stateCycle("tap", "default")
+# Swipe Animation
+l_del_bg.onSwipeDown ->
+	if (l_del.states.current.name is "default")
+		l_cancel.animate("swipe")
+		l_del.animate("swipe")
+l_del_bg.onSwipeEnd ->
+	l_cancel.animate("default")
+	l_del.animate("default")
+	l_del_bg.y = 1026
+
+
+#
 # Button 7
+#
 l7 = new Layer
 	parent: layerBG
 	image: "images/7.png"
@@ -1085,7 +1266,7 @@ l7.states.default =
 	opacity: 1
 	scale: 1
 	animationOptions:
-		time: timeBig
+		time: timeSmall
 		curve: "ease-in"
 l7.states.swipe =
 	x: 24
@@ -1095,7 +1276,7 @@ l7.states.swipe =
 	opacity: 0
 	scale: 0.4
 	animationOptions:
-		time: timeSmall
+		time: timeBig
 		curve: "ease-out"
 l7.states.tap =
 	x: 24
@@ -1103,7 +1284,7 @@ l7.states.tap =
 	width: 270
 	height: 234
 	opacity: 1
-	scale: 0.75
+	scale: scaleTap
 	animationOptions:
 		time: timeSmall * 0.5
 		curve: "ease-out"
@@ -1150,6 +1331,8 @@ l7_bg.draggable.constraints =
  y: 1260
  width: 246
  height: 234
+#
+# Circle
 # Button 7 Animation
 #
 # Tap Animation
@@ -1159,8 +1342,6 @@ l7_bg.onClick ->
 		l7.onStateSwitchEnd ->
 			if (l7.states.current.name is "tap")
 				l7.stateCycle("tap", "default")
-
-
 # Swipe Animation
 l7_bg.onSwipeDown ->
 	if (l7.states.current.name is "default")
