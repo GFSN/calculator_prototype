@@ -466,12 +466,11 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 1.5
+screenScale = 2.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
-timeOn = 0.3
-timeOff = 0.3
+
 
 eOn = "ease-out"
 eOff = "ease-in"
@@ -967,6 +966,112 @@ deg_margin.onTap ->
 #
 # Button 7 and ln
 #
+timeBig = 0.2
+timeSmall = 0.15
+
+#
+# Button √ adn !
+#
+#Button √
+l_sqrt = new Layer
+	parent: layerBG
+	image: "images/sqrt.png"
+# Button √ States
+l_sqrt.states.default =
+	x: 24
+	y: 1026
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l_sqrt.states.switchInstant "default"
+l_sqrt.states.swipe =
+	x: 24
+	y: 1106
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l_sqrt.states.tap =
+	x: 24
+	y: 1026
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 0.75
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+# Button !
+l_sqrt_factorial = new Layer
+	parent: layerBG
+	image: "images/!.png"
+# Button ln States
+l_sqrt_factorial.states.default =
+	x: 24
+	y: 956
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l_sqrt_factorial.states.swipe =
+	x: 24
+	y: 1026
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l_sqrt_factorial.states.switchInstant "default"
+# Button sqrt Masc
+l_sqrt_bg = new Layer
+	parent: layerBG
+	x: 48
+	y: 1026
+	width: 246
+	height: 234
+	opacity: 0
+# Button sqrt draggable
+l_sqrt_bg.draggable.enabled = true
+l_sqrt_bg.draggable.horizontal = false
+l_sqrt_bg.draggable.constraints =
+ x: 48
+ y: 1026
+ width: 246
+ height: 234
+# Button sqrt Animation
+#
+# Tap Animation
+l_sqrt_bg.onClick ->
+	if (l_sqrt_bg.y is 1026)
+		l_sqrt.animate("tap")
+		l_sqrt.onStateSwitchEnd ->
+			if (l_sqrt.states.current.name is "tap")
+				l_sqrt.stateCycle("tap", "default")
+
+
+# Swipe Animation
+l_sqrt_bg.onSwipeDown ->
+	if (l_sqrt.states.current.name is "default")
+		l_sqrt_factorial.animate("swipe")
+		l_sqrt.animate("swipe")
+
+l_sqrt_bg.onSwipeEnd ->
+	l_sqrt_factorial.animate("default")
+	l_sqrt.animate("default")
+	l_sqrt_bg.y = 1026
+
 # Button 7
 l7 = new Layer
 	parent: layerBG
@@ -980,7 +1085,7 @@ l7.states.default =
 	opacity: 1
 	scale: 1
 	animationOptions:
-		time: 0.85 * time
+		time: timeBig
 		curve: "ease-in"
 l7.states.swipe =
 	x: 24
@@ -990,7 +1095,7 @@ l7.states.swipe =
 	opacity: 0
 	scale: 0.4
 	animationOptions:
-		time: 0.4 * time
+		time: timeSmall
 		curve: "ease-out"
 l7.states.tap =
 	x: 24
@@ -1000,7 +1105,7 @@ l7.states.tap =
 	opacity: 1
 	scale: 0.75
 	animationOptions:
-		time: 0.225 * time
+		time: timeSmall * 0.5
 		curve: "ease-out"
 l7.states.switchInstant "default"
 # Button ln
@@ -1016,7 +1121,7 @@ l7_ln.states.default =
 	opacity: 0.4
 	scale: 0.45
 	animationOptions:
-		time: 0.85 * time
+		time: timeBig
 		curve: "ease-in"
 l7_ln.states.swipe =
 	x: 24
@@ -1026,7 +1131,7 @@ l7_ln.states.swipe =
 	opacity: 1
 	scale: 1
 	animationOptions:
-		time: 0.4 * time
+		time: timeSmall
 		curve: "ease-out"
 l7_ln.states.switchInstant "default"
 # Button 7 Masc
@@ -1049,11 +1154,13 @@ l7_bg.draggable.constraints =
 #
 # Tap Animation
 l7_bg.onClick ->
-	if (l7_bg.y is 1260)
+	if ((l7_bg.y is 1260) && (!l_sqrt.isAnimating))
 		l7.animate("tap")
 		l7.onStateSwitchEnd ->
 			if (l7.states.current.name is "tap")
 				l7.stateCycle("tap", "default")
+
+
 # Swipe Animation
 l7_bg.onSwipeDown ->
 	if (l7.states.current.name is "default")

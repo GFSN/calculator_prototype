@@ -467,17 +467,13 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeOff, timeOn;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, screenScale, time, timeBig, timeSmall;
 
-screenScale = 1.5;
+screenScale = 2.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
 time = 0.3;
-
-timeOn = 0.3;
-
-timeOff = 0.3;
 
 eOn = "ease-out";
 
@@ -1023,6 +1019,133 @@ deg_margin.onTap(function() {
   });
 });
 
+timeBig = 0.2;
+
+timeSmall = 0.15;
+
+l_sqrt = new Layer({
+  parent: layerBG,
+  image: "images/sqrt.png"
+});
+
+l_sqrt.states["default"] = {
+  x: 24,
+  y: 1026,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l_sqrt.states.switchInstant("default");
+
+l_sqrt.states.swipe = {
+  x: 24,
+  y: 1106,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l_sqrt.states.tap = {
+  x: 24,
+  y: 1026,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 0.75,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l_sqrt_factorial = new Layer({
+  parent: layerBG,
+  image: "images/!.png"
+});
+
+l_sqrt_factorial.states["default"] = {
+  x: 24,
+  y: 956,
+  width: 270,
+  height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l_sqrt_factorial.states.swipe = {
+  x: 24,
+  y: 1026,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l_sqrt_factorial.states.switchInstant("default");
+
+l_sqrt_bg = new Layer({
+  parent: layerBG,
+  x: 48,
+  y: 1026,
+  width: 246,
+  height: 234,
+  opacity: 0
+});
+
+l_sqrt_bg.draggable.enabled = true;
+
+l_sqrt_bg.draggable.horizontal = false;
+
+l_sqrt_bg.draggable.constraints = {
+  x: 48,
+  y: 1026,
+  width: 246,
+  height: 234
+};
+
+l_sqrt_bg.onClick(function() {
+  if (l_sqrt_bg.y === 1026) {
+    l_sqrt.animate("tap");
+    return l_sqrt.onStateSwitchEnd(function() {
+      if (l_sqrt.states.current.name === "tap") {
+        return l_sqrt.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l_sqrt_bg.onSwipeDown(function() {
+  if (l_sqrt.states.current.name === "default") {
+    l_sqrt_factorial.animate("swipe");
+    return l_sqrt.animate("swipe");
+  }
+});
+
+l_sqrt_bg.onSwipeEnd(function() {
+  l_sqrt_factorial.animate("default");
+  l_sqrt.animate("default");
+  return l_sqrt_bg.y = 1026;
+});
+
 l7 = new Layer({
   parent: layerBG,
   image: "images/7.png"
@@ -1036,7 +1159,7 @@ l7.states["default"] = {
   opacity: 1,
   scale: 1,
   animationOptions: {
-    time: 0.85 * time,
+    time: timeBig,
     curve: "ease-in"
   }
 };
@@ -1049,7 +1172,7 @@ l7.states.swipe = {
   opacity: 0,
   scale: 0.4,
   animationOptions: {
-    time: 0.4 * time,
+    time: timeSmall,
     curve: "ease-out"
   }
 };
@@ -1062,7 +1185,7 @@ l7.states.tap = {
   opacity: 1,
   scale: 0.75,
   animationOptions: {
-    time: 0.225 * time,
+    time: timeSmall * 0.5,
     curve: "ease-out"
   }
 };
@@ -1082,7 +1205,7 @@ l7_ln.states["default"] = {
   opacity: 0.4,
   scale: 0.45,
   animationOptions: {
-    time: 0.85 * time,
+    time: timeBig,
     curve: "ease-in"
   }
 };
@@ -1095,7 +1218,7 @@ l7_ln.states.swipe = {
   opacity: 1,
   scale: 1,
   animationOptions: {
-    time: 0.4 * time,
+    time: timeSmall,
     curve: "ease-out"
   }
 };
@@ -1123,7 +1246,7 @@ l7_bg.draggable.constraints = {
 };
 
 l7_bg.onClick(function() {
-  if (l7_bg.y === 1260) {
+  if ((l7_bg.y === 1260) && (!l_sqrt.isAnimating)) {
     l7.animate("tap");
     return l7.onStateSwitchEnd(function() {
       if (l7.states.current.name === "tap") {
