@@ -467,9 +467,9 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_pow, l_pow_bg, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, time, timeBig, timeSmall;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_pow, l_pow_bg, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeSmall;
 
-screenScale = 1.5;
+screenScale = 2.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -1372,6 +1372,63 @@ l_del_bg.onSwipeEnd(function() {
   l_cancel.animate("default");
   l_del.animate("default");
   return l_del_bg.y = 1026;
+});
+
+second_bg_grey = new Layer({
+  parent: layerBG,
+  x: 849,
+  y: 1086,
+  width: 228,
+  height: 156,
+  borderRadius: 80,
+  backgroundColor: "#333333"
+});
+
+second = new Layer({
+  parent: layerBG,
+  image: "images/2nd.png",
+  x: 834,
+  width: 270,
+  height: 234,
+  y: 1026
+});
+
+second_bg = new Layer({
+  parent: layerBG,
+  x: 834,
+  y: 1026,
+  width: 270,
+  height: 234,
+  opacity: 0
+});
+
+second_bg_grey.states.active = {
+  backgroundColor: "#b3b3b3",
+  animationOptions: {
+    time: 0.3,
+    curve: "ease-out"
+  }
+};
+
+second_bg_grey.states["default"] = {
+  backgroundColor: "#333333",
+  animationOptions: {
+    time: time,
+    curve: "ease-out"
+  }
+};
+
+second.states.active = {
+  image: "images/2nd_black.png"
+};
+
+second.states["default"] = {
+  image: "images/2nd.png"
+};
+
+second_bg.onClick(function() {
+  second_bg_grey.states.next();
+  return second.states.next();
 });
 
 l7 = new Layer({

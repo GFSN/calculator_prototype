@@ -466,7 +466,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 1.5
+screenScale = 2.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -1214,7 +1214,6 @@ l_cancel.states.swipe =
 		time: timeSmall
 		curve: "ease-out"
 l_cancel.states.switchInstant "default"
-
 # Button del Masc
 l_del_bg = new Layer
 	parent: layerBG
@@ -1249,7 +1248,55 @@ l_del_bg.onSwipeEnd ->
 	l_cancel.animate("default")
 	l_del.animate("default")
 	l_del_bg.y = 1026
-
+#
+# Button 2nd
+#
+# Button 2nd bg
+second_bg_grey = new Layer
+	parent: layerBG
+	x: 849
+	y: 1086
+	width: 228
+	height: 156
+	borderRadius: 80
+	backgroundColor : "#333333"
+# Button 2nd
+second = new Layer
+	parent: layerBG
+	image: "images/2nd.png"
+	x: 834
+	width: 270
+	height: 234
+	y: 1026
+# Button 2nd Masc
+second_bg = new Layer
+	parent: layerBG
+	x: 834
+	y: 1026
+	width: 270
+	height: 234
+	opacity: 0
+# Station
+second_bg_grey.states.active =
+	backgroundColor : "#b3b3b3"
+	animationOptions:
+		time: 0.3
+		curve: "ease-out"
+second_bg_grey.states.default =
+	backgroundColor : "#333333"
+	animationOptions:
+		time: time
+		curve: "ease-out"
+second.states.active =
+	image: "images/2nd_black.png"
+second.states.default =
+	image: "images/2nd.png"
+# Button 2nd Animation
+#
+# Tap Animation
+second_bg.onClick ->
+	second_bg_grey.states.next()
+	second.states.next()
 
 #
 # Button 7
