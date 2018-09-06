@@ -466,7 +466,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 2.5
+screenScale = 1.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -1297,7 +1297,6 @@ second.states.default =
 second_bg.onClick ->
 	second_bg_grey.states.next()
 	second.states.next()
-
 #
 # Button 7
 #
