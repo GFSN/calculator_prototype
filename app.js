@@ -469,7 +469,7 @@ layer7.onClick ->
  */
 var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_pow, l_pow_bg, l_pow_n, l_pow_test, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerA, layerB, layerBG, layerC, layerD, layerE, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeSmall;
 
-screenScale = 1.5;
+screenScale = 3.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -1587,7 +1587,7 @@ layerC = new Layer({
 });
 
 layerC.states["default"] = {
-  opacity: 1
+  opacity: 0.5
 };
 
 layerC.states.tap = {
@@ -1609,6 +1609,20 @@ layerD = new Layer({
   scale: 0.98
 });
 
+layerD.states["default"] = {
+  scale: 0.4
+};
+
+layerD.states.tap = {
+  scale: 0.98,
+  animationOptions: {
+    time: layerA.states.tap.animationOptions.time - 0.05,
+    curve: "ease-out"
+  }
+};
+
+layerD.states.switchInstant("default");
+
 layerE = new Layer({
   parent: layerA,
   width: 250,
@@ -1619,7 +1633,7 @@ layerE = new Layer({
 });
 
 layerE.states["default"] = {
-  opacity: 0.2
+  opacity: 0.5
 };
 
 layerE.states.tap = {
@@ -1644,11 +1658,13 @@ layerB = new Layer({
 layerB.onClick(function() {
   layerA.animate("tap");
   layerC.animate("tap");
+  layerD.animate("tap");
   layerE.animate("tap");
   return layerA.onStateSwitchEnd(function() {
     if (layerA.states.current.name === "tap") {
       layerA.states.switchInstant("default");
       layerC.states.switchInstant("default");
+      layerD.states.switchInstant("default");
       return layerE.states.switchInstant("default");
     }
   });

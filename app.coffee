@@ -466,7 +466,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
 ###
-screenScale = 1.5
+screenScale = 3.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -1426,7 +1426,7 @@ layerC = new Layer
 	borderRadius: 125
 	backgroundColor: "#fff"
 layerC.states.default =
-	opacity: 1
+	opacity: 0.5
 layerC.states.tap =
 	opacity: 0
 	animationOptions:
@@ -1442,6 +1442,15 @@ layerD = new Layer
 	borderRadius: 125
 	backgroundColor: "#000"
 	scale: 0.98
+layerD.states.default =
+	scale: 0.4
+layerD.states.tap =
+	scale: 0.98
+	animationOptions:
+		time: layerA.states.tap.animationOptions.time - 0.05
+		curve: "ease-out"
+		#delay: 0.4
+layerD.states.switchInstant "default"
 
 layerE = new Layer
 	parent: layerA
@@ -1451,7 +1460,7 @@ layerE = new Layer
 	backgroundColor: "#fff"
 	scale: 0.96
 layerE.states.default =
-	opacity: 0.2
+	opacity: 0.5
 layerE.states.tap =
 	opacity: 0.0
 	animationOptions:
@@ -1472,11 +1481,13 @@ layerB = new Layer
 layerB.onClick ->
 	layerA.animate("tap")
 	layerC.animate("tap")
+	layerD.animate("tap")
 	layerE.animate("tap")
 	layerA.onStateSwitchEnd ->
 		if (layerA.states.current.name is "tap")
 			layerA.states.switchInstant "default"
 			layerC.states.switchInstant "default"
+			layerD.states.switchInstant "default"
 			layerE.states.switchInstant "default"
 
 l_pow_test = new Layer
