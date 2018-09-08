@@ -1399,3 +1399,90 @@ l7_bg.onSwipeEnd ->
 	l7_ln.animate("default")
 	l7.animate("default")
 	l7_bg.y = 1260
+
+
+layerA = new Layer
+	parent: layerBG
+	x: 524
+	y: 1400
+	width: 250
+	height: 250
+	borderRadius: 125
+	backgroundColor: "#000"
+layerA.states.default =
+	scale: 0
+layerA.states.tap =
+	scale: 1
+	#opacity: 0
+	animationOptions:
+		time: 0.7
+		curve: "ease-out"
+layerA.states.switchInstant "default"
+
+layerC = new Layer
+	parent: layerA
+	width: 250
+	height: 250
+	borderRadius: 125
+	backgroundColor: "#fff"
+layerC.states.default =
+	opacity: 1
+layerC.states.tap =
+	opacity: 0
+	animationOptions:
+		time: layerA.states.tap.animationOptions.time - 0.05
+		curve: "ease-out"
+		#delay: 0.4
+layerC.states.switchInstant "default"
+
+layerD = new Layer
+	parent: layerA
+	width: 250
+	height: 250
+	borderRadius: 125
+	backgroundColor: "#000"
+	scale: 0.98
+
+layerE = new Layer
+	parent: layerA
+	width: 250
+	height: 250
+	borderRadius: 125
+	backgroundColor: "#fff"
+	scale: 0.96
+layerE.states.default =
+	opacity: 0.2
+layerE.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: 0.5
+		curve: "ease-out"
+		#delay: 0.4
+layerE.states.switchInstant "default"
+
+
+layerB = new Layer
+	parent: layerBG
+	x: 524
+	y: 1400
+	width: 250
+	height: 250
+	opacity: 0
+
+layerB.onClick ->
+	layerA.animate("tap")
+	layerC.animate("tap")
+	layerE.animate("tap")
+	layerA.onStateSwitchEnd ->
+		if (layerA.states.current.name is "tap")
+			layerA.states.switchInstant "default"
+			layerC.states.switchInstant "default"
+			layerE.states.switchInstant "default"
+
+l_pow_test = new Layer
+	parent: layerBG
+	image: "images/pow.png"
+	x: 523
+	y: 1388
+	width: 270
+	height: 234
