@@ -467,7 +467,7 @@ layer7.onClick ->
 			if (layer7Numeral.states.current.name is "stateTap")
 				layer7Numeral.stateCycle("stateTap", "stateMiddle")
  */
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_pow, l_pow_bg, l_pow_n, l_pow_test, l_sqrt, l_sqrt_bg, l_sqrt_factorial, layerA, layerB, layerBG, layerC, layerD, layerE, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeSmall;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_pow, l_pow_bg, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeSmall;
 
 screenScale = 1.5;
 
@@ -1025,6 +1025,86 @@ timeSmall = 0.15;
 
 scaleTap = 0.9;
 
+l_sqrt_circle_parent = new Layer({
+  parent: layerBG,
+  x: 24 - 15,
+  y: 1106 - 100,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+l_sqrt_circle_parent.states["default"] = {
+  scale: 0.2,
+  opacity: 0
+};
+
+l_sqrt_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: 0.6,
+    curve: "ease-out"
+  }
+};
+
+l_sqrt_circle_parent.states.switchInstant("default");
+
+l_sqrt_circle_white = new Layer({
+  parent: l_sqrt_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+l_sqrt_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+l_sqrt_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: 0.6 - 0.05,
+    curve: "ease-out"
+  }
+};
+
+l_sqrt_circle_white.states.switchInstant("default");
+
+l_sqrt_circle_black = new Layer({
+  parent: l_sqrt_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.98
+});
+
+l_sqrt_circle = new Layer({
+  parent: l_sqrt_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+l_sqrt_circle.states["default"] = {
+  opacity: 0.7
+};
+
+l_sqrt_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: 0.3,
+    curve: "ease-out"
+  }
+};
+
+l_sqrt_circle.states.switchInstant("default");
+
 l_sqrt = new Layer({
   parent: layerBG,
   image: "images/sqrt.png"
@@ -1054,19 +1134,6 @@ l_sqrt.states.swipe = {
   scale: 0.4,
   animationOptions: {
     time: timeSmall,
-    curve: "ease-out"
-  }
-};
-
-l_sqrt.states.tap = {
-  x: 24,
-  y: 1026,
-  width: 270,
-  height: 234,
-  opacity: 1,
-  scale: scaleTap,
-  animationOptions: {
-    time: timeSmall * 0.5,
     curve: "ease-out"
   }
 };
@@ -1126,10 +1193,15 @@ l_sqrt_bg.draggable.constraints = {
 
 l_sqrt_bg.onClick(function() {
   if (l_sqrt_bg.y === 1026) {
-    l_sqrt.animate("tap");
-    return l_sqrt.onStateSwitchEnd(function() {
-      if (l_sqrt.states.current.name === "tap") {
-        return l_sqrt.stateCycle("tap", "default");
+    l_sqrt_circle_parent.opacity = 1;
+    l_sqrt_circle_parent.animate("tap");
+    l_sqrt_circle_white.animate("tap");
+    l_sqrt_circle.animate("tap");
+    return l_sqrt_circle_parent.onStateSwitchEnd(function() {
+      if (l_sqrt_circle_parent.states.current.name === "tap") {
+        l_sqrt_circle_parent.states.switchInstant("default");
+        l_sqrt_circle_white.states.switchInstant("default");
+        return l_sqrt_circle.states.switchInstant("default");
       }
     });
   }
@@ -1552,137 +1624,4 @@ l7_bg.onSwipeEnd(function() {
   l7_ln.animate("default");
   l7.animate("default");
   return l7_bg.y = 1260;
-});
-
-layerA = new Layer({
-  parent: layerBG,
-  x: 524,
-  y: 500,
-  width: 250,
-  height: 250,
-  borderRadius: 125,
-  backgroundColor: "#000"
-});
-
-layerA.states["default"] = {
-  scale: 0.2,
-  opacity: 0
-};
-
-layerA.states.tap = {
-  scale: 1,
-  opacity: 1,
-  animationOptions: {
-    time: 0.6,
-    curve: "ease-out"
-  }
-};
-
-layerA.states.switchInstant("default");
-
-layerC = new Layer({
-  parent: layerA,
-  width: 250,
-  height: 250,
-  borderRadius: 125,
-  backgroundColor: "#fff"
-});
-
-layerC.states["default"] = {
-  opacity: 0.5
-};
-
-layerC.states.tap = {
-  opacity: 0,
-  animationOptions: {
-    time: layerA.states.tap.animationOptions.time - 0.05,
-    curve: "ease-out"
-  }
-};
-
-layerC.states.switchInstant("default");
-
-layerD = new Layer({
-  parent: layerA,
-  width: 250,
-  height: 250,
-  borderRadius: 125,
-  backgroundColor: "#000",
-  scale: 0.98
-});
-
-layerE = new Layer({
-  parent: layerA,
-  width: 250,
-  height: 250,
-  borderRadius: 125,
-  backgroundColor: "#fff",
-  scale: 0.96
-});
-
-layerE.states["default"] = {
-  opacity: 0.7
-};
-
-layerE.states.tap = {
-  opacity: 0.0,
-  animationOptions: {
-    time: 0.3,
-    curve: "ease-out"
-  }
-};
-
-layerE.states.switchInstant("default");
-
-layerB = new Layer({
-  parent: layerBG,
-  x: 524,
-  y: 500,
-  width: 250,
-  height: 250,
-  opacity: 0
-});
-
-l_pow_test = new Layer({
-  parent: layerBG,
-  image: "images/pow.png",
-  x: 523,
-  y: 486,
-  width: 270,
-  height: 234
-});
-
-l_pow_test.states["default"] = {
-  scale: 1,
-  animationOptions: {
-    time: timeSmall,
-    curve: "ease-in"
-  }
-};
-
-l_pow_test.states.tap = {
-  opacity: 1,
-  scale: scaleTap,
-  animationOptions: {
-    time: timeSmall * 0.5,
-    curve: "ease-out"
-  }
-};
-
-l_pow_test.states.switchInstant("default");
-
-layerB.onTouchStart(function() {
-  layerA.opacity = 1;
-  layerA.animate("tap");
-  layerC.animate("tap");
-  layerE.animate("tap");
-  l_pow_test.animate("tap");
-  return layerA.onStateSwitchEnd(function() {
-    if (layerA.states.current.name === "tap") {
-      layerA.states.switchInstant("default");
-      layerC.states.switchInstant("default");
-      layerE.states.switchInstant("default");
-      return l_pow_test.animate("default");
-    }
-  });
 });
