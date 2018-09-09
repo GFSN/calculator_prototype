@@ -1557,7 +1557,7 @@ l7_bg.onSwipeEnd(function() {
 layerA = new Layer({
   parent: layerBG,
   x: 524,
-  y: 1400,
+  y: 500,
   width: 250,
   height: 250,
   borderRadius: 125,
@@ -1565,11 +1565,13 @@ layerA = new Layer({
 });
 
 layerA.states["default"] = {
-  scale: 0
+  scale: 0.1,
+  opacity: 0
 };
 
 layerA.states.tap = {
   scale: 1,
+  opacity: 1,
   animationOptions: {
     time: 0.7,
     curve: "ease-out"
@@ -1609,20 +1611,6 @@ layerD = new Layer({
   scale: 0.98
 });
 
-layerD.states["default"] = {
-  scale: 0.4
-};
-
-layerD.states.tap = {
-  scale: 0.98,
-  animationOptions: {
-    time: layerA.states.tap.animationOptions.time - 0.05,
-    curve: "ease-out"
-  }
-};
-
-layerD.states.switchInstant("default");
-
 layerE = new Layer({
   parent: layerA,
   width: 250,
@@ -1633,13 +1621,13 @@ layerE = new Layer({
 });
 
 layerE.states["default"] = {
-  opacity: 0.5
+  opacity: 0.7
 };
 
 layerE.states.tap = {
   opacity: 0.0,
   animationOptions: {
-    time: 0.5,
+    time: 0.25,
     curve: "ease-out"
   }
 };
@@ -1649,22 +1637,21 @@ layerE.states.switchInstant("default");
 layerB = new Layer({
   parent: layerBG,
   x: 524,
-  y: 1400,
+  y: 500,
   width: 250,
   height: 250,
   opacity: 0
 });
 
-layerB.onClick(function() {
+layerB.onTouchStart(function() {
+  layerA.opacity = 1;
   layerA.animate("tap");
   layerC.animate("tap");
-  layerD.animate("tap");
   layerE.animate("tap");
   return layerA.onStateSwitchEnd(function() {
     if (layerA.states.current.name === "tap") {
       layerA.states.switchInstant("default");
       layerC.states.switchInstant("default");
-      layerD.states.switchInstant("default");
       return layerE.states.switchInstant("default");
     }
   });
@@ -1674,7 +1661,7 @@ l_pow_test = new Layer({
   parent: layerBG,
   image: "images/pow.png",
   x: 523,
-  y: 1388,
+  y: 486,
   width: 270,
   height: 234
 });

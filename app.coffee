@@ -1404,15 +1404,17 @@ l7_bg.onSwipeEnd ->
 layerA = new Layer
 	parent: layerBG
 	x: 524
-	y: 1400
+	y: 500
 	width: 250
 	height: 250
 	borderRadius: 125
 	backgroundColor: "#000"
 layerA.states.default =
-	scale: 0
+	scale: 0.1
+	opacity: 0
 layerA.states.tap =
 	scale: 1
+	opacity: 1
 	#opacity: 0
 	animationOptions:
 		time: 0.7
@@ -1442,15 +1444,6 @@ layerD = new Layer
 	borderRadius: 125
 	backgroundColor: "#000"
 	scale: 0.98
-layerD.states.default =
-	scale: 0.4
-layerD.states.tap =
-	scale: 0.98
-	animationOptions:
-		time: layerA.states.tap.animationOptions.time - 0.05
-		curve: "ease-out"
-		#delay: 0.4
-layerD.states.switchInstant "default"
 
 layerE = new Layer
 	parent: layerA
@@ -1460,11 +1453,11 @@ layerE = new Layer
 	backgroundColor: "#fff"
 	scale: 0.96
 layerE.states.default =
-	opacity: 0.5
+	opacity: 0.7
 layerE.states.tap =
 	opacity: 0.0
 	animationOptions:
-		time: 0.5
+		time: 0.25
 		curve: "ease-out"
 		#delay: 0.4
 layerE.states.switchInstant "default"
@@ -1473,27 +1466,28 @@ layerE.states.switchInstant "default"
 layerB = new Layer
 	parent: layerBG
 	x: 524
-	y: 1400
+	y: 500
 	width: 250
 	height: 250
 	opacity: 0
 
-layerB.onClick ->
+layerB.onTouchStart ->
+	layerA.opacity = 1
 	layerA.animate("tap")
 	layerC.animate("tap")
-	layerD.animate("tap")
+	#layerD.animate("tap")
 	layerE.animate("tap")
 	layerA.onStateSwitchEnd ->
 		if (layerA.states.current.name is "tap")
 			layerA.states.switchInstant "default"
 			layerC.states.switchInstant "default"
-			layerD.states.switchInstant "default"
+			#layerD.states.switchInstant "default"
 			layerE.states.switchInstant "default"
 
 l_pow_test = new Layer
 	parent: layerBG
 	image: "images/pow.png"
 	x: 523
-	y: 1388
+	y: 486
 	width: 270
 	height: 234
