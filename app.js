@@ -1023,7 +1023,7 @@ timeBig = 0.15;
 
 timeSmall = 0.15;
 
-scaleTap = 0.8;
+scaleTap = 0.9;
 
 l_sqrt = new Layer({
   parent: layerBG,
@@ -1565,7 +1565,7 @@ layerA = new Layer({
 });
 
 layerA.states["default"] = {
-  scale: 0.1,
+  scale: 0.2,
   opacity: 0
 };
 
@@ -1573,7 +1573,7 @@ layerA.states.tap = {
   scale: 1,
   opacity: 1,
   animationOptions: {
-    time: 0.7,
+    time: 0.6,
     curve: "ease-out"
   }
 };
@@ -1627,7 +1627,7 @@ layerE.states["default"] = {
 layerE.states.tap = {
   opacity: 0.0,
   animationOptions: {
-    time: 0.25,
+    time: 0.3,
     curve: "ease-out"
   }
 };
@@ -1643,20 +1643,6 @@ layerB = new Layer({
   opacity: 0
 });
 
-layerB.onTouchStart(function() {
-  layerA.opacity = 1;
-  layerA.animate("tap");
-  layerC.animate("tap");
-  layerE.animate("tap");
-  return layerA.onStateSwitchEnd(function() {
-    if (layerA.states.current.name === "tap") {
-      layerA.states.switchInstant("default");
-      layerC.states.switchInstant("default");
-      return layerE.states.switchInstant("default");
-    }
-  });
-});
-
 l_pow_test = new Layer({
   parent: layerBG,
   image: "images/pow.png",
@@ -1664,4 +1650,39 @@ l_pow_test = new Layer({
   y: 486,
   width: 270,
   height: 234
+});
+
+l_pow_test.states["default"] = {
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-in"
+  }
+};
+
+l_pow_test.states.tap = {
+  opacity: 1,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l_pow_test.states.switchInstant("default");
+
+layerB.onTouchStart(function() {
+  layerA.opacity = 1;
+  layerA.animate("tap");
+  layerC.animate("tap");
+  layerE.animate("tap");
+  l_pow_test.animate("tap");
+  return layerA.onStateSwitchEnd(function() {
+    if (layerA.states.current.name === "tap") {
+      layerA.states.switchInstant("default");
+      layerC.states.switchInstant("default");
+      layerE.states.switchInstant("default");
+      return l_pow_test.animate("default");
+    }
+  });
 });
