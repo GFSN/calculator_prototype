@@ -1,4 +1,4 @@
-screenScale = 3.5
+screenScale = 1.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -841,6 +841,68 @@ l_pow_bg.onSwipeEnd ->
 #
 # Button del and cancel
 #
+
+# Circle layers
+
+l_del_circle_parent = new Layer
+	parent: layerBG
+	x: 564 - 15
+	y: 1106 - 100
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+l_del_circle_parent.states.default =
+	scale: 0.3
+	opacity: 0
+l_del_circle_parent.states.tap =
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeCircle
+		curve: "ease-out"
+l_del_circle_parent.states.switchInstant "default"
+
+l_del_circle_white = new Layer
+	parent: l_del_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+l_del_circle_white.states.default =
+	opacity: 0.5
+l_del_circle_white.states.tap =
+	opacity: 0
+	animationOptions:
+		time: timeCircle - 0.05
+		curve: "ease-out"
+l_del_circle_white.states.switchInstant "default"
+
+l_del_circle_black = new Layer
+	parent: l_del_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+	scale: 0.95
+
+l_del_circle = new Layer
+	parent: l_del_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+	scale: 0.96
+l_del_circle.states.default =
+	opacity: 0.7
+l_del_circle.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: timeCircle * 0.6
+		curve: "ease-out"
+l_del_circle.states.switchInstant "default"
+
+
 #Button del
 l_del = new Layer
 	parent: layerBG
@@ -866,7 +928,7 @@ l_del.states.swipe =
 		curve: "ease-out"
 l_del.states.tap =
 	y: 1026
-	opacity: 1
+	opacity: 0.6
 	scale: scaleTap
 	animationOptions:
 		time: timeSmall * 0.5
@@ -913,12 +975,25 @@ l_del_bg.draggable.constraints =
 # Button del Animation
 #
 # Tap Animation
-l_del_bg.onClick ->
+l_del_bg.on Events.Click, (event) ->
 	if (l_del_bg.y is 1026)
 		l_del.animate("tap")
 		l_del.onStateSwitchEnd ->
 			if (l_del.states.current.name is "tap")
 				l_del.stateCycle("tap", "default")
+
+l_del_bg.on Events.Click, (event) ->
+	if (l_del_bg.y is 1026)
+		l_del_circle_parent.opacity = 1
+		l_del_circle_parent.animate("tap")
+		l_del_circle_white.animate("tap")
+		l_del_circle.animate("tap")
+		l_del_circle_parent.onStateSwitchEnd ->
+			if (l_del_circle_parent.states.current.name is "tap")
+				l_del_circle_parent.states.switchInstant "default"
+				l_del_circle_white.states.switchInstant "default"
+				l_del_circle.states.switchInstant "default"
+
 # Swipe Animation
 l_del_bg.onSwipeDown ->
 	if (l_del.states.current.name is "default")

@@ -1,6 +1,6 @@
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeCircle, timeSmall;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l7, l7_bg, l7_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeCircle, timeSmall;
 
-screenScale = 3.5;
+screenScale = 1.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -981,6 +981,86 @@ l_pow_bg.onSwipeEnd(function() {
   return l_pow_bg.y = 1026;
 });
 
+l_del_circle_parent = new Layer({
+  parent: layerBG,
+  x: 564 - 15,
+  y: 1106 - 100,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+l_del_circle_parent.states["default"] = {
+  scale: 0.3,
+  opacity: 0
+};
+
+l_del_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeCircle,
+    curve: "ease-out"
+  }
+};
+
+l_del_circle_parent.states.switchInstant("default");
+
+l_del_circle_white = new Layer({
+  parent: l_del_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+l_del_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+l_del_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: timeCircle - 0.05,
+    curve: "ease-out"
+  }
+};
+
+l_del_circle_white.states.switchInstant("default");
+
+l_del_circle_black = new Layer({
+  parent: l_del_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.95
+});
+
+l_del_circle = new Layer({
+  parent: l_del_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+l_del_circle.states["default"] = {
+  opacity: 0.7
+};
+
+l_del_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: timeCircle * 0.6,
+    curve: "ease-out"
+  }
+};
+
+l_del_circle.states.switchInstant("default");
+
 l_del = new Layer({
   parent: layerBG,
   image: "images/del.png",
@@ -1013,7 +1093,7 @@ l_del.states.swipe = {
 
 l_del.states.tap = {
   y: 1026,
-  opacity: 1,
+  opacity: 0.6,
   scale: scaleTap,
   animationOptions: {
     time: timeSmall * 0.5,
@@ -1071,12 +1151,28 @@ l_del_bg.draggable.constraints = {
   height: 234
 };
 
-l_del_bg.onClick(function() {
+l_del_bg.on(Events.Click, function(event) {
   if (l_del_bg.y === 1026) {
     l_del.animate("tap");
     return l_del.onStateSwitchEnd(function() {
       if (l_del.states.current.name === "tap") {
         return l_del.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l_del_bg.on(Events.Click, function(event) {
+  if (l_del_bg.y === 1026) {
+    l_del_circle_parent.opacity = 1;
+    l_del_circle_parent.animate("tap");
+    l_del_circle_white.animate("tap");
+    l_del_circle.animate("tap");
+    return l_del_circle_parent.onStateSwitchEnd(function() {
+      if (l_del_circle_parent.states.current.name === "tap") {
+        l_del_circle_parent.states.switchInstant("default");
+        l_del_circle_white.states.switchInstant("default");
+        return l_del_circle.states.switchInstant("default");
       }
     });
   }
