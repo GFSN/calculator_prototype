@@ -1049,10 +1049,73 @@ second.states.default =
 # Button 2nd Animation
 #
 # Tap Animation
-second_bg.onClick ->
+second_bg.onTouchStart ->
 	second_bg_grey.states.next()
 	second.states.next()
 #
+#
+
+# Circle layers
+
+l7_circle_parent = new Layer
+	parent: layerBG
+	x: 24 - 15
+	y: 1340 - 100
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+l7_circle_parent.states.default =
+	scale: 0.3
+	opacity: 0
+l7_circle_parent.states.tap =
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeCircle
+		curve: "ease-out"
+l7_circle_parent.states.switchInstant "default"
+
+l7_circle_white = new Layer
+	parent: l7_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+l7_circle_white.states.default =
+	opacity: 0.5
+l7_circle_white.states.tap =
+	opacity: 0
+	animationOptions:
+		time: timeCircle - 0.05
+		curve: "ease-out"
+l7_circle_white.states.switchInstant "default"
+
+l7_circle_black = new Layer
+	parent: l7_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+	scale: 0.95
+
+l7_circle = new Layer
+	parent: l7_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+	scale: 0.96
+l7_circle.states.default =
+	opacity: 0.7
+l7_circle.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: timeCircle * 0.6
+		curve: "ease-out"
+l7_circle.states.switchInstant "default"
+
+
 # Button 7
 #
 l7 = new Layer
@@ -1084,7 +1147,7 @@ l7.states.tap =
 	y: 1260
 	width: 270
 	height: 234
-	opacity: 1
+	opacity: 0.6
 	scale: scaleTap
 	animationOptions:
 		time: timeSmall * 0.5
@@ -1137,12 +1200,24 @@ l7_bg.draggable.constraints =
 # Button 7 Animation
 #
 # Tap Animation
-l7_bg.onClick ->
+l7_bg.on Events.Click, (event) ->
 	if ((l7_bg.y is 1260) && (l_sqrt_bg.y is 1026))
 		l7.animate("tap")
 		l7.onStateSwitchEnd ->
 			if (l7.states.current.name is "tap")
 				l7.stateCycle("tap", "default")
+
+l7_bg.on Events.Click, (event) ->
+	if (l_del_bg.y is 1026)
+		l7_circle_parent.opacity = 1
+		l7_circle_parent.animate("tap")
+		l7_circle_white.animate("tap")
+		l7_circle.animate("tap")
+		l7_circle_parent.onStateSwitchEnd ->
+			if (l7_circle_parent.states.current.name is "tap")
+				l7_circle_parent.states.switchInstant "default"
+				l7_circle_white.states.switchInstant "default"
+				l7_circle.states.switchInstant "default"
 # Swipe Animation
 l7_bg.onSwipeDown ->
 	if (l7.states.current.name is "default")
