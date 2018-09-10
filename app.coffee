@@ -1335,7 +1335,7 @@ l8.states.switchInstant "default"
 # Button lg
 l8_ln = new Layer
 	parent: layerBG
-	image: "images/ln.png"
+	image: "images/lg.png"
 # Button lg States
 l8_ln.states.default =
 	x: 294
@@ -1406,3 +1406,714 @@ l8_bg.onSwipeEnd ->
 	l8_ln.animate("default")
 	l8.animate("default")
 	l8_bg.y = 1260
+
+#
+#
+# 9 and i
+#
+#
+# Circle layers
+
+l9_circle_parent = new Layer
+	parent: layerBG
+	x: 564 - 15
+	y: 1260 - 20
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+l9_circle_parent.states.default =
+	scale: 0.3
+	opacity: 0
+l9_circle_parent.states.tap =
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeCircle
+		curve: "ease-out"
+l9_circle_parent.states.switchInstant "default"
+
+l9_circle_white = new Layer
+	parent: l9_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+l9_circle_white.states.default =
+	opacity: 0.5
+l9_circle_white.states.tap =
+	opacity: 0
+	animationOptions:
+		time: timeCircle - 0.05
+		curve: "ease-out"
+l9_circle_white.states.switchInstant "default"
+
+l9_circle_black = new Layer
+	parent: l9_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+	scale: 0.95
+
+l9_circle = new Layer
+	parent: l9_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+	scale: 0.96
+l9_circle.states.default =
+	opacity: 0.7
+l9_circle.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: timeCircle * 0.6
+		curve: "ease-out"
+l9_circle.states.switchInstant "default"
+
+
+# Button 8
+#
+l9 = new Layer
+	parent: layerBG
+	image: "images/9.png"
+# Button 8 States
+l9.states.default =
+	x: 564
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-in"
+l9.states.swipe =
+	x: 564
+	y: 1340
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeBig
+		curve: "ease-out"
+l9.states.tap =
+	x: 564
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+l9.states.switchInstant "default"
+# Button lg
+l9_ln = new Layer
+	parent: layerBG
+	image: "images/i.png"
+# Button lg States
+l9_ln.states.default =
+	x: 564
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l9_ln.states.swipe =
+	x: 564
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l9_ln.states.switchInstant "default"
+# Button 8 Masc
+l9_bg = new Layer
+	parent: layerBG
+	x: 564
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 0
+# Button 8 draggable
+l9_bg.draggable.enabled = true
+l9_bg.draggable.horizontal = false
+l9_bg.draggable.constraints =
+ x: 564
+ y: 1260
+ width: 270
+ height: 234
+#
+# Button 8 Animation
+#
+# Tap Animation
+l9_bg.on Events.Click, (event) ->
+	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026))
+		l9.animate("tap")
+		l9.onStateSwitchEnd ->
+			if (l9.states.current.name is "tap")
+				l9.stateCycle("tap", "default")
+
+l9_bg.on Events.Click, (event) ->
+	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026))
+		l9_circle_parent.opacity = 1
+		l9_circle_parent.animate("tap")
+		l9_circle_white.animate("tap")
+		l9_circle.animate("tap")
+		l9_circle_parent.onStateSwitchEnd ->
+			if (l9_circle_parent.states.current.name is "tap")
+				l9_circle_parent.states.switchInstant "default"
+				l9_circle_white.states.switchInstant "default"
+				l9_circle.states.switchInstant "default"
+# Swipe Animation
+l9_bg.onSwipeDown ->
+	if (l9.states.current.name is "default")
+		l9_ln.animate("swipe")
+		l9.animate("swipe")
+
+l9_bg.onSwipeEnd ->
+	l9_ln.animate("default")
+	l9.animate("default")
+	l9_bg.y = 1260
+
+#
+# 4 and asin
+#
+#
+# Circle layers
+
+l4_circle_parent = new Layer
+	parent: layerBG
+	x: 24 - 15
+	y: 1494 - 20
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+l4_circle_parent.states.default =
+	scale: 0.3
+	opacity: 0
+l4_circle_parent.states.tap =
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeCircle
+		curve: "ease-out"
+l4_circle_parent.states.switchInstant "default"
+
+l4_circle_white = new Layer
+	parent: l4_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+l4_circle_white.states.default =
+	opacity: 0.5
+l4_circle_white.states.tap =
+	opacity: 0
+	animationOptions:
+		time: timeCircle - 0.05
+		curve: "ease-out"
+l4_circle_white.states.switchInstant "default"
+
+l4_circle_black = new Layer
+	parent: l4_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+	scale: 0.95
+
+l4_circle = new Layer
+	parent: l4_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+	scale: 0.96
+l4_circle.states.default =
+	opacity: 0.7
+l4_circle.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: timeCircle * 0.6
+		curve: "ease-out"
+l4_circle.states.switchInstant "default"
+
+
+# Button 4
+#
+l4 = new Layer
+	parent: layerBG
+	image: "images/4.png"
+# Button 7 States
+l4.states.default =
+	x: 24
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-in"
+l4.states.swipe =
+	x: 24
+	y: 1574
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeBig
+		curve: "ease-out"
+l4.states.tap =
+	x: 24
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+l4.states.switchInstant "default"
+# Button ln
+l4_ln = new Layer
+	parent: layerBG
+	image: "images/i.png"
+# Button ln States
+l4_ln.states.default =
+	x: 24
+	y: 1424
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l4_ln.states.swipe =
+	x: 24
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l4_ln.states.switchInstant "default"
+# Button 4 Masc
+l4_bg = new Layer
+	parent: layerBG
+	x: 48
+	y: 1494
+	width: 246
+	height: 234
+	opacity: 0
+# Button 4 draggable
+l4_bg.draggable.enabled = true
+l4_bg.draggable.horizontal = false
+l4_bg.draggable.constraints =
+ x: 48
+ y: 1494
+ width: 246
+ height: 234
+#
+# Circle
+# Button 4 Animation
+#
+# Tap Animation
+l4_bg.on Events.Click, (event) ->
+	if ((l4_bg.y is 1494) && (l7_bg.y is 1260))
+		l4.animate("tap")
+		l4.onStateSwitchEnd ->
+			if (l4.states.current.name is "tap")
+				l4.stateCycle("tap", "default")
+
+l4_bg.on Events.Click, (event) ->
+	if ((l4_bg.y is 1494) && (l7_bg.y is 1260))
+		l4_circle_parent.opacity = 1
+		l4_circle_parent.animate("tap")
+		l4_circle_white.animate("tap")
+		l4_circle.animate("tap")
+		l4_circle_parent.onStateSwitchEnd ->
+			if (l4_circle_parent.states.current.name is "tap")
+				l4_circle_parent.states.switchInstant "default"
+				l4_circle_white.states.switchInstant "default"
+				l4_circle.states.switchInstant "default"
+# Swipe Animation
+l4_bg.onSwipeDown ->
+	if (l4.states.current.name is "default")
+		l4_ln.animate("swipe")
+		l4.animate("swipe")
+
+l4_bg.onSwipeEnd ->
+	l4_ln.animate("default")
+	l4.animate("default")
+	l4_bg.y = 1494
+
+#
+# 8 and log(10)
+#
+#
+# Circle layers
+
+l5_circle_parent = new Layer
+	parent: layerBG
+	x: 294 - 15
+	y: 1494 - 20
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+l5_circle_parent.states.default =
+	scale: 0.3
+	opacity: 0
+l5_circle_parent.states.tap =
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeCircle
+		curve: "ease-out"
+l5_circle_parent.states.switchInstant "default"
+
+l5_circle_white = new Layer
+	parent: l5_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+l5_circle_white.states.default =
+	opacity: 0.5
+l5_circle_white.states.tap =
+	opacity: 0
+	animationOptions:
+		time: timeCircle - 0.05
+		curve: "ease-out"
+l5_circle_white.states.switchInstant "default"
+
+l5_circle_black = new Layer
+	parent: l5_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+	scale: 0.95
+
+l5_circle = new Layer
+	parent: l5_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+	scale: 0.96
+l5_circle.states.default =
+	opacity: 0.7
+l5_circle.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: timeCircle * 0.6
+		curve: "ease-out"
+l5_circle.states.switchInstant "default"
+
+
+# Button 8
+#
+l5 = new Layer
+	parent: layerBG
+	image: "images/5.png"
+# Button 8 States
+l5.states.default =
+	x: 294
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-in"
+l5.states.swipe =
+	x: 294
+	y: 1574
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeBig
+		curve: "ease-out"
+l5.states.tap =
+	x: 294
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+l5.states.switchInstant "default"
+# Button lg
+l5_ln = new Layer
+	parent: layerBG
+	image: "images/acos.png"
+# Button lg States
+l5_ln.states.default =
+	x: 294
+	y: 1424
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l5_ln.states.swipe =
+	x: 294
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l5_ln.states.switchInstant "default"
+# Button 8 Masc
+l5_bg = new Layer
+	parent: layerBG
+	x: 294
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 0
+# Button 8 draggable
+l5_bg.draggable.enabled = true
+l5_bg.draggable.horizontal = false
+l5_bg.draggable.constraints =
+ x: 294
+ y: 1494
+ width: 270
+ height: 234
+#
+# Button 5 Animation
+#
+# Tap Animation
+
+l5_bg.on Events.Click, (event) ->
+	if ((l5_bg.y is 1494) && (l8_bg.y is 1260) && (l_pow_bg.y is 1026))
+		l5.animate("tap")
+		l5.onStateSwitchEnd ->
+			if (l5.states.current.name is "tap")
+				l5.stateCycle("tap", "default")
+
+l5_bg.on Events.Click, (event) ->
+	if ((l5_bg.y is 1494) && (l8_bg.y is 1260) && (l_pow_bg.y is 1026))
+		l5_circle_parent.opacity = 1
+		l5_circle_parent.animate("tap")
+		l5_circle_white.animate("tap")
+		l5_circle.animate("tap")
+		l5_circle_parent.onStateSwitchEnd ->
+			if (l5_circle_parent.states.current.name is "tap")
+				l5_circle_parent.states.switchInstant "default"
+				l5_circle_white.states.switchInstant "default"
+				l5_circle.states.switchInstant "default"
+# Swipe Animation
+l5_bg.onSwipeDown ->
+	if (l5.states.current.name is "default")
+		l5_ln.animate("swipe")
+		l5.animate("swipe")
+
+l5_bg.onSwipeEnd ->
+	l5_ln.animate("default")
+	l5.animate("default")
+	l5_bg.y = 1494
+#
+#
+# 6 and i
+#
+#
+# Circle layers
+
+l6_circle_parent = new Layer
+	parent: layerBG
+	x: 564 - 15
+	y: 1494 - 20
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+l6_circle_parent.states.default =
+	scale: 0.3
+	opacity: 0
+l6_circle_parent.states.tap =
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeCircle
+		curve: "ease-out"
+l6_circle_parent.states.switchInstant "default"
+
+l6_circle_white = new Layer
+	parent: l6_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+l6_circle_white.states.default =
+	opacity: 0.5
+l6_circle_white.states.tap =
+	opacity: 0
+	animationOptions:
+		time: timeCircle - 0.05
+		curve: "ease-out"
+l6_circle_white.states.switchInstant "default"
+
+l6_circle_black = new Layer
+	parent: l6_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+	scale: 0.95
+
+l6_circle = new Layer
+	parent: l6_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+	scale: 0.96
+l6_circle.states.default =
+	opacity: 0.7
+l6_circle.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: timeCircle * 0.6
+		curve: "ease-out"
+l6_circle.states.switchInstant "default"
+
+
+# Button 6
+#
+l6 = new Layer
+	parent: layerBG
+	image: "images/6.png"
+# Button 8 States
+l6.states.default =
+	x: 564
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-in"
+l6.states.swipe =
+	x: 564
+	y: 1574
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeBig
+		curve: "ease-out"
+l6.states.tap =
+	x: 564
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+l6.states.switchInstant "default"
+# Button lg
+l6_ln = new Layer
+	parent: layerBG
+	image: "images/atan.png"
+# Button lg States
+l6_ln.states.default =
+	x: 564
+	y: 1424
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l6_ln.states.swipe =
+	x: 564
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l6_ln.states.switchInstant "default"
+# Button 8 Masc
+l6_bg = new Layer
+	parent: layerBG
+	x: 564
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 0
+# Button 8 draggable
+l6_bg.draggable.enabled = true
+l6_bg.draggable.horizontal = false
+l6_bg.draggable.constraints =
+ x: 564
+ y: 1494
+ width: 270
+ height: 234
+#
+# Button 8 Animation
+#
+# Tap Animation
+l6_bg.on Events.Click, (event) ->
+	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026) && (l6_bg.y is 1494))
+		l6.animate("tap")
+		l6.onStateSwitchEnd ->
+			if (l6.states.current.name is "tap")
+				l6.stateCycle("tap", "default")
+
+l6_bg.on Events.Click, (event) ->
+	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026) && (l6_bg.y is 1494))
+		l6_circle_parent.opacity = 1
+		l6_circle_parent.animate("tap")
+		l6_circle_white.animate("tap")
+		l6_circle.animate("tap")
+		l6_circle_parent.onStateSwitchEnd ->
+			if (l6_circle_parent.states.current.name is "tap")
+				l6_circle_parent.states.switchInstant "default"
+				l6_circle_white.states.switchInstant "default"
+				l6_circle.states.switchInstant "default"
+# Swipe Animation
+l6_bg.onSwipeDown ->
+	if (l6.states.current.name is "default")
+		l6_ln.animate("swipe")
+		l6.animate("swipe")
+
+l6_bg.onSwipeEnd ->
+	l6_ln.animate("default")
+	l6.animate("default")
+	l6_bg.y = 1494
