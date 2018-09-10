@@ -1,4 +1,4 @@
-screenScale = 1.5
+screenScale = 3.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -594,7 +594,7 @@ l_sqrt.states.swipe =
 		curve: "ease-out"
 l_sqrt.states.tap =
 	y: 1026
-	opacity: 1
+	opacity: 0.6
 	scale: scaleTap
 	animationOptions:
 		time: timeSmall * 0.5
@@ -677,6 +677,68 @@ l_sqrt_bg.onSwipeEnd ->
 #
 # Button pow and pow_n
 #
+
+# Circle layers
+
+l_pow_circle_parent = new Layer
+	parent: layerBG
+	x: 294 - 15
+	y: 1106 - 100
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+l_pow_circle_parent.states.default =
+	scale: 0.3
+	opacity: 0
+l_pow_circle_parent.states.tap =
+	scale: 1
+	opacity: 1
+	animationOptions:
+		time: timeCircle
+		curve: "ease-out"
+l_pow_circle_parent.states.switchInstant "default"
+
+l_pow_circle_white = new Layer
+	parent: l_pow_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+l_pow_circle_white.states.default =
+	opacity: 0.5
+l_pow_circle_white.states.tap =
+	opacity: 0
+	animationOptions:
+		time: timeCircle - 0.05
+		curve: "ease-out"
+l_pow_circle_white.states.switchInstant "default"
+
+l_pow_circle_black = new Layer
+	parent: l_pow_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#000"
+	scale: 0.95
+
+l_pow_circle = new Layer
+	parent: l_pow_circle_parent
+	width: 300
+	height: 300
+	borderRadius: 150
+	backgroundColor: "#fff"
+	scale: 0.96
+l_pow_circle.states.default =
+	opacity: 0.7
+l_pow_circle.states.tap =
+	opacity: 0.0
+	animationOptions:
+		time: timeCircle * 0.6
+		curve: "ease-out"
+l_pow_circle.states.switchInstant "default"
+
+
 #Button pow
 l_pow = new Layer
 	parent: layerBG
@@ -702,7 +764,7 @@ l_pow.states.swipe =
 		curve: "ease-out"
 l_pow.states.tap =
 	y: 1026
-	opacity: 1
+	opacity: 0.6
 	scale: scaleTap
 	animationOptions:
 		time: timeSmall * 0.5
@@ -747,12 +809,25 @@ l_pow_bg.draggable.constraints =
 # Button pow Animation
 #
 # Tap Animation
-l_pow_bg.onClick ->
+
+l_pow_bg.on Events.Click, (event) ->
 	if (l_pow_bg.y is 1026)
 		l_pow.animate("tap")
 		l_pow.onStateSwitchEnd ->
 			if (l_pow.states.current.name is "tap")
 				l_pow.stateCycle("tap", "default")
+
+l_pow_bg.on Events.Click, (event) ->
+	if (l_pow_bg.y is 1026)
+		l_pow_circle_parent.opacity = 1
+		l_pow_circle_parent.animate("tap")
+		l_pow_circle_white.animate("tap")
+		l_pow_circle.animate("tap")
+		l_pow_circle_parent.onStateSwitchEnd ->
+			if (l_pow_circle_parent.states.current.name is "tap")
+				l_pow_circle_parent.states.switchInstant "default"
+				l_pow_circle_white.states.switchInstant "default"
+				l_pow_circle.states.switchInstant "default"
 # Swipe Animation
 l_pow_bg.onSwipeDown ->
 	if (l_pow.states.current.name is "default")
