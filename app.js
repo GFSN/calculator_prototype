@@ -1,4 +1,4 @@
-var curveAnimation, deg, degBG, deg_margin, eOff, eOn, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeCircle, timeSmall;
+var curveAnimation, deg, degBG, deg_margin, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeCircle, timeSmall;
 
 screenScale = 1.5;
 
@@ -556,7 +556,7 @@ timeSmall = 0.15;
 
 scaleTap = 0.9;
 
-timeCircle = 0.6;
+timeCircle = 0.5;
 
 l_sqrt_circle_parent = new Layer({
   parent: layerBG,
@@ -2033,7 +2033,7 @@ l4.states.switchInstant("default");
 
 l4_ln = new Layer({
   parent: layerBG,
-  image: "images/i.png"
+  image: "images/asin.png"
 });
 
 l4_ln.states["default"] = {
@@ -2560,4 +2560,1327 @@ l6_bg.onSwipeEnd(function() {
   l6_ln.animate("default");
   l6.animate("default");
   return l6_bg.y = 1494;
+});
+
+l1_circle_parent = new Layer({
+  parent: layerBG,
+  x: 24 - 15,
+  y: 1728 - 20,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+l1_circle_parent.states["default"] = {
+  scale: 0.3,
+  opacity: 0
+};
+
+l1_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeCircle,
+    curve: "ease-out"
+  }
+};
+
+l1_circle_parent.states.switchInstant("default");
+
+l1_circle_white = new Layer({
+  parent: l1_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+l1_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+l1_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: timeCircle - 0.05,
+    curve: "ease-out"
+  }
+};
+
+l1_circle_white.states.switchInstant("default");
+
+l1_circle_black = new Layer({
+  parent: l1_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.95
+});
+
+l1_circle = new Layer({
+  parent: l1_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+l1_circle.states["default"] = {
+  opacity: 0.7
+};
+
+l1_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: timeCircle * 0.6,
+    curve: "ease-out"
+  }
+};
+
+l1_circle.states.switchInstant("default");
+
+l1 = new Layer({
+  parent: layerBG,
+  image: "images/1.png"
+});
+
+l1.states["default"] = {
+  x: 24,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-in"
+  }
+};
+
+l1.states.swipe = {
+  x: 24,
+  y: 1808,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-out"
+  }
+};
+
+l1.states.tap = {
+  x: 24,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 0.6,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l1.states.switchInstant("default");
+
+l1_ln = new Layer({
+  parent: layerBG,
+  image: "images/sin.png"
+});
+
+l1_ln.states["default"] = {
+  x: 24,
+  y: 1658,
+  width: 270,
+  height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l1_ln.states.swipe = {
+  x: 24,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l1_ln.states.switchInstant("default");
+
+l1_bg = new Layer({
+  parent: layerBG,
+  x: 48,
+  y: 1728,
+  width: 246,
+  height: 234,
+  opacity: 0
+});
+
+l1_bg.draggable.enabled = true;
+
+l1_bg.draggable.horizontal = false;
+
+l1_bg.draggable.constraints = {
+  x: 48,
+  y: 1728,
+  width: 246,
+  height: 234
+};
+
+l1_bg.on(Events.Click, function(event) {
+  if ((l4_bg.y === 1494) && (l7_bg.y === 1260) && (l1_bg.y === 1728)) {
+    l1.animate("tap");
+    return l1.onStateSwitchEnd(function() {
+      if (l1.states.current.name === "tap") {
+        return l1.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l1_bg.on(Events.Click, function(event) {
+  if ((l4_bg.y === 1494) && (l7_bg.y === 1260) && (l1_bg.y === 1728)) {
+    l1_circle_parent.opacity = 1;
+    l1_circle_parent.animate("tap");
+    l1_circle_white.animate("tap");
+    l1_circle.animate("tap");
+    return l1_circle_parent.onStateSwitchEnd(function() {
+      if (l1_circle_parent.states.current.name === "tap") {
+        l1_circle_parent.states.switchInstant("default");
+        l1_circle_white.states.switchInstant("default");
+        return l1_circle.states.switchInstant("default");
+      }
+    });
+  }
+});
+
+l1_bg.onSwipeDown(function() {
+  if (l1.states.current.name === "default") {
+    l1_ln.animate("swipe");
+    return l1.animate("swipe");
+  }
+});
+
+l1_bg.onSwipeEnd(function() {
+  l1_ln.animate("default");
+  l1.animate("default");
+  return l1_bg.y = 1728;
+});
+
+l2_circle_parent = new Layer({
+  parent: layerBG,
+  x: 294 - 15,
+  y: 1728 - 20,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+l2_circle_parent.states["default"] = {
+  scale: 0.3,
+  opacity: 0
+};
+
+l2_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeCircle,
+    curve: "ease-out"
+  }
+};
+
+l2_circle_parent.states.switchInstant("default");
+
+l2_circle_white = new Layer({
+  parent: l2_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+l2_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+l2_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: timeCircle - 0.05,
+    curve: "ease-out"
+  }
+};
+
+l2_circle_white.states.switchInstant("default");
+
+l2_circle_black = new Layer({
+  parent: l2_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.95
+});
+
+l2_circle = new Layer({
+  parent: l2_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+l2_circle.states["default"] = {
+  opacity: 0.7
+};
+
+l2_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: timeCircle * 0.6,
+    curve: "ease-out"
+  }
+};
+
+l2_circle.states.switchInstant("default");
+
+l2 = new Layer({
+  parent: layerBG,
+  image: "images/2.png"
+});
+
+l2.states["default"] = {
+  x: 294,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-in"
+  }
+};
+
+l2.states.swipe = {
+  x: 294,
+  y: 1808,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-out"
+  }
+};
+
+l2.states.tap = {
+  x: 294,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 0.6,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l2.states.switchInstant("default");
+
+l2_ln = new Layer({
+  parent: layerBG,
+  image: "images/cos.png"
+});
+
+l2_ln.states["default"] = {
+  x: 294,
+  y: 1658,
+  width: 270,
+  height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l2_ln.states.swipe = {
+  x: 294,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l2_ln.states.switchInstant("default");
+
+l2_bg = new Layer({
+  parent: layerBG,
+  x: 294,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 0
+});
+
+l2_bg.draggable.enabled = true;
+
+l2_bg.draggable.horizontal = false;
+
+l2_bg.draggable.constraints = {
+  x: 294,
+  y: 1728,
+  width: 270,
+  height: 234
+};
+
+l2_bg.on(Events.Click, function(event) {
+  if ((l5_bg.y === 1494) && (l8_bg.y === 1260) && (l_pow_bg.y === 1026) && (l2_bg.y === 1728)) {
+    l2.animate("tap");
+    return l2.onStateSwitchEnd(function() {
+      if (l2.states.current.name === "tap") {
+        return l2.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l2_bg.on(Events.Click, function(event) {
+  if ((l5_bg.y === 1494) && (l8_bg.y === 1260) && (l_pow_bg.y === 1026) && (l2_bg.y === 1728)) {
+    l2_circle_parent.opacity = 1;
+    l2_circle_parent.animate("tap");
+    l2_circle_white.animate("tap");
+    l2_circle.animate("tap");
+    return l2_circle_parent.onStateSwitchEnd(function() {
+      if (l2_circle_parent.states.current.name === "tap") {
+        l2_circle_parent.states.switchInstant("default");
+        l2_circle_white.states.switchInstant("default");
+        return l2_circle.states.switchInstant("default");
+      }
+    });
+  }
+});
+
+l2_bg.onSwipeDown(function() {
+  if (l2.states.current.name === "default") {
+    l2_ln.animate("swipe");
+    return l2.animate("swipe");
+  }
+});
+
+l2_bg.onSwipeEnd(function() {
+  l2_ln.animate("default");
+  l2.animate("default");
+  return l2_bg.y = 1728;
+});
+
+l3_circle_parent = new Layer({
+  parent: layerBG,
+  x: 564 - 15,
+  y: 1728 - 20,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+l3_circle_parent.states["default"] = {
+  scale: 0.3,
+  opacity: 0
+};
+
+l3_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeCircle,
+    curve: "ease-out"
+  }
+};
+
+l3_circle_parent.states.switchInstant("default");
+
+l3_circle_white = new Layer({
+  parent: l3_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+l3_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+l3_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: timeCircle - 0.05,
+    curve: "ease-out"
+  }
+};
+
+l3_circle_white.states.switchInstant("default");
+
+l3_circle_black = new Layer({
+  parent: l3_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.95
+});
+
+l3_circle = new Layer({
+  parent: l3_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+l3_circle.states["default"] = {
+  opacity: 0.7
+};
+
+l3_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: timeCircle * 0.6,
+    curve: "ease-out"
+  }
+};
+
+l3_circle.states.switchInstant("default");
+
+l3 = new Layer({
+  parent: layerBG,
+  image: "images/3.png"
+});
+
+l3.states["default"] = {
+  x: 564,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-in"
+  }
+};
+
+l3.states.swipe = {
+  x: 564,
+  y: 1808,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-out"
+  }
+};
+
+l3.states.tap = {
+  x: 564,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 0.6,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l3.states.switchInstant("default");
+
+l3_ln = new Layer({
+  parent: layerBG,
+  image: "images/tan.png"
+});
+
+l3_ln.states["default"] = {
+  x: 564,
+  y: 1658,
+  width: 270,
+  height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l3_ln.states.swipe = {
+  x: 564,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l3_ln.states.switchInstant("default");
+
+l3_bg = new Layer({
+  parent: layerBG,
+  x: 564,
+  y: 1728,
+  width: 270,
+  height: 234,
+  opacity: 0
+});
+
+l3_bg.draggable.enabled = true;
+
+l3_bg.draggable.horizontal = false;
+
+l3_bg.draggable.constraints = {
+  x: 564,
+  y: 1728,
+  width: 270,
+  height: 234
+};
+
+l3_bg.on(Events.Click, function(event) {
+  if ((l9_bg.y === 1260) && (l_del_bg.y === 1026) && (l6_bg.y === 1494) && (l3_bg.y === 1728)) {
+    l3.animate("tap");
+    return l3.onStateSwitchEnd(function() {
+      if (l3.states.current.name === "tap") {
+        return l3.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l3_bg.on(Events.Click, function(event) {
+  if ((l9_bg.y === 1260) && (l_del_bg.y === 1026) && (l6_bg.y === 1494) && (l3_bg.y === 1728)) {
+    l3_circle_parent.opacity = 1;
+    l3_circle_parent.animate("tap");
+    l3_circle_white.animate("tap");
+    l3_circle.animate("tap");
+    return l3_circle_parent.onStateSwitchEnd(function() {
+      if (l3_circle_parent.states.current.name === "tap") {
+        l3_circle_parent.states.switchInstant("default");
+        l3_circle_white.states.switchInstant("default");
+        return l3_circle.states.switchInstant("default");
+      }
+    });
+  }
+});
+
+l3_bg.onSwipeDown(function() {
+  if (l3.states.current.name === "default") {
+    l3_ln.animate("swipe");
+    return l3.animate("swipe");
+  }
+});
+
+l3_bg.onSwipeEnd(function() {
+  l3_ln.animate("default");
+  l3.animate("default");
+  return l3_bg.y = 1728;
+});
+
+l0_circle_parent = new Layer({
+  parent: layerBG,
+  x: 24 - 15,
+  y: 1962 - 20,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+l0_circle_parent.states["default"] = {
+  scale: 0.3,
+  opacity: 0
+};
+
+l0_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeCircle,
+    curve: "ease-out"
+  }
+};
+
+l0_circle_parent.states.switchInstant("default");
+
+l0_circle_white = new Layer({
+  parent: l0_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+l0_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+l0_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: timeCircle - 0.05,
+    curve: "ease-out"
+  }
+};
+
+l0_circle_white.states.switchInstant("default");
+
+l0_circle_black = new Layer({
+  parent: l0_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.95
+});
+
+l0_circle = new Layer({
+  parent: l0_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+l0_circle.states["default"] = {
+  opacity: 0.7
+};
+
+l0_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: timeCircle * 0.6,
+    curve: "ease-out"
+  }
+};
+
+l0_circle.states.switchInstant("default");
+
+l0 = new Layer({
+  parent: layerBG,
+  image: "images/0.png"
+});
+
+l0.states["default"] = {
+  x: 24,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-in"
+  }
+};
+
+l0.states.swipe = {
+  x: 24,
+  y: 2042,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-out"
+  }
+};
+
+l0.states.tap = {
+  x: 24,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 0.6,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+l0.states.switchInstant("default");
+
+l0_ln = new Layer({
+  parent: layerBG,
+  image: "images/pi.png"
+});
+
+l0_ln.states["default"] = {
+  x: 24,
+  y: 1892,
+  width: 270,
+  height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+l0_ln.states.swipe = {
+  x: 24,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+l0_ln.states.switchInstant("default");
+
+l0_bg = new Layer({
+  parent: layerBG,
+  x: 48,
+  y: 1962,
+  width: 246,
+  height: 234,
+  opacity: 0
+});
+
+l0_bg.draggable.enabled = true;
+
+l0_bg.draggable.horizontal = false;
+
+l0_bg.draggable.constraints = {
+  x: 48,
+  y: 1962,
+  width: 246,
+  height: 234
+};
+
+l0_bg.on(Events.Click, function(event) {
+  if ((l4_bg.y === 1494) && (l7_bg.y === 1260) && (l1_bg.y === 1728) && (l0_bg.y === 1962)) {
+    l0.animate("tap");
+    return l0.onStateSwitchEnd(function() {
+      if (l0.states.current.name === "tap") {
+        return l0.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+l0_bg.on(Events.Click, function(event) {
+  if ((l4_bg.y === 1494) && (l7_bg.y === 1260) && (l1_bg.y === 1728) && (l0_bg.y === 1962)) {
+    l0_circle_parent.opacity = 1;
+    l0_circle_parent.animate("tap");
+    l0_circle_white.animate("tap");
+    l0_circle.animate("tap");
+    return l0_circle_parent.onStateSwitchEnd(function() {
+      if (l0_circle_parent.states.current.name === "tap") {
+        l0_circle_parent.states.switchInstant("default");
+        l0_circle_white.states.switchInstant("default");
+        return l0_circle.states.switchInstant("default");
+      }
+    });
+  }
+});
+
+l0_bg.onSwipeDown(function() {
+  if (l0.states.current.name === "default") {
+    l0_ln.animate("swipe");
+    return l0.animate("swipe");
+  }
+});
+
+l0_bg.onSwipeEnd(function() {
+  l0_ln.animate("default");
+  l0.animate("default");
+  return l0_bg.y = 1962;
+});
+
+ldot_circle_parent = new Layer({
+  parent: layerBG,
+  x: 294 - 15,
+  y: 1962 - 20,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+ldot_circle_parent.states["default"] = {
+  scale: 0.3,
+  opacity: 0
+};
+
+ldot_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeCircle,
+    curve: "ease-out"
+  }
+};
+
+ldot_circle_parent.states.switchInstant("default");
+
+ldot_circle_white = new Layer({
+  parent: ldot_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+ldot_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+ldot_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: timeCircle - 0.05,
+    curve: "ease-out"
+  }
+};
+
+ldot_circle_white.states.switchInstant("default");
+
+ldot_circle_black = new Layer({
+  parent: ldot_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.95
+});
+
+ldot_circle = new Layer({
+  parent: ldot_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+ldot_circle.states["default"] = {
+  opacity: 0.7
+};
+
+ldot_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: timeCircle * 0.6,
+    curve: "ease-out"
+  }
+};
+
+ldot_circle.states.switchInstant("default");
+
+ldot = new Layer({
+  parent: layerBG,
+  image: "images/dot.png"
+});
+
+ldot.states["default"] = {
+  x: 294,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-in"
+  }
+};
+
+ldot.states.swipe = {
+  x: 294,
+  y: 2042,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-out"
+  }
+};
+
+ldot.states.tap = {
+  x: 294,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 0.6,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+ldot.states.switchInstant("default");
+
+ldot_ln = new Layer({
+  parent: layerBG,
+  image: "images/e.png"
+});
+
+ldot_ln.states["default"] = {
+  x: 294,
+  y: 1892,
+  width: 270,
+  height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+ldot_ln.states.swipe = {
+  x: 294,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+ldot_ln.states.switchInstant("default");
+
+ldot_bg = new Layer({
+  parent: layerBG,
+  x: 294,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 0
+});
+
+ldot_bg.draggable.enabled = true;
+
+ldot_bg.draggable.horizontal = false;
+
+ldot_bg.draggable.constraints = {
+  x: 294,
+  y: 1962,
+  width: 270,
+  height: 234
+};
+
+ldot_bg.on(Events.Click, function(event) {
+  if ((l5_bg.y === 1494) && (l8_bg.y === 1260) && (l_pow_bg.y === 1026) && (l2_bg.y === 1728) && (ldot_bg.y === 1962)) {
+    ldot.animate("tap");
+    return ldot.onStateSwitchEnd(function() {
+      if (ldot.states.current.name === "tap") {
+        return ldot.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+ldot_bg.on(Events.Click, function(event) {
+  if ((l5_bg.y === 1494) && (l8_bg.y === 1260) && (l_pow_bg.y === 1026) && (l2_bg.y === 1728) && (ldot_bg.y === 1962)) {
+    ldot_circle_parent.opacity = 1;
+    ldot_circle_parent.animate("tap");
+    ldot_circle_white.animate("tap");
+    ldot_circle.animate("tap");
+    return ldot_circle_parent.onStateSwitchEnd(function() {
+      if (ldot_circle_parent.states.current.name === "tap") {
+        ldot_circle_parent.states.switchInstant("default");
+        ldot_circle_white.states.switchInstant("default");
+        return ldot_circle.states.switchInstant("default");
+      }
+    });
+  }
+});
+
+ldot_bg.onSwipeDown(function() {
+  if (ldot.states.current.name === "default") {
+    ldot_ln.animate("swipe");
+    return ldot.animate("swipe");
+  }
+});
+
+ldot_bg.onSwipeEnd(function() {
+  ldot_ln.animate("default");
+  ldot.animate("default");
+  return ldot_bg.y = 1962;
+});
+
+lc_circle_parent = new Layer({
+  parent: layerBG,
+  x: 564 - 15,
+  y: 1962 - 20,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000"
+});
+
+lc_circle_parent.states["default"] = {
+  scale: 0.3,
+  opacity: 0
+};
+
+lc_circle_parent.states.tap = {
+  scale: 1,
+  opacity: 1,
+  animationOptions: {
+    time: timeCircle,
+    curve: "ease-out"
+  }
+};
+
+lc_circle_parent.states.switchInstant("default");
+
+lc_circle_white = new Layer({
+  parent: lc_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff"
+});
+
+lc_circle_white.states["default"] = {
+  opacity: 0.5
+};
+
+lc_circle_white.states.tap = {
+  opacity: 0,
+  animationOptions: {
+    time: timeCircle - 0.05,
+    curve: "ease-out"
+  }
+};
+
+lc_circle_white.states.switchInstant("default");
+
+lc_circle_black = new Layer({
+  parent: lc_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#000",
+  scale: 0.95
+});
+
+lc_circle = new Layer({
+  parent: lc_circle_parent,
+  width: 300,
+  height: 300,
+  borderRadius: 150,
+  backgroundColor: "#fff",
+  scale: 0.96
+});
+
+lc_circle.states["default"] = {
+  opacity: 0.7
+};
+
+lc_circle.states.tap = {
+  opacity: 0.0,
+  animationOptions: {
+    time: timeCircle * 0.6,
+    curve: "ease-out"
+  }
+};
+
+lc_circle.states.switchInstant("default");
+
+lc = new Layer({
+  parent: layerBG,
+  image: "images/().png"
+});
+
+lc.states["default"] = {
+  x: 564,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-in"
+  }
+};
+
+lc.states.swipe = {
+  x: 564,
+  y: 2042,
+  width: 270,
+  height: 234,
+  opacity: 0,
+  scale: 0.4,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-out"
+  }
+};
+
+lc.states.tap = {
+  x: 564,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 0.6,
+  scale: scaleTap,
+  animationOptions: {
+    time: timeSmall * 0.5,
+    curve: "ease-out"
+  }
+};
+
+lc.states.switchInstant("default");
+
+lc_ln = new Layer({
+  parent: layerBG,
+  image: "images/%.png"
+});
+
+lc_ln.states["default"] = {
+  x: 564,
+  y: 1892,
+  width: 270,
+  height: 234,
+  opacity: 0.4,
+  scale: 0.45,
+  animationOptions: {
+    time: timeBig,
+    curve: "ease-in"
+  }
+};
+
+lc_ln.states.swipe = {
+  x: 564,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 1,
+  scale: 1,
+  animationOptions: {
+    time: timeSmall,
+    curve: "ease-out"
+  }
+};
+
+lc_ln.states.switchInstant("default");
+
+lc_bg = new Layer({
+  parent: layerBG,
+  x: 564,
+  y: 1962,
+  width: 270,
+  height: 234,
+  opacity: 0
+});
+
+lc_bg.draggable.enabled = true;
+
+lc_bg.draggable.horizontal = false;
+
+lc_bg.draggable.constraints = {
+  x: 564,
+  y: 1962,
+  width: 270,
+  height: 234
+};
+
+lc_bg.on(Events.Click, function(event) {
+  if ((l9_bg.y === 1260) && (l_del_bg.y === 1026) && (l6_bg.y === 1494) && (l3_bg.y === 1728) && (lc_bg.y === 1962)) {
+    lc.animate("tap");
+    return lc.onStateSwitchEnd(function() {
+      if (lc.states.current.name === "tap") {
+        return lc.stateCycle("tap", "default");
+      }
+    });
+  }
+});
+
+lc_bg.on(Events.Click, function(event) {
+  if ((l9_bg.y === 1260) && (l_del_bg.y === 1026) && (l6_bg.y === 1494) && (l3_bg.y === 1728) && (lc_bg.y === 1962)) {
+    lc_circle_parent.opacity = 1;
+    lc_circle_parent.animate("tap");
+    lc_circle_white.animate("tap");
+    lc_circle.animate("tap");
+    return lc_circle_parent.onStateSwitchEnd(function() {
+      if (lc_circle_parent.states.current.name === "tap") {
+        lc_circle_parent.states.switchInstant("default");
+        lc_circle_white.states.switchInstant("default");
+        return lc_circle.states.switchInstant("default");
+      }
+    });
+  }
+});
+
+lc_bg.onSwipeDown(function() {
+  if (lc.states.current.name === "default") {
+    lc_ln.animate("swipe");
+    return lc.animate("swipe");
+  }
+});
+
+lc_bg.onSwipeEnd(function() {
+  lc_ln.animate("default");
+  lc.animate("default");
+  return lc_bg.y = 1962;
+});
+
+gdad_bg = new Layer({
+  parent: layerBG,
+  x: 849,
+  y: 1287,
+  width: 228,
+  height: 921,
+  image: "images/grad.png"
 });
