@@ -277,6 +277,13 @@ save = new Layer
 	height: 96
 	backgroundColor : "rgba(255,255,255,0.20)"
 	borderRadius: 50
+save_icon = new Layer
+	parent: layerBG
+	x: 38 #kjb
+	y: 890
+	width: 195
+	height: 96
+	image: "images/save.png"
 saveMargin = new Layer
 	parent: layerBG
 	x: 48
@@ -3205,7 +3212,7 @@ division_circle.states.tap =
 	scale: 1
 	animationOptions:
 		time: 0.2
-		curve: "ease-in"
+		curve: "ease-out"
 division_circle.states.switchInstant "default"
 division = new Layer
 	parent: layerBG
@@ -3220,7 +3227,7 @@ division.states.default =
 	scale: 1
 	animationOptions:
 		time: timeSmall
-		curve: "ease-in"
+		curve: "ease-out"
 division.states.tap =
 	x: 834
 	y: 1260
@@ -3273,7 +3280,7 @@ multiply_circle.states.tap =
 	scale: 1
 	animationOptions:
 		time: 0.2
-		curve: "ease-in"
+		curve: "ease-out"
 multiply_circle.states.switchInstant "default"
 multiply = new Layer
 	parent: layerBG
@@ -3288,7 +3295,7 @@ multiply.states.default =
 	scale: 1
 	animationOptions:
 		time: 0.225
-		curve: "ease-in"
+		curve: "ease-out"
 multiply.states.tap =
 	x: 834
 	y: 1494
@@ -3341,7 +3348,7 @@ minus_circle.states.tap =
 	scale: 1
 	animationOptions:
 		time: 0.2
-		curve: "ease-in"
+		curve: "ease-out"
 minus_circle.states.switchInstant "default"
 minus = new Layer
 	parent: layerBG
@@ -3356,7 +3363,7 @@ minus.states.default =
 	scale: 1
 	animationOptions:
 		time: 0.225
-		curve: "ease-in"
+		curve: "ease-out"
 minus.states.tap =
 	x: 834
 	y: 1728
@@ -3408,7 +3415,7 @@ plus_circle.states.tap =
 	scale: 1
 	animationOptions:
 		time: 0.2
-		curve: "ease-in"
+		curve: "ease-out"
 plus_circle.states.switchInstant "default"
 plus = new Layer
 	parent: layerBG
@@ -3423,7 +3430,7 @@ plus.states.default =
 	scale: 1
 	animationOptions:
 		time: 0.225
-		curve: "ease-in"
+		curve: "ease-out"
 plus.states.tap =
 	x: 834
 	y: 1962

@@ -1,4 +1,4 @@
-var curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, plus, plus_bg, plus_circle, rounding, roundingBG, rounding_margin, save, saveMargin, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeCircle, timeSmall;
+var curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, plus, plus_bg, plus_circle, rounding, roundingBG, rounding_margin, save, saveMargin, save_icon, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeCircle, timeSmall;
 
 screenScale = 1.5;
 
@@ -326,6 +326,15 @@ save = new Layer({
   height: 96,
   backgroundColor: "rgba(255,255,255,0.20)",
   borderRadius: 50
+});
+
+save_icon = new Layer({
+  parent: layerBG,
+  x: 38,
+  y: 890,
+  width: 195,
+  height: 96,
+  image: "images/save.png"
 });
 
 saveMargin = new Layer({
@@ -3905,7 +3914,7 @@ division_circle.states.tap = {
   scale: 1,
   animationOptions: {
     time: 0.2,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -3925,7 +3934,7 @@ division.states["default"] = {
   scale: 1,
   animationOptions: {
     time: timeSmall,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -3991,7 +4000,7 @@ multiply_circle.states.tap = {
   scale: 1,
   animationOptions: {
     time: 0.2,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -4011,7 +4020,7 @@ multiply.states["default"] = {
   scale: 1,
   animationOptions: {
     time: 0.225,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -4077,7 +4086,7 @@ minus_circle.states.tap = {
   scale: 1,
   animationOptions: {
     time: 0.2,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -4097,7 +4106,7 @@ minus.states["default"] = {
   scale: 1,
   animationOptions: {
     time: 0.225,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -4163,7 +4172,7 @@ plus_circle.states.tap = {
   scale: 1,
   animationOptions: {
     time: 0.2,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
@@ -4183,7 +4192,7 @@ plus.states["default"] = {
   scale: 1,
   animationOptions: {
     time: 0.225,
-    curve: "ease-in"
+    curve: "ease-out"
   }
 };
 
