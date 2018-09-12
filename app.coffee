@@ -149,14 +149,14 @@ memoryBG2 = new Layer
 	height: 96
 	borderRadius: 48
 	backgroundColor : "rgba(255,255,255,0.35)"
-	opacity: 1
+	opacity: 0
 # icon mempry 2
 memory2 = new Layer
 	parent: memoryBG2
 	width: 298
 	height: 96
 	image: "images/memory-1.png"
-	opacity: 0.9
+	opacity: 0
 # states memory 1
 #states background
 memoryBG.states.create =
@@ -3188,3 +3188,270 @@ gdad_bg = new Layer
 	width: 228
 	height: 921
 	image: "images/grad.png"
+
+division_circle = new Layer
+	parent: layerBG
+	x: 849
+	y: 1300
+	width: 228
+	height: 228
+	borderRadius: 125
+	backgroundColor: "#fff"
+division_circle.states.default =
+	opacity: 0
+	scale: 0.3
+division_circle.states.tap =
+	opacity: 0
+	scale: 1
+	animationOptions:
+		time: 0.2
+		curve: "ease-in"
+division_circle.states.switchInstant "default"
+division = new Layer
+	parent: layerBG
+	image: "images/division.png"
+# Button 8 States
+division.states.default =
+	x: 834
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-in"
+division.states.tap =
+	x: 834
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+division.states.switchInstant "default"
+division_bg = new Layer
+	parent: layerBG
+	x: 834
+	y: 1260
+	width: 246
+	height: 234
+	opacity: 0
+
+
+division_bg.on Events.Click, (event) ->
+	division_circle.opacity = 0.5
+	division_circle.animate("tap")
+	division_circle.onStateSwitchEnd ->
+		if (division_circle.states.current.name is "tap")
+			division_circle.states.switchInstant "default"
+
+division_bg.on Events.TouchStart, (event) ->
+	division.animate("tap")
+division_bg.on Events.TouchEnd, (event) ->
+	division.stateCycle("tap", "default")
+
+#
+#
+#
+#
+multiply_circle = new Layer
+	parent: layerBG
+	x: 849
+	y: 1518
+	width: 228
+	height: 228
+	borderRadius: 125
+	backgroundColor: "#fff"
+multiply_circle.states.default =
+	opacity: 0
+	scale: 0.3
+multiply_circle.states.tap =
+	opacity: 0
+	scale: 1
+	animationOptions:
+		time: 0.2
+		curve: "ease-in"
+multiply_circle.states.switchInstant "default"
+multiply = new Layer
+	parent: layerBG
+	image: "images/multiply.png"
+# Button 8 States
+multiply.states.default =
+	x: 834
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.225
+		curve: "ease-in"
+multiply.states.tap =
+	x: 834
+	y: 1494
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+multiply.states.switchInstant "default"
+multiply_bg = new Layer
+	parent: layerBG
+	x: 834
+	y: 1494
+	width: 246
+	height: 234
+	opacity: 0
+
+
+multiply_bg.on Events.Click, (event) ->
+	multiply_circle.opacity = 0.5
+	multiply_circle.animate("tap")
+	multiply_circle.onStateSwitchEnd ->
+		if (multiply_circle.states.current.name is "tap")
+			multiply_circle.states.switchInstant "default"
+
+multiply_bg.on Events.TouchStart, (event) ->
+	multiply.animate("tap")
+multiply_bg.on Events.TouchEnd, (event) ->
+	multiply.stateCycle("tap", "default")
+
+#
+#
+#
+#
+minus_circle = new Layer
+	parent: layerBG
+	x: 849
+	y: 1743
+	width: 228
+	height: 228
+	borderRadius: 125
+	backgroundColor: "#fff"
+minus_circle.states.default =
+	opacity: 0
+	scale: 0.3
+minus_circle.states.tap =
+	opacity: 0
+	scale: 1
+	animationOptions:
+		time: 0.2
+		curve: "ease-in"
+minus_circle.states.switchInstant "default"
+minus = new Layer
+	parent: layerBG
+	image: "images/minus.png"
+# Button 8 States
+minus.states.default =
+	x: 834
+	y: 1728
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.225
+		curve: "ease-in"
+minus.states.tap =
+	x: 834
+	y: 1728
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+minus.states.switchInstant "default"
+minus_bg = new Layer
+	parent: layerBG
+	x: 834
+	y: 1728
+	width: 246
+	height: 234
+	opacity: 0
+
+
+minus_bg.on Events.Click, (event) ->
+	minus_circle.opacity = 0.5
+	minus_circle.animate("tap")
+	minus_circle.onStateSwitchEnd ->
+		if (minus_circle.states.current.name is "tap")
+			minus_circle.states.switchInstant "default"
+
+minus_bg.on Events.TouchStart, (event) ->
+	minus.animate("tap")
+minus_bg.on Events.TouchEnd, (event) ->
+	minus.stateCycle("tap", "default")
+#
+#
+#
+#
+plus_circle = new Layer
+	parent: layerBG
+	x: 849
+	y: 1967
+	width: 228
+	height: 228
+	borderRadius: 125
+	backgroundColor: "#fff"
+plus_circle.states.default =
+	opacity: 0
+	scale: 0.3
+plus_circle.states.tap =
+	opacity: 0
+	scale: 1
+	animationOptions:
+		time: 0.2
+		curve: "ease-in"
+plus_circle.states.switchInstant "default"
+plus = new Layer
+	parent: layerBG
+	image: "images/plus.png"
+# Button 8 States
+plus.states.default =
+	x: 834
+	y: 1962
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.225
+		curve: "ease-in"
+plus.states.tap =
+	x: 834
+	y: 1962
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+plus.states.switchInstant "default"
+plus_bg = new Layer
+	parent: layerBG
+	x: 834
+	y: 1962
+	width: 246
+	height: 234
+	opacity: 0
+
+
+plus_bg.on Events.Click, (event) ->
+	plus_circle.opacity = 0.5
+	plus_circle.animate("tap")
+	plus_circle.onStateSwitchEnd ->
+		if (plus_circle.states.current.name is "tap")
+			plus_circle.states.switchInstant "default"
+
+plus_bg.on Events.TouchStart, (event) ->
+	plus.animate("tap")
+plus_bg.on Events.TouchEnd, (event) ->
+	plus.stateCycle("tap", "default")
