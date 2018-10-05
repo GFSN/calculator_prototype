@@ -622,8 +622,8 @@ InputTextLayer = (function(superClass) {
 textLayer = new InputTextLayer({
   parent: layerBG,
   width: 1000,
-  height: 200,
-  y: 250,
+  height: 100,
+  y: 300,
   x: 40,
   opacity: 1
 });

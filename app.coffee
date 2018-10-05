@@ -552,8 +552,8 @@ class InputTextLayer extends Framer.Layer
 textLayer = new InputTextLayer
 	parent: layerBG
 	width:1000
-	height:200
-	y:250
+	height:100
+	y:300
 	x:40
 	opacity: 1
 #textLayer.states.animationOptions = curve: "spring(250, 20, 0)"
@@ -565,7 +565,7 @@ textLayer.input.style.textAlign = "left"
 textLayer.input.style.background = "transparent"
 #textLayer.input.style.outline = '0.1'
 textLayer.input.style.color = "#FFF"
-#textLayer.input.style.border = "0px solid"
+#textLayer.input.style.border = "0px"
 # textLayer.input.style.display = "none"
 #textLayer.input.value = timeOn
 #textLayer.input.placeholder = "0"
