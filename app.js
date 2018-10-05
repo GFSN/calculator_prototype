@@ -2022,6 +2022,9 @@ l9_bg.draggable.constraints = {
 l9_bg.on(Events.Click, function(event) {
   if ((l9_bg.y === 1260) && (l_del_bg.y === 1026)) {
     l9.animate("tap");
+    textLayer.input.value = textLayer.input.value + "9";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l9.onStateSwitchEnd(function() {
       if (l9.states.current.name === "tap") {
         return l9.stateCycle("tap", "default");
@@ -2049,7 +2052,10 @@ l9_bg.on(Events.Click, function(event) {
 l9_bg.onSwipeDown(function() {
   if (l9.states.current.name === "default") {
     l9_ln.animate("swipe");
-    return l9.animate("swipe");
+    l9.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "i";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -2241,6 +2247,9 @@ l4_bg.draggable.constraints = {
 l4_bg.on(Events.Click, function(event) {
   if ((l4_bg.y === 1494) && (l7_bg.y === 1260)) {
     l4.animate("tap");
+    textLayer.input.value = textLayer.input.value + "4";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l4.onStateSwitchEnd(function() {
       if (l4.states.current.name === "tap") {
         return l4.stateCycle("tap", "default");
@@ -2268,7 +2277,10 @@ l4_bg.on(Events.Click, function(event) {
 l4_bg.onSwipeDown(function() {
   if (l4.states.current.name === "default") {
     l4_ln.animate("swipe");
-    return l4.animate("swipe");
+    l4.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "asin(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -2460,6 +2472,9 @@ l5_bg.draggable.constraints = {
 l5_bg.on(Events.Click, function(event) {
   if ((l5_bg.y === 1494) && (l8_bg.y === 1260) && (l_pow_bg.y === 1026)) {
     l5.animate("tap");
+    textLayer.input.value = textLayer.input.value + "5";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l5.onStateSwitchEnd(function() {
       if (l5.states.current.name === "tap") {
         return l5.stateCycle("tap", "default");
@@ -2487,7 +2502,10 @@ l5_bg.on(Events.Click, function(event) {
 l5_bg.onSwipeDown(function() {
   if (l5.states.current.name === "default") {
     l5_ln.animate("swipe");
-    return l5.animate("swipe");
+    l5.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "acos(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -2679,6 +2697,9 @@ l6_bg.draggable.constraints = {
 l6_bg.on(Events.Click, function(event) {
   if ((l9_bg.y === 1260) && (l_del_bg.y === 1026) && (l6_bg.y === 1494)) {
     l6.animate("tap");
+    textLayer.input.value = textLayer.input.value + "6";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l6.onStateSwitchEnd(function() {
       if (l6.states.current.name === "tap") {
         return l6.stateCycle("tap", "default");
@@ -2706,7 +2727,10 @@ l6_bg.on(Events.Click, function(event) {
 l6_bg.onSwipeDown(function() {
   if (l6.states.current.name === "default") {
     l6_ln.animate("swipe");
-    return l6.animate("swipe");
+    l6.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "atan(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -2898,6 +2922,9 @@ l1_bg.draggable.constraints = {
 l1_bg.on(Events.Click, function(event) {
   if ((l4_bg.y === 1494) && (l7_bg.y === 1260) && (l1_bg.y === 1728)) {
     l1.animate("tap");
+    textLayer.input.value = textLayer.input.value + "1";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l1.onStateSwitchEnd(function() {
       if (l1.states.current.name === "tap") {
         return l1.stateCycle("tap", "default");
@@ -2925,7 +2952,10 @@ l1_bg.on(Events.Click, function(event) {
 l1_bg.onSwipeDown(function() {
   if (l1.states.current.name === "default") {
     l1_ln.animate("swipe");
-    return l1.animate("swipe");
+    l1.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "sin(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -3117,6 +3147,9 @@ l2_bg.draggable.constraints = {
 l2_bg.on(Events.Click, function(event) {
   if ((l5_bg.y === 1494) && (l8_bg.y === 1260) && (l_pow_bg.y === 1026) && (l2_bg.y === 1728)) {
     l2.animate("tap");
+    textLayer.input.value = textLayer.input.value + "2";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l2.onStateSwitchEnd(function() {
       if (l2.states.current.name === "tap") {
         return l2.stateCycle("tap", "default");
@@ -3144,7 +3177,10 @@ l2_bg.on(Events.Click, function(event) {
 l2_bg.onSwipeDown(function() {
   if (l2.states.current.name === "default") {
     l2_ln.animate("swipe");
-    return l2.animate("swipe");
+    l2.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "cos(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -3336,6 +3372,9 @@ l3_bg.draggable.constraints = {
 l3_bg.on(Events.Click, function(event) {
   if ((l9_bg.y === 1260) && (l_del_bg.y === 1026) && (l6_bg.y === 1494) && (l3_bg.y === 1728)) {
     l3.animate("tap");
+    textLayer.input.value = textLayer.input.value + "3";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l3.onStateSwitchEnd(function() {
       if (l3.states.current.name === "tap") {
         return l3.stateCycle("tap", "default");
@@ -3363,7 +3402,10 @@ l3_bg.on(Events.Click, function(event) {
 l3_bg.onSwipeDown(function() {
   if (l3.states.current.name === "default") {
     l3_ln.animate("swipe");
-    return l3.animate("swipe");
+    l3.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "tan(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -3555,6 +3597,9 @@ l0_bg.draggable.constraints = {
 l0_bg.on(Events.Click, function(event) {
   if ((l4_bg.y === 1494) && (l7_bg.y === 1260) && (l1_bg.y === 1728) && (l0_bg.y === 1962)) {
     l0.animate("tap");
+    textLayer.input.value = textLayer.input.value + "0";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l0.onStateSwitchEnd(function() {
       if (l0.states.current.name === "tap") {
         return l0.stateCycle("tap", "default");
@@ -3582,7 +3627,10 @@ l0_bg.on(Events.Click, function(event) {
 l0_bg.onSwipeDown(function() {
   if (l0.states.current.name === "default") {
     l0_ln.animate("swipe");
-    return l0.animate("swipe");
+    l0.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "π";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -3774,6 +3822,9 @@ ldot_bg.draggable.constraints = {
 ldot_bg.on(Events.Click, function(event) {
   if ((l5_bg.y === 1494) && (l8_bg.y === 1260) && (l_pow_bg.y === 1026) && (l2_bg.y === 1728) && (ldot_bg.y === 1962)) {
     ldot.animate("tap");
+    textLayer.input.value = textLayer.input.value + ",";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return ldot.onStateSwitchEnd(function() {
       if (ldot.states.current.name === "tap") {
         return ldot.stateCycle("tap", "default");
@@ -3801,7 +3852,10 @@ ldot_bg.on(Events.Click, function(event) {
 ldot_bg.onSwipeDown(function() {
   if (ldot.states.current.name === "default") {
     ldot_ln.animate("swipe");
-    return ldot.animate("swipe");
+    ldot.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "e";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -3993,6 +4047,9 @@ lc_bg.draggable.constraints = {
 lc_bg.on(Events.Click, function(event) {
   if ((l9_bg.y === 1260) && (l_del_bg.y === 1026) && (l6_bg.y === 1494) && (l3_bg.y === 1728) && (lc_bg.y === 1962)) {
     lc.animate("tap");
+    textLayer.input.value = textLayer.input.value + ")";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return lc.onStateSwitchEnd(function() {
       if (lc.states.current.name === "tap") {
         return lc.stateCycle("tap", "default");
@@ -4020,7 +4077,10 @@ lc_bg.on(Events.Click, function(event) {
 lc_bg.onSwipeDown(function() {
   if (lc.states.current.name === "default") {
     lc_ln.animate("swipe");
-    return lc.animate("swipe");
+    lc.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "%";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -4110,6 +4170,9 @@ division_bg = new Layer({
 division_bg.on(Events.Click, function(event) {
   division_circle.opacity = 0.5;
   division_circle.animate("tap");
+  textLayer.input.value = textLayer.input.value + "÷";
+  textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+  cursorBlack.opacity = 1;
   return division_circle.onStateSwitchEnd(function() {
     if (division_circle.states.current.name === "tap") {
       return division_circle.states.switchInstant("default");
@@ -4196,6 +4259,9 @@ multiply_bg = new Layer({
 multiply_bg.on(Events.Click, function(event) {
   multiply_circle.opacity = 0.5;
   multiply_circle.animate("tap");
+  textLayer.input.value = textLayer.input.value + "×";
+  textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+  cursorBlack.opacity = 1;
   return multiply_circle.onStateSwitchEnd(function() {
     if (multiply_circle.states.current.name === "tap") {
       return multiply_circle.states.switchInstant("default");
@@ -4282,6 +4348,9 @@ minus_bg = new Layer({
 minus_bg.on(Events.Click, function(event) {
   minus_circle.opacity = 0.5;
   minus_circle.animate("tap");
+  textLayer.input.value = textLayer.input.value + "-";
+  textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+  cursorBlack.opacity = 1;
   return minus_circle.onStateSwitchEnd(function() {
     if (minus_circle.states.current.name === "tap") {
       return minus_circle.states.switchInstant("default");
@@ -4368,6 +4437,9 @@ plus_bg = new Layer({
 plus_bg.on(Events.Click, function(event) {
   plus_circle.opacity = 0.5;
   plus_circle.animate("tap");
+  textLayer.input.value = textLayer.input.value + "+";
+  textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+  cursorBlack.opacity = 1;
   return plus_circle.onStateSwitchEnd(function() {
     if (plus_circle.states.current.name === "tap") {
       return plus_circle.states.switchInstant("default");

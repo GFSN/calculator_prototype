@@ -1694,6 +1694,9 @@ l9_bg.draggable.constraints =
 l9_bg.on Events.Click, (event) ->
 	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026))
 		l9.animate("tap")
+		textLayer.input.value = textLayer.input.value + "9"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l9.onStateSwitchEnd ->
 			if (l9.states.current.name is "tap")
 				l9.stateCycle("tap", "default")
@@ -1714,6 +1717,9 @@ l9_bg.onSwipeDown ->
 	if (l9.states.current.name is "default")
 		l9_ln.animate("swipe")
 		l9.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "i"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l9_bg.onSwipeEnd ->
 	l9_ln.animate("default")
@@ -1872,6 +1878,9 @@ l4_bg.draggable.constraints =
 l4_bg.on Events.Click, (event) ->
 	if ((l4_bg.y is 1494) && (l7_bg.y is 1260))
 		l4.animate("tap")
+		textLayer.input.value = textLayer.input.value + "4"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l4.onStateSwitchEnd ->
 			if (l4.states.current.name is "tap")
 				l4.stateCycle("tap", "default")
@@ -1892,6 +1901,9 @@ l4_bg.onSwipeDown ->
 	if (l4.states.current.name is "default")
 		l4_ln.animate("swipe")
 		l4.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "asin("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l4_bg.onSwipeEnd ->
 	l4_ln.animate("default")
@@ -2050,6 +2062,9 @@ l5_bg.draggable.constraints =
 l5_bg.on Events.Click, (event) ->
 	if ((l5_bg.y is 1494) && (l8_bg.y is 1260) && (l_pow_bg.y is 1026))
 		l5.animate("tap")
+		textLayer.input.value = textLayer.input.value + "5"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l5.onStateSwitchEnd ->
 			if (l5.states.current.name is "tap")
 				l5.stateCycle("tap", "default")
@@ -2070,6 +2085,9 @@ l5_bg.onSwipeDown ->
 	if (l5.states.current.name is "default")
 		l5_ln.animate("swipe")
 		l5.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "acos("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l5_bg.onSwipeEnd ->
 	l5_ln.animate("default")
@@ -2227,6 +2245,9 @@ l6_bg.draggable.constraints =
 l6_bg.on Events.Click, (event) ->
 	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026) && (l6_bg.y is 1494))
 		l6.animate("tap")
+		textLayer.input.value = textLayer.input.value + "6"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l6.onStateSwitchEnd ->
 			if (l6.states.current.name is "tap")
 				l6.stateCycle("tap", "default")
@@ -2247,6 +2268,9 @@ l6_bg.onSwipeDown ->
 	if (l6.states.current.name is "default")
 		l6_ln.animate("swipe")
 		l6.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "atan("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l6_bg.onSwipeEnd ->
 	l6_ln.animate("default")
@@ -2405,6 +2429,9 @@ l1_bg.draggable.constraints =
 l1_bg.on Events.Click, (event) ->
 	if ((l4_bg.y is 1494) && (l7_bg.y is 1260) && (l1_bg.y is 1728))
 		l1.animate("tap")
+		textLayer.input.value = textLayer.input.value + "1"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l1.onStateSwitchEnd ->
 			if (l1.states.current.name is "tap")
 				l1.stateCycle("tap", "default")
@@ -2425,6 +2452,9 @@ l1_bg.onSwipeDown ->
 	if (l1.states.current.name is "default")
 		l1_ln.animate("swipe")
 		l1.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "sin("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l1_bg.onSwipeEnd ->
 	l1_ln.animate("default")
@@ -2582,6 +2612,9 @@ l2_bg.draggable.constraints =
 l2_bg.on Events.Click, (event) ->
 	if ((l5_bg.y is 1494) && (l8_bg.y is 1260) && (l_pow_bg.y is 1026) && (l2_bg.y is 1728))
 		l2.animate("tap")
+		textLayer.input.value = textLayer.input.value + "2"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l2.onStateSwitchEnd ->
 			if (l2.states.current.name is "tap")
 				l2.stateCycle("tap", "default")
@@ -2602,6 +2635,9 @@ l2_bg.onSwipeDown ->
 	if (l2.states.current.name is "default")
 		l2_ln.animate("swipe")
 		l2.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "cos("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l2_bg.onSwipeEnd ->
 	l2_ln.animate("default")
@@ -2759,6 +2795,9 @@ l3_bg.draggable.constraints =
 l3_bg.on Events.Click, (event) ->
 	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026) && (l6_bg.y is 1494) && (l3_bg.y is 1728))
 		l3.animate("tap")
+		textLayer.input.value = textLayer.input.value + "3"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l3.onStateSwitchEnd ->
 			if (l3.states.current.name is "tap")
 				l3.stateCycle("tap", "default")
@@ -2779,6 +2818,9 @@ l3_bg.onSwipeDown ->
 	if (l3.states.current.name is "default")
 		l3_ln.animate("swipe")
 		l3.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "tan("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l3_bg.onSwipeEnd ->
 	l3_ln.animate("default")
@@ -2936,6 +2978,9 @@ l0_bg.draggable.constraints =
 l0_bg.on Events.Click, (event) ->
 	if ((l4_bg.y is 1494) && (l7_bg.y is 1260) && (l1_bg.y is 1728) && (l0_bg.y is 1962))
 		l0.animate("tap")
+		textLayer.input.value = textLayer.input.value + "0"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l0.onStateSwitchEnd ->
 			if (l0.states.current.name is "tap")
 				l0.stateCycle("tap", "default")
@@ -2956,6 +3001,9 @@ l0_bg.onSwipeDown ->
 	if (l0.states.current.name is "default")
 		l0_ln.animate("swipe")
 		l0.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "π"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l0_bg.onSwipeEnd ->
 	l0_ln.animate("default")
@@ -3113,6 +3161,9 @@ ldot_bg.draggable.constraints =
 ldot_bg.on Events.Click, (event) ->
 	if ((l5_bg.y is 1494) && (l8_bg.y is 1260) && (l_pow_bg.y is 1026) && (l2_bg.y is 1728) && (ldot_bg.y is 1962))
 		ldot.animate("tap")
+		textLayer.input.value = textLayer.input.value + ","
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		ldot.onStateSwitchEnd ->
 			if (ldot.states.current.name is "tap")
 				ldot.stateCycle("tap", "default")
@@ -3133,6 +3184,9 @@ ldot_bg.onSwipeDown ->
 	if (ldot.states.current.name is "default")
 		ldot_ln.animate("swipe")
 		ldot.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "e"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 ldot_bg.onSwipeEnd ->
 	ldot_ln.animate("default")
@@ -3290,6 +3344,9 @@ lc_bg.draggable.constraints =
 lc_bg.on Events.Click, (event) ->
 	if ((l9_bg.y is 1260) && (l_del_bg.y is 1026) && (l6_bg.y is 1494) && (l3_bg.y is 1728) && (lc_bg.y is 1962))
 		lc.animate("tap")
+		textLayer.input.value = textLayer.input.value + ")"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		lc.onStateSwitchEnd ->
 			if (lc.states.current.name is "tap")
 				lc.stateCycle("tap", "default")
@@ -3310,6 +3367,9 @@ lc_bg.onSwipeDown ->
 	if (lc.states.current.name is "default")
 		lc_ln.animate("swipe")
 		lc.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "%"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 lc_bg.onSwipeEnd ->
 	lc_ln.animate("default")
@@ -3379,6 +3439,9 @@ division_bg = new Layer
 division_bg.on Events.Click, (event) ->
 	division_circle.opacity = 0.5
 	division_circle.animate("tap")
+	textLayer.input.value = textLayer.input.value + "÷"
+	textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+	cursorBlack.opacity = 1
 	division_circle.onStateSwitchEnd ->
 		if (division_circle.states.current.name is "tap")
 			division_circle.states.switchInstant "default"
@@ -3447,6 +3510,9 @@ multiply_bg = new Layer
 multiply_bg.on Events.Click, (event) ->
 	multiply_circle.opacity = 0.5
 	multiply_circle.animate("tap")
+	textLayer.input.value = textLayer.input.value + "×"
+	textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+	cursorBlack.opacity = 1
 	multiply_circle.onStateSwitchEnd ->
 		if (multiply_circle.states.current.name is "tap")
 			multiply_circle.states.switchInstant "default"
@@ -3515,6 +3581,9 @@ minus_bg = new Layer
 minus_bg.on Events.Click, (event) ->
 	minus_circle.opacity = 0.5
 	minus_circle.animate("tap")
+	textLayer.input.value = textLayer.input.value + "-"
+	textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+	cursorBlack.opacity = 1
 	minus_circle.onStateSwitchEnd ->
 		if (minus_circle.states.current.name is "tap")
 			minus_circle.states.switchInstant "default"
@@ -3582,6 +3651,9 @@ plus_bg = new Layer
 plus_bg.on Events.Click, (event) ->
 	plus_circle.opacity = 0.5
 	plus_circle.animate("tap")
+	textLayer.input.value = textLayer.input.value + "+"
+	textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+	cursorBlack.opacity = 1
 	plus_circle.onStateSwitchEnd ->
 		if (plus_circle.states.current.name is "tap")
 			plus_circle.states.switchInstant "default"
