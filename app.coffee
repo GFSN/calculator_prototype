@@ -3693,3 +3693,200 @@ plus_bg.on Events.TouchStart, (event) ->
 	plus.animate("tap")
 plus_bg.on Events.TouchEnd, (event) ->
 	plus.stateCycle("tap", "default")
+
+
+bg = new Layer
+	parent: layerBG
+	x: 0
+	y: 0
+	width: 1126
+	height: 2436
+	opacity: 0
+
+onboardBG = new Layer
+	parent: layerBG
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	backgroundColor: "#000"
+
+onboard_8 = new Layer
+	parent: layerBG
+	image: "images/8.png"
+onboard_8.states.default =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.5
+		#curve: "ease-in"
+onboard_8.states.swipe =
+	x: 294
+	y: 1300
+	width: 270
+	height: 234
+	opacity: 0.8
+	scale: 0.88
+	animationOptions:
+		time: 0.5
+		curve: "ease-out"
+onboard_8.states.default2 =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.5
+onboard_8.states.up =
+	x: 294
+	y: 1230
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.5
+		#curve: "ease-in"
+onboard_8.states.switchInstant "up"
+onboard_ln = new Layer
+	parent: layerBG
+	image: "images/lg.png"
+onboard_ln.states.default =
+	x: 294
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: 0.5
+		#curve: "ease-in"
+onboard_ln.states.swipe =
+
+	x: 294
+	y: 1220
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 0.5
+	animationOptions:
+		time: 0.5
+onboard_ln.states.default2 =
+	x: 294
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: 0.5
+onboard_ln.states.up =
+	x: 294
+	y: 1180
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.3
+	animationOptions:
+		time: 0.5
+		#curve: "ease-out"
+		#curve: "ease-out"
+onboard_ln.states.switchInstant "default"
+
+###
+l8 = new Layer
+	parent: layerBG
+	image: "images/8.png"
+# Button 8 States
+l8.states.default =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-in"
+l8.states.swipe =
+	x: 294
+	y: 1340
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.4
+	animationOptions:
+		time: timeBig
+		curve: "ease-out"
+l8.states.tap =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 0.6
+	scale: scaleTap
+	animationOptions:
+		time: timeSmall * 0.5
+		curve: "ease-out"
+l8.states.switchInstant "default"
+# Button lg
+l8_ln = new Layer
+	parent: layerBG
+	image: "images/lg.png"
+# Button lg States
+l8_ln.states.default =
+	x: 294
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: timeBig
+		curve: "ease-in"
+l8_ln.states.swipe =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: timeSmall
+		curve: "ease-out"
+l8_ln.states.switchInstant "default"
+# Button 8 Masc
+l8_bg = new Layer
+	parent: layerBG
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 0
+# Button 8 draggable
+l8_bg.draggable.enabled = true
+l8_bg.draggable.horizontal = false
+l8_bg.draggable.constraints =
+ x: 294
+ y: 1260
+ width: 270
+ height: 234
+###
+
+
+onboard_8.animate("default")
+onboard_8.onStateSwitchEnd ->
+	#print onboard_8.states.current.name
+	onboard_8.states.next()
+	onboard_ln.states.next()
+
+
+bg.on Events.TouchStart, (event) ->
+	bg.scale = 0
