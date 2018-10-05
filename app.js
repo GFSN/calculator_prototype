@@ -3,7 +3,7 @@ var InputTextLayer, bg, cursor, cursorBlack, curveAnimation, deg, degBG, deg_mar
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 
-screenScale = 1.5;
+screenScale = 2.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -4512,7 +4512,11 @@ onboardBG = new Layer({
 
 onboard_8 = new Layer({
   parent: layerBG,
-  image: "images/8.png"
+  image: "images/8.png",
+  x: 294,
+  y: 1260,
+  width: 270,
+  height: 234
 });
 
 onboard_8.states["default"] = {
@@ -4523,7 +4527,7 @@ onboard_8.states["default"] = {
   opacity: 1,
   scale: 1,
   animationOptions: {
-    time: 0.5
+    time: 0.4
   }
 };
 
@@ -4535,36 +4539,36 @@ onboard_8.states.swipe = {
   opacity: 0.8,
   scale: 0.88,
   animationOptions: {
-    time: 0.5,
+    time: 0.8,
+    delay: 2.5,
     curve: "ease-out"
   }
 };
 
-onboard_8.states.default2 = {
-  x: 294,
-  y: 1260,
-  width: 270,
-  height: 234,
-  opacity: 1,
-  scale: 1,
-  animationOptions: {
-    time: 0.5
-  }
-};
 
-onboard_8.states.up = {
-  x: 294,
-  y: 1230,
-  width: 270,
-  height: 234,
-  opacity: 1,
-  scale: 1,
-  animationOptions: {
-    time: 0.5
-  }
-};
+/*
+onboard_8.states.default2 =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.5
+onboard_8.states.up =
+	x: 294
+	y: 1230
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.5
+		#curve: "ease-in"
+ */
 
-onboard_8.states.switchInstant("up");
+onboard_8.states.switchInstant("default");
 
 onboard_ln = new Layer({
   parent: layerBG,
@@ -4579,7 +4583,7 @@ onboard_ln.states["default"] = {
   opacity: 0.4,
   scale: 0.45,
   animationOptions: {
-    time: 0.5
+    time: 0.4
   }
 };
 
@@ -4589,35 +4593,37 @@ onboard_ln.states.swipe = {
   width: 270,
   height: 234,
   opacity: 1,
-  scale: 0.5,
+  scale: 0.6,
   animationOptions: {
-    time: 0.5
+    time: 0.8,
+    delay: 2.5,
+    curve: "ease-out"
   }
 };
 
-onboard_ln.states.default2 = {
-  x: 294,
-  y: 1190,
-  width: 270,
-  height: 234,
-  opacity: 0.4,
-  scale: 0.45,
-  animationOptions: {
-    time: 0.5
-  }
-};
 
-onboard_ln.states.up = {
-  x: 294,
-  y: 1180,
-  width: 270,
-  height: 234,
-  opacity: 0,
-  scale: 0.3,
-  animationOptions: {
-    time: 0.5
-  }
-};
+/*
+onboard_ln.states.default2 =
+	x: 294
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: 0.5
+onboard_ln.states.up =
+	x: 294
+	y: 1180
+	width: 270
+	height: 234
+	opacity: 0
+	scale: 0.3
+	animationOptions:
+		time: 0.5
+		#curve: "ease-out"
+		#curve: "ease-out"
+ */
 
 onboard_ln.states.switchInstant("default");
 
@@ -4702,13 +4708,19 @@ l8_bg.draggable.constraints =
  height: 234
  */
 
+onboard_8.x = 295;
+
 onboard_8.animate("default");
 
 onboard_8.onStateSwitchEnd(function() {
-  onboard_8.states.next();
-  return onboard_ln.states.next();
+  if (bg.scale === 1) {
+    onboard_8.states.next();
+    return onboard_ln.states.next();
+  }
 });
 
 bg.on(Events.TouchStart, function(event) {
-  return bg.scale = 0;
+  bg.scale = 0;
+  onboardBG.placebefore(onboard_8);
+  return onboardBG.placebefore(onboard_ln);
 });

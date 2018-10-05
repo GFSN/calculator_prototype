@@ -1,4 +1,4 @@
-screenScale = 1.5
+screenScale = 2.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -3715,6 +3715,10 @@ onboardBG = new Layer
 onboard_8 = new Layer
 	parent: layerBG
 	image: "images/8.png"
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
 onboard_8.states.default =
 	x: 294
 	y: 1260
@@ -3723,7 +3727,7 @@ onboard_8.states.default =
 	opacity: 1
 	scale: 1
 	animationOptions:
-		time: 0.5
+		time: 0.4
 		#curve: "ease-in"
 onboard_8.states.swipe =
 	x: 294
@@ -3733,8 +3737,10 @@ onboard_8.states.swipe =
 	opacity: 0.8
 	scale: 0.88
 	animationOptions:
-		time: 0.5
+		time: 0.8
+		delay: 2.5
 		curve: "ease-out"
+###
 onboard_8.states.default2 =
 	x: 294
 	y: 1260
@@ -3754,7 +3760,9 @@ onboard_8.states.up =
 	animationOptions:
 		time: 0.5
 		#curve: "ease-in"
-onboard_8.states.switchInstant "up"
+###
+onboard_8.states.switchInstant "default"
+
 onboard_ln = new Layer
 	parent: layerBG
 	image: "images/lg.png"
@@ -3766,18 +3774,21 @@ onboard_ln.states.default =
 	opacity: 0.4
 	scale: 0.45
 	animationOptions:
-		time: 0.5
+		time: 0.4
 		#curve: "ease-in"
-onboard_ln.states.swipe =
 
+onboard_ln.states.swipe =
 	x: 294
 	y: 1220
 	width: 270
 	height: 234
 	opacity: 1
-	scale: 0.5
+	scale: 0.6
 	animationOptions:
-		time: 0.5
+		time: 0.8
+		delay: 2.5
+		curve: "ease-out"
+###
 onboard_ln.states.default2 =
 	x: 294
 	y: 1190
@@ -3798,6 +3809,7 @@ onboard_ln.states.up =
 		time: 0.5
 		#curve: "ease-out"
 		#curve: "ease-out"
+###
 onboard_ln.states.switchInstant "default"
 
 ###
@@ -3880,13 +3892,18 @@ l8_bg.draggable.constraints =
  height: 234
 ###
 
-
+onboard_8.x = 295
 onboard_8.animate("default")
 onboard_8.onStateSwitchEnd ->
 	#print onboard_8.states.current.name
-	onboard_8.states.next()
-	onboard_ln.states.next()
+	if (bg.scale is 1)
+		onboard_8.states.next()
+		onboard_ln.states.next()
 
 
 bg.on Events.TouchStart, (event) ->
 	bg.scale = 0
+	#onboardBG.scale = 0
+	#onboardBG.opacity = 0
+	onboardBG.placebefore(onboard_8)
+	onboardBG.placebefore(onboard_ln)
