@@ -1,4 +1,7 @@
-var curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, plus, plus_bg, plus_circle, rounding, roundingBG, rounding_margin, save, saveMargin, save_icon, scaleTap, screenScale, second, second_bg, second_bg_grey, time, timeBig, timeCircle, timeSmall;
+var InputTextLayer, cursor, cursorBlack, curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, plus, plus_bg, plus_circle, rounding, roundingBG, rounding_margin, save, saveMargin, save_icon, scaleTap, screenScale, second, second_bg, second_bg_grey, textLayer, textLayer2, time, timeBig, timeCircle, timeSmall,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 screenScale = 1.5;
 
@@ -15,7 +18,7 @@ layerBG = new Layer({
   height: 2436,
   scale: 1 / screenScale,
   opacity: 1,
-  image: "images/iPhone-X-bg.png"
+  image: "images/iPhone-X-bg-black.png"
 });
 
 layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2;
@@ -544,6 +547,118 @@ EaseOff.onTap ->
 		degBG.states.tap.animationOptions.curve = eOff
  */
 
+cursor = new Layer({
+  parent: layerBG,
+  width: 8,
+  height: 100,
+  y: 296,
+  x: 40,
+  backgroundColor: "#F28758",
+  borderRadius: 4
+});
+
+cursor.states["default"] = {
+  opacity: 1,
+  animationOptions: {
+    time: 0.1,
+    delay: 0.4
+  }
+};
+
+cursor.states.opacity0 = {
+  opacity: 0,
+  animationOptions: {
+    time: 0.15,
+    delay: 0.35
+  }
+};
+
+cursor.states.switchInstant("opacity0");
+
+cursor.onStateSwitchEnd(function() {
+  return cursor.states.next();
+});
+
+cursorBlack = new Layer({
+  parent: layerBG,
+  width: 8,
+  height: 100,
+  y: 296,
+  x: 40,
+  backgroundColor: "#000000",
+  opacity: 0
+});
+
+InputTextLayer = (function(superClass) {
+  extend(InputTextLayer, superClass);
+
+  function InputTextLayer(options) {
+    this._update = bind(this._update, this);
+    InputTextLayer.__super__.constructor.call(this, options);
+    this.ignoreEvents = false;
+    this.input = document.createElement("input");
+    _.extend(this.input.style, {
+      "-webkit-user-select": "text",
+      "-webkit-box-sizing": "border-box",
+      "cursor": "auto"
+    });
+    this._update();
+    this._element.appendChild(this.input);
+    this.on("change:width", this._update);
+    this.on("change:height", this._update);
+  }
+
+  InputTextLayer.prototype._update = function() {
+    return _.extend(this.input.style, {
+      width: this.width + "px",
+      height: this.height + "px"
+    });
+  };
+
+  return InputTextLayer;
+
+})(Framer.Layer);
+
+textLayer = new InputTextLayer({
+  parent: layerBG,
+  width: 1000,
+  height: 200,
+  y: 250,
+  x: 40,
+  opacity: 1
+});
+
+textLayer.input.style.font = "91px Helvetica";
+
+textLayer.input.style.textAlign = "left";
+
+textLayer.input.style.background = "transparent";
+
+textLayer.input.style.color = "#FFF";
+
+textLayer.backgroundColor = "rgba(0, 0, 0, 0)";
+
+textLayer2 = new InputTextLayer({
+  parent: layerBG,
+  width: 1085 - 500,
+  height: 200,
+  y: 835,
+  x: 500,
+  opacity: 1
+});
+
+textLayer2.input.style.font = "108px/1.35em Helvetica";
+
+textLayer2.input.style.textAlign = "right";
+
+textLayer2.input.style.background = "transparent";
+
+textLayer2.input.style.color = "#FFF";
+
+textLayer2.input.placeholder = "0";
+
+textLayer2.backgroundColor = "rgba(255, 255, 255, 0)";
+
 rounding_margin.onClick(function() {
   roundingBG.states.next();
   return rounding.states.next();
@@ -749,6 +864,9 @@ l_sqrt_bg.on(Events.Click, function(event) {
     l_sqrt_circle_parent.animate("tap");
     l_sqrt_circle_white.animate("tap");
     l_sqrt_circle.animate("tap");
+    textLayer.input.value = textLayer.input.value + "√";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l_sqrt_circle_parent.onStateSwitchEnd(function() {
       if (l_sqrt_circle_parent.states.current.name === "tap") {
         l_sqrt_circle_parent.states.switchInstant("default");
@@ -772,7 +890,10 @@ l_sqrt_bg.on(Events.TouchEnd, function(event) {
 l_sqrt_bg.onSwipeDown(function() {
   if (l_sqrt.states.current.name === "default") {
     l_sqrt_factorial.animate("swipe");
-    return l_sqrt.animate("swipe");
+    l_sqrt.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "!";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -953,6 +1074,9 @@ l_pow_bg.draggable.constraints = {
 l_pow_bg.on(Events.Click, function(event) {
   if (l_pow_bg.y === 1026) {
     l_pow.animate("tap");
+    textLayer.input.value = textLayer.input.value + "^2";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l_pow.onStateSwitchEnd(function() {
       if (l_pow.states.current.name === "tap") {
         return l_pow.stateCycle("tap", "default");
@@ -980,7 +1104,10 @@ l_pow_bg.on(Events.Click, function(event) {
 l_pow_bg.onSwipeDown(function() {
   if (l_pow.states.current.name === "default") {
     l_pow_n.animate("swipe");
-    return l_pow.animate("swipe");
+    l_pow.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "^";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 
@@ -1163,6 +1290,9 @@ l_del_bg.draggable.constraints = {
 l_del_bg.on(Events.Click, function(event) {
   if (l_del_bg.y === 1026) {
     l_del.animate("tap");
+    textLayer.input.value = textLayer.input.value.substring(0, textLayer.input.value.length - 1);
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l_del.onStateSwitchEnd(function() {
       if (l_del.states.current.name === "tap") {
         return l_del.stateCycle("tap", "default");
@@ -1190,7 +1320,10 @@ l_del_bg.on(Events.Click, function(event) {
 l_del_bg.onSwipeDown(function() {
   if (l_del.states.current.name === "default") {
     l_cancel.animate("swipe");
-    return l_del.animate("swipe");
+    l_del.animate("swipe");
+    textLayer.input.value = null;
+    textLayer2.input.value = null;
+    return cursorBlack.opacity = 0;
   }
 });
 
@@ -1439,6 +1572,9 @@ l7_bg.draggable.constraints = {
 l7_bg.on(Events.Click, function(event) {
   if ((l7_bg.y === 1260) && (l_sqrt_bg.y === 1026)) {
     l7.animate("tap");
+    textLayer.input.value = textLayer.input.value + "7";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l7.onStateSwitchEnd(function() {
       if (l7.states.current.name === "tap") {
         return l7.stateCycle("tap", "default");
@@ -1465,6 +1601,9 @@ l7_bg.on(Events.Click, function(event) {
 
 l7_bg.onSwipeDown(function() {
   if (l7.states.current.name === "default") {
+    textLayer.input.value = textLayer.input.value + "ln(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     l7_ln.animate("swipe");
     return l7.animate("swipe");
   }
@@ -1658,6 +1797,9 @@ l8_bg.draggable.constraints = {
 l8_bg.on(Events.Click, function(event) {
   if ((l8_bg.y === 1260) && (l_pow_bg.y === 1026)) {
     l8.animate("tap");
+    textLayer.input.value = textLayer.input.value + "8";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    cursorBlack.opacity = 1;
     return l8.onStateSwitchEnd(function() {
       if (l8.states.current.name === "tap") {
         return l8.stateCycle("tap", "default");
@@ -1685,7 +1827,10 @@ l8_bg.on(Events.Click, function(event) {
 l8_bg.onSwipeDown(function() {
   if (l8.states.current.name === "default") {
     l8_ln.animate("swipe");
-    return l8.animate("swipe");
+    l8.animate("swipe");
+    textLayer.input.value = textLayer.input.value + "lg(";
+    textLayer2.input.value = Math.floor(Math.random() * (2511 - 0));
+    return cursorBlack.opacity = 1;
   }
 });
 

@@ -13,7 +13,7 @@ layerBG = new Layer
 	height: 2436
 	scale: 1 / screenScale
 	opacity: 1
-	image: "images/iPhone-X-bg.png"
+	image: "images/iPhone-X-bg-black.png"
 layerBG.x = 0 - (layerBG.width - layerBG.width / screenScale) / 2
 layerBG.y = 0 - (layerBG.height - layerBG.height / screenScale) / 2
 
@@ -490,6 +490,105 @@ EaseOff.onTap ->
 		eOff = "ease-in"
 		degBG.states.tap.animationOptions.curve = eOff
 ###
+cursor = new Layer
+	parent: layerBG
+	width: 8
+	height: 100
+	y:296
+	x:40
+	backgroundColor: "#F28758"
+	borderRadius: 4
+
+cursor.states.default =
+	opacity: 1
+	animationOptions:
+		time: 0.1
+		delay: 0.4
+cursor.states.opacity0 =
+	opacity: 0
+	animationOptions:
+		time: 0.15
+		delay: 0.35
+#cursor.stateswitch("opacity0")
+cursor.states.switchInstant "opacity0"
+cursor.onStateSwitchEnd ->
+	cursor.states.next()
+
+cursorBlack = new Layer
+	parent: layerBG
+	width: 8
+	height: 100
+	y:296
+	x:40
+	backgroundColor: "#000000"
+	opacity: 0
+
+
+
+class InputTextLayer extends Framer.Layer
+
+	constructor: (options) ->
+
+		super options
+
+		@ignoreEvents = false
+		@input = document.createElement("input")
+
+		_.extend @input.style,
+			"-webkit-user-select": "text"
+			"-webkit-box-sizing": "border-box"
+			"cursor": "auto"
+		@_update()
+		@_element.appendChild(@input)
+
+		@on "change:width", @_update
+		@on "change:height", @_update
+
+	_update: =>
+		_.extend @input.style,
+			width: "#{@width}px"
+			height: "#{@height}px"
+
+textLayer = new InputTextLayer
+	parent: layerBG
+	width:1000
+	height:200
+	y:250
+	x:40
+	opacity: 1
+#textLayer.states.animationOptions = curve: "spring(250, 20, 0)"
+textLayer.input.style.font = "91px Helvetica"
+#textLayer.input.style.font-style = "normal"
+#textLayer.input.style.font-weight = "100"
+#textLayer.input.style.padding = "24px"
+textLayer.input.style.textAlign = "left"
+textLayer.input.style.background = "transparent"
+#textLayer.input.style.outline = '0.1'
+textLayer.input.style.color = "#FFF"
+#textLayer.input.style.border = "0px solid"
+# textLayer.input.style.display = "none"
+#textLayer.input.value = timeOn
+#textLayer.input.placeholder = "0"
+textLayer.backgroundColor = "rgba(0, 0, 0, 0)"
+
+textLayer2 = new InputTextLayer
+	parent: layerBG
+	width: 1085 - 500
+	height: 200
+	y:835
+	x:500
+	opacity: 1
+textLayer2.input.style.font = "108px/1.35em Helvetica"
+textLayer2.input.style.textAlign = "right"
+textLayer2.input.style.background = "transparent"
+textLayer2.input.style.color = "#FFF"
+#textLayer2.input.value = timeOff
+textLayer2.input.placeholder = "0"
+textLayer2.backgroundColor = "rgba(255, 255, 255, 0)"
+
+
+
+
 rounding_margin.onClick ->
 	roundingBG.states.next()
 	rounding.states.next()
@@ -659,6 +758,9 @@ l_sqrt_bg.on Events.Click, (event) ->
 		l_sqrt_circle_parent.animate("tap")
 		l_sqrt_circle_white.animate("tap")
 		l_sqrt_circle.animate("tap")
+		textLayer.input.value = textLayer.input.value + "√"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l_sqrt_circle_parent.onStateSwitchEnd ->
 			if (l_sqrt_circle_parent.states.current.name is "tap")
 				l_sqrt_circle_parent.states.switchInstant "default"
@@ -677,6 +779,9 @@ l_sqrt_bg.onSwipeDown ->
 	if (l_sqrt.states.current.name is "default")
 		l_sqrt_factorial.animate("swipe")
 		l_sqrt.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "!"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 l_sqrt_bg.onSwipeEnd ->
 	l_sqrt_factorial.animate("default")
 	l_sqrt.animate("default")
@@ -820,6 +925,9 @@ l_pow_bg.draggable.constraints =
 l_pow_bg.on Events.Click, (event) ->
 	if (l_pow_bg.y is 1026)
 		l_pow.animate("tap")
+		textLayer.input.value = textLayer.input.value + "^2"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l_pow.onStateSwitchEnd ->
 			if (l_pow.states.current.name is "tap")
 				l_pow.stateCycle("tap", "default")
@@ -840,6 +948,9 @@ l_pow_bg.onSwipeDown ->
 	if (l_pow.states.current.name is "default")
 		l_pow_n.animate("swipe")
 		l_pow.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "^"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 l_pow_bg.onSwipeEnd ->
 	l_pow_n.animate("default")
 	l_pow.animate("default")
@@ -985,6 +1096,9 @@ l_del_bg.draggable.constraints =
 l_del_bg.on Events.Click, (event) ->
 	if (l_del_bg.y is 1026)
 		l_del.animate("tap")
+		textLayer.input.value = textLayer.input.value.substring(0, textLayer.input.value.length - 1);
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l_del.onStateSwitchEnd ->
 			if (l_del.states.current.name is "tap")
 				l_del.stateCycle("tap", "default")
@@ -1006,6 +1120,9 @@ l_del_bg.onSwipeDown ->
 	if (l_del.states.current.name is "default")
 		l_cancel.animate("swipe")
 		l_del.animate("swipe")
+		textLayer.input.value = null
+		textLayer2.input.value = null
+		cursorBlack.opacity = 0
 l_del_bg.onSwipeEnd ->
 	l_cancel.animate("default")
 	l_del.animate("default")
@@ -1209,6 +1326,9 @@ l7_bg.draggable.constraints =
 l7_bg.on Events.Click, (event) ->
 	if ((l7_bg.y is 1260) && (l_sqrt_bg.y is 1026))
 		l7.animate("tap")
+		textLayer.input.value = textLayer.input.value + "7"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l7.onStateSwitchEnd ->
 			if (l7.states.current.name is "tap")
 				l7.stateCycle("tap", "default")
@@ -1227,7 +1347,9 @@ l7_bg.on Events.Click, (event) ->
 # Swipe Animation
 l7_bg.onSwipeDown ->
 	if (l7.states.current.name is "default")
-		#textLayer.input.value = textLayer.input.value + "e"
+		textLayer.input.value = textLayer.input.value + "ln("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l7_ln.animate("swipe")
 		l7.animate("swipe")
 
@@ -1388,6 +1510,9 @@ l8_bg.draggable.constraints =
 l8_bg.on Events.Click, (event) ->
 	if ((l8_bg.y is 1260) && (l_pow_bg.y is 1026))
 		l8.animate("tap")
+		textLayer.input.value = textLayer.input.value + "8"
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 		l8.onStateSwitchEnd ->
 			if (l8.states.current.name is "tap")
 				l8.stateCycle("tap", "default")
@@ -1408,6 +1533,9 @@ l8_bg.onSwipeDown ->
 	if (l8.states.current.name is "default")
 		l8_ln.animate("swipe")
 		l8.animate("swipe")
+		textLayer.input.value = textLayer.input.value + "lg("
+		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+		cursorBlack.opacity = 1
 
 l8_bg.onSwipeEnd ->
 	l8_ln.animate("default")
