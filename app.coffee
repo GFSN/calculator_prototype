@@ -66,44 +66,77 @@ degBG = new Layer
 	parent: layerBG
 	x: 168
 	y: 168
-	width: 138
+	width: 270
 	height: 96
 	borderRadius: 48
 	backgroundColor : "#333333"
-# Иконка кнопки углов
-deg = new Layer
+rad = new Layer
+	parent: layerBG
 	parent: degBG
 	width: 138
 	height: 96
-	image: "images/deg.png"
+	x: 4
+	image: "images/rad.png"
 	opacity: 0.8
+
+deg = new Layer
+	parent: layerBG
+	parent: degBG
+	width: 138
+	height: 96
+	x: 120
+	image: "images/deg.png"
+	opacity: 0.4
+
 # Площадь кнопки углов
 deg_margin = new Layer
 	parent: layerBG
 	x: 150
 	y: 150
-	width: 174
+	width: 306
 	height: 132
 	opacity: 0
-# состояния кнопки углов
-# tap background Rad
-degBG.states.tap =
-	backgroundColor : "#666666"
-	animationOptions:
-		time: 0.25
-		curve: "ease-in"
-#default background Rad
+
 degBG.states.default =
-	backgroundColor : "#333333"
+	backgroundColor: "#333333"
+	animationOptions:
+		time: 0.15
+		curve: "ease-in"
+degBG.states.tap =
+	backgroundColor: "#808080"
+	animationOptions:
+		time: 0.4
+		curve: "ease-out"
+
+rad.states.default =
+	opacity: 0.8
+	animationOptions:
+		time: 0.2
+		curve: "ease-in"
+rad.states.tap =
+	opacity: 0.4
 	animationOptions:
 		time: 0.2
 		curve: "ease-out"
-#tap icon Rad
-deg.states.rad =
-	image: "images/rad.png"
-#default icon Rad
+
 deg.states.default =
-	image: "images/deg.png"
+	opacity: 0.4
+	animationOptions:
+		time: 0.2
+		curve: "ease-in"
+deg.states.tap =
+	opacity: 0.8
+	animationOptions:
+		time: 0.2
+		curve: "ease-out"
+
+deg_margin.on Events.TouchStart, (event) ->
+	degBG.animate("tap")
+deg_margin.on Events.TouchEnd, (event) ->
+	degBG.stateCycle("tap", "default")
+	rad.states.next()
+	deg.states.next()
+
 #
 # memory 1 #
 # background memory 1
@@ -119,7 +152,7 @@ memoryBG = new Layer
 	width: 180
 	opacity: 0
 	height: 50
-	x: 300
+	x: 300 + 132
 	y: 191
 # icon mempry 1
 memory = new Layer
@@ -134,7 +167,7 @@ memory = new Layer
 # margin memory 1
 memory_margin = new Layer
 	parent: layerBG
-	x: 324
+	x: 324 + 132
 	y: 150
 	width: 334
 	height: 132
@@ -143,7 +176,7 @@ memory_margin = new Layer
 # background memory 2
 memoryBG2 = new Layer
 	parent: layerBG
-	x: 342
+	x: 342 + 132
 	y: 168
 	width: 298
 	height: 96
@@ -164,7 +197,7 @@ memoryBG.states.create =
 	height: 96
 	opacity: 1
 	scale: 1
-	x: 342
+	x: 342 + 132
 	y: 168
 	animationOptions:
 		time: time
@@ -174,7 +207,7 @@ memoryBG.states.default =
 	opacity: 0
 	#scale: 0.5
 	height: 50
-	x: 300
+	x: 300 + 132
 	y: 191
 	animationOptions:
 		time: 0.6 * time
@@ -197,12 +230,12 @@ memory.states.default =
 		curve: "ease-in-out"
 # states memory 2
 memoryBG2.states.create =
-	x: 676
+	x: 676 + 132
 	animationOptions:
 		time: 0.8 * time
 		curve: "ease-in-out"
 memoryBG2.states.default =
-	x: 342
+	x: 342 + 132
 	animationOptions:
 		time: 0.8 * time
 		curve: "ease-in-out"
@@ -228,7 +261,7 @@ minus = new Layer
 	backgroundColor : "#fff"
 minusMargin = new Layer
 	parent: layerBG
-	x: 186 + 342
+	x: 186 + 342 + 132
 	y: -32 + 168
 	width: 140
 	height: 130
@@ -594,12 +627,10 @@ rounding_margin.onClick ->
 	rounding.states.next()
 
 
-deg_margin.onTap ->
-	deg.states.next()
-	degBG.states.next()
-	degBG.onStateSwitchEnd ->
-		if (degBG.states.current.name is "tap")
-			degBG.stateCycle("tap", "default")
+######
+# ldowjebfl
+
+
 
 #
 # Button 7 and ln

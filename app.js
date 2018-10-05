@@ -1,4 +1,4 @@
-var InputTextLayer, cursor, cursorBlack, curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, plus, plus_bg, plus_circle, rounding, roundingBG, rounding_margin, save, saveMargin, save_icon, scaleTap, screenScale, second, second_bg, second_bg_grey, textLayer, textLayer2, time, timeBig, timeCircle, timeSmall,
+var InputTextLayer, cursor, cursorBlack, curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, plus, plus_bg, plus_circle, rad, rounding, roundingBG, rounding_margin, save, saveMargin, save_icon, scaleTap, screenScale, second, second_bg, second_bg_grey, textLayer, textLayer2, time, timeBig, timeCircle, timeSmall,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -80,52 +80,98 @@ degBG = new Layer({
   parent: layerBG,
   x: 168,
   y: 168,
-  width: 138,
+  width: 270,
   height: 96,
   borderRadius: 48,
   backgroundColor: "#333333"
 });
 
-deg = new Layer({
+rad = new Layer({
+  parent: layerBG,
   parent: degBG,
   width: 138,
   height: 96,
-  image: "images/deg.png",
+  x: 4,
+  image: "images/rad.png",
   opacity: 0.8
+});
+
+deg = new Layer({
+  parent: layerBG,
+  parent: degBG,
+  width: 138,
+  height: 96,
+  x: 120,
+  image: "images/deg.png",
+  opacity: 0.4
 });
 
 deg_margin = new Layer({
   parent: layerBG,
   x: 150,
   y: 150,
-  width: 174,
+  width: 306,
   height: 132,
   opacity: 0
 });
 
-degBG.states.tap = {
-  backgroundColor: "#666666",
+degBG.states["default"] = {
+  backgroundColor: "#333333",
   animationOptions: {
-    time: 0.25,
+    time: 0.15,
     curve: "ease-in"
   }
 };
 
-degBG.states["default"] = {
-  backgroundColor: "#333333",
+degBG.states.tap = {
+  backgroundColor: "#808080",
+  animationOptions: {
+    time: 0.4,
+    curve: "ease-out"
+  }
+};
+
+rad.states["default"] = {
+  opacity: 0.8,
+  animationOptions: {
+    time: 0.2,
+    curve: "ease-in"
+  }
+};
+
+rad.states.tap = {
+  opacity: 0.4,
   animationOptions: {
     time: 0.2,
     curve: "ease-out"
   }
 };
 
-deg.states.rad = {
-  image: "images/rad.png"
+deg.states["default"] = {
+  opacity: 0.4,
+  animationOptions: {
+    time: 0.2,
+    curve: "ease-in"
+  }
 };
 
-deg.states["default"] = {
-  image: "images/deg.png"
+deg.states.tap = {
+  opacity: 0.8,
+  animationOptions: {
+    time: 0.2,
+    curve: "ease-out"
+  }
 };
+
+deg_margin.on(Events.TouchStart, function(event) {
+  return degBG.animate("tap");
+});
+
+deg_margin.on(Events.TouchEnd, function(event) {
+  degBG.stateCycle("tap", "default");
+  rad.states.next();
+  return deg.states.next();
+});
 
 memoryBG = new Layer({
   parent: layerBG,
@@ -135,7 +181,7 @@ memoryBG = new Layer({
   width: 180,
   opacity: 0,
   height: 50,
-  x: 300,
+  x: 300 + 132,
   y: 191
 });
 
@@ -152,7 +198,7 @@ memory = new Layer({
 
 memory_margin = new Layer({
   parent: layerBG,
-  x: 324,
+  x: 324 + 132,
   y: 150,
   width: 334,
   height: 132,
@@ -161,7 +207,7 @@ memory_margin = new Layer({
 
 memoryBG2 = new Layer({
   parent: layerBG,
-  x: 342,
+  x: 342 + 132,
   y: 168,
   width: 298,
   height: 96,
@@ -183,7 +229,7 @@ memoryBG.states.create = {
   height: 96,
   opacity: 1,
   scale: 1,
-  x: 342,
+  x: 342 + 132,
   y: 168,
   animationOptions: {
     time: time,
@@ -195,7 +241,7 @@ memoryBG.states["default"] = {
   width: 180,
   opacity: 0,
   height: 50,
-  x: 300,
+  x: 300 + 132,
   y: 191,
   animationOptions: {
     time: 0.6 * time,
@@ -226,7 +272,7 @@ memory.states["default"] = {
 };
 
 memoryBG2.states.create = {
-  x: 676,
+  x: 676 + 132,
   animationOptions: {
     time: 0.8 * time,
     curve: "ease-in-out"
@@ -234,7 +280,7 @@ memoryBG2.states.create = {
 };
 
 memoryBG2.states["default"] = {
-  x: 342,
+  x: 342 + 132,
   animationOptions: {
     time: 0.8 * time,
     curve: "ease-in-out"
@@ -263,7 +309,7 @@ minus = new Layer({
 
 minusMargin = new Layer({
   parent: layerBG,
-  x: 186 + 342,
+  x: 186 + 342 + 132,
   y: -32 + 168,
   width: 140,
   height: 130,
@@ -662,16 +708,6 @@ textLayer2.backgroundColor = "rgba(255, 255, 255, 0)";
 rounding_margin.onClick(function() {
   roundingBG.states.next();
   return rounding.states.next();
-});
-
-deg_margin.onTap(function() {
-  deg.states.next();
-  degBG.states.next();
-  return degBG.onStateSwitchEnd(function() {
-    if (degBG.states.current.name === "tap") {
-      return degBG.stateCycle("tap", "default");
-    }
-  });
 });
 
 timeBig = 0.15;
