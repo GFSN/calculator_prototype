@@ -3,7 +3,7 @@ var InputTextLayer, bg, cursor, cursorBlack, curveAnimation, deg, degBG, deg_mar
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 
-screenScale = 1.5;
+screenScale = 3.5;
 
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)";
 
@@ -377,6 +377,22 @@ save = new Layer({
   borderRadius: 50
 });
 
+save.states["default"] = {
+  backgroundColor: "rgba(255,255,255,0.20)",
+  animationOptions: {
+    time: 0.15,
+    curve: "ease-in"
+  }
+};
+
+save.states.tap = {
+  backgroundColor: "rgba(255,255,255,0.35)",
+  animationOptions: {
+    time: 0.23,
+    curve: "ease-out"
+  }
+};
+
 save_icon = new Layer({
   parent: layerBG,
   x: 38,
@@ -395,12 +411,26 @@ saveMargin = new Layer({
   opacity: 0
 });
 
-saveMargin.onTap(function() {
+saveMargin.on(Events.TouchStart, function(event) {
+  return save.animate("tap");
+});
+
+saveMargin.on(Events.TouchEnd, function(event) {
+  save.stateCycle("tap", "default");
   memoryBG.states["switch"]("create");
   memory.states["switch"]("create");
   memoryBG2.states["switch"]("create");
   return memory_margin.states["switch"]("create");
 });
+
+
+/*
+saveMargin.onTap ->
+	memoryBG.states.switch "create"
+	memory.states.switch "create"
+	memoryBG2.states.switch "create"
+	memory_margin.states.switch "create"
+ */
 
 memory_margin.onLongPress(function() {
   minusBG.states["switch"]("tap");

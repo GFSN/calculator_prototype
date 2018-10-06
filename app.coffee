@@ -1,4 +1,4 @@
-screenScale = 1.5
+screenScale = 3.5
 curveAnimation = "Bezier(0.0, 0.0, 0.2, 1)"
 time = 0.3
 
@@ -310,6 +310,20 @@ save = new Layer
 	height: 96
 	backgroundColor : "rgba(255,255,255,0.20)"
 	borderRadius: 50
+#
+save.states.default =
+	backgroundColor: "rgba(255,255,255,0.20)"
+	animationOptions:
+		time: 0.15
+		curve: "ease-in"
+save.states.tap =
+	backgroundColor: "rgba(255,255,255,0.35)"
+	animationOptions:
+		time: 0.23
+		curve: "ease-out"
+
+
+
 save_icon = new Layer
 	parent: layerBG
 	x: 38 #kjb
@@ -325,11 +339,22 @@ saveMargin = new Layer
 	height: 132
 	opacity: 0
 
+saveMargin.on Events.TouchStart, (event) ->
+	save.animate("tap")
+saveMargin.on Events.TouchEnd, (event) ->
+	save.stateCycle("tap", "default")
+	memoryBG.states.switch "create"
+	memory.states.switch "create"
+	memoryBG2.states.switch "create"
+	memory_margin.states.switch "create"
+
+###
 saveMargin.onTap ->
 	memoryBG.states.switch "create"
 	memory.states.switch "create"
 	memoryBG2.states.switch "create"
 	memory_margin.states.switch "create"
+###
 memory_margin.onLongPress ->
 	#print "Click"
 	minusBG.states.switch "tap"
