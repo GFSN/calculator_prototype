@@ -1,4 +1,4 @@
-var InputTextLayer, bg, cursor, cursorBlack, curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, onboardBG, onboard_8, onboard_ln, plus, plus_bg, plus_circle, rad, rounding, roundingBG, rounding_margin, save, saveMargin, save_icon, scaleTap, screenScale, second, second_bg, second_bg_grey, textLayer, textLayer2, time, timeBig, timeCircle, timeSmall,
+var InputTextLayer, bg, cursor, cursorBlack, curveAnimation, deg, degBG, deg_margin, division, division_bg, division_circle, eOff, eOn, gdad_bg, l0, l0_bg, l0_circle, l0_circle_black, l0_circle_parent, l0_circle_white, l0_ln, l1, l1_bg, l1_circle, l1_circle_black, l1_circle_parent, l1_circle_white, l1_ln, l2, l2_bg, l2_circle, l2_circle_black, l2_circle_parent, l2_circle_white, l2_ln, l3, l3_bg, l3_circle, l3_circle_black, l3_circle_parent, l3_circle_white, l3_ln, l4, l4_bg, l4_circle, l4_circle_black, l4_circle_parent, l4_circle_white, l4_ln, l5, l5_bg, l5_circle, l5_circle_black, l5_circle_parent, l5_circle_white, l5_ln, l6, l6_bg, l6_circle, l6_circle_black, l6_circle_parent, l6_circle_white, l6_ln, l7, l7_bg, l7_circle, l7_circle_black, l7_circle_parent, l7_circle_white, l7_ln, l8, l8_bg, l8_circle, l8_circle_black, l8_circle_parent, l8_circle_white, l8_ln, l9, l9_bg, l9_circle, l9_circle_black, l9_circle_parent, l9_circle_white, l9_ln, l_cancel, l_del, l_del_bg, l_del_circle, l_del_circle_black, l_del_circle_parent, l_del_circle_white, l_pow, l_pow_bg, l_pow_circle, l_pow_circle_black, l_pow_circle_parent, l_pow_circle_white, l_pow_n, l_sqrt, l_sqrt_bg, l_sqrt_circle, l_sqrt_circle_black, l_sqrt_circle_parent, l_sqrt_circle_white, l_sqrt_factorial, layerBG, lc, lc_bg, lc_circle, lc_circle_black, lc_circle_parent, lc_circle_white, lc_ln, ldot, ldot_bg, ldot_circle, ldot_circle_black, ldot_circle_parent, ldot_circle_white, ldot_ln, memory, memory2, memoryBG, memoryBG2, memory_margin, minus, minusBG, minusMargin, minus_bg, minus_circle, multiply, multiply_bg, multiply_circle, onboard_8, onboard_ln, plus, plus_bg, plus_circle, rad, rounding, roundingBG, rounding_margin, save, saveMargin, save_icon, scaleTap, screenScale, second, second_bg, second_bg_grey, textLayer, textLayer2, time, timeBig, timeCircle, timeSmall,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -4029,7 +4029,7 @@ lc.states.switchInstant("default");
 
 lc_ln = new Layer({
   parent: layerBG,
-  image: "images/%.png"
+  image: "images/persent.png"
 });
 
 lc_ln.states["default"] = {
@@ -4497,21 +4497,12 @@ bg = new Layer({
   y: 0,
   width: 1126,
   height: 2436,
-  opacity: 0
-});
-
-onboardBG = new Layer({
-  parent: layerBG,
-  x: 294,
-  y: 1260,
-  width: 270,
-  height: 234,
   opacity: 1,
-  backgroundColor: "#000"
+  image: "images/iPhone-X-onboarding.png"
 });
 
 onboard_8 = new Layer({
-  parent: layerBG,
+  parent: bg,
   image: "images/8.png",
   x: 294,
   y: 1260,
@@ -4545,33 +4536,8 @@ onboard_8.states.swipe = {
   }
 };
 
-
-/*
-onboard_8.states.default2 =
-	x: 294
-	y: 1260
-	width: 270
-	height: 234
-	opacity: 1
-	scale: 1
-	animationOptions:
-		time: 0.5
-onboard_8.states.up =
-	x: 294
-	y: 1230
-	width: 270
-	height: 234
-	opacity: 1
-	scale: 1
-	animationOptions:
-		time: 0.5
-		#curve: "ease-in"
- */
-
-onboard_8.states.switchInstant("default");
-
 onboard_ln = new Layer({
-  parent: layerBG,
+  parent: bg,
   image: "images/lg.png"
 });
 
@@ -4601,8 +4567,110 @@ onboard_ln.states.swipe = {
   }
 };
 
+onboard_ln.states.switchInstant("default");
+
+onboard_8.x = 295;
+
+onboard_8.animate("default");
+
+onboard_8.onStateSwitchEnd(function() {
+  onboard_8.states.next();
+  return onboard_ln.states.next();
+});
+
+bg.on(Events.Click, function(event) {
+  bg.scale = 0;
+  return bg.opacity = 0;
+});
+
 
 /*
+onboardBG = new Layer
+	parent: layerBG
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	backgroundColor: "#000"
+
+onboard_8 = new Layer
+	parent: layerBG
+	image: "images/8.png"
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+onboard_8.states.default =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.4
+		#curve: "ease-in"
+onboard_8.states.swipe =
+	x: 294
+	y: 1300
+	width: 270
+	height: 234
+	opacity: 0.8
+	scale: 0.88
+	animationOptions:
+		time: 0.8
+		delay: 2.5
+		curve: "ease-out"
+
+onboard_8.states.default2 =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.5
+onboard_8.states.up =
+	x: 294
+	y: 1230
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.5
+		#curve: "ease-in"
+
+onboard_8.states.switchInstant "default"
+
+onboard_ln = new Layer
+	parent: layerBG
+	image: "images/lg.png"
+onboard_ln.states.default =
+	x: 294
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: 0.4
+		#curve: "ease-in"
+
+onboard_ln.states.swipe =
+	x: 294
+	y: 1220
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 0.6
+	animationOptions:
+		time: 0.8
+		delay: 2.5
+		curve: "ease-out"
+
 onboard_ln.states.default2 =
 	x: 294
 	y: 1190
@@ -4623,12 +4691,10 @@ onboard_ln.states.up =
 		time: 0.5
 		#curve: "ease-out"
 		#curve: "ease-out"
- */
 
-onboard_ln.states.switchInstant("default");
+onboard_ln.states.switchInstant "default"
 
 
-/*
 l8 = new Layer
 	parent: layerBG
 	image: "images/8.png"
@@ -4706,21 +4772,42 @@ l8_bg.draggable.constraints =
  y: 1260
  width: 270
  height: 234
+
+
+onboard_8.x = 295
+onboard_8.animate("default")
+onboard_8.onStateSwitchEnd ->
+	#print onboard_8.states.current.name
+	onboard_8.states.next()
+	onboard_ln.states.next()
+
+
+bg.on Events.Click, (event) ->
+	bg.scale = 0
+	onboard_8.states.default =
+		opacity: 0
+	onboard_8.states.swipe =
+		opacity: 0
+	onboard_ln.states.default =
+		opacity: 0
+	onboard_ln.states.swipe =
+		opacity: 0
+
+	#onboardBG.scale = 0
+	#onboardBG.opacity = 0   l8 l8_ln l8_bg
+	 * l8_circle_parent l8_circle_white l8_circle_black l8_circle
+	onboardBG.placeBefore (onboard_8)
+	onboardBG.placeBefore (onboard_ln)
+	l8.placeBefore (onboardBG)
+	l8_ln.placeBefore (onboardBG)
+	l8_circle_parent.placeBefore (onboardBG)
+	l8_circle_white.placeBefore (onboardBG)
+	l8_circle_black.placeBefore (onboardBG)
+	l8_circle.placeBefore (onboardBG)
+	l8_bg.placeBefore (onboardBG)
+	onboardBG.scale = 0
+	onboardBG.opacity = 0
+	#onboard_ln.placebefore (onboardBG)
+	#onboardBG.placebefore(onboard_8)
+	#onboardBG.placebefore(onboard_ln)
  */
-
-onboard_8.x = 295;
-
-onboard_8.animate("default");
-
-onboard_8.onStateSwitchEnd(function() {
-  if (bg.scale === 1) {
-    onboard_8.states.next();
-    return onboard_ln.states.next();
-  }
-});
-
-bg.on(Events.TouchStart, function(event) {
-  bg.scale = 0;
-  onboardBG.placebefore(onboard_8);
-  return onboardBG.placebefore(onboard_ln);
-});

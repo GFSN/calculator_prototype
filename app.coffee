@@ -3329,7 +3329,7 @@ lc.states.switchInstant "default"
 # Button lg
 lc_ln = new Layer
 	parent: layerBG
-	image: "images/%.png"
+	image: "images/persent.png"
 # Button lg States
 lc_ln.states.default =
 	x: 564
@@ -3701,8 +3701,75 @@ bg = new Layer
 	y: 0
 	width: 1126
 	height: 2436
-	opacity: 0
+	opacity: 1
+	image: "images/iPhone-X-onboarding.png"
 
+onboard_8 = new Layer
+	parent: bg
+	image: "images/8.png"
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+onboard_8.states.default =
+	x: 294
+	y: 1260
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 1
+	animationOptions:
+		time: 0.4
+		#curve: "ease-in"
+onboard_8.states.swipe =
+	x: 294
+	y: 1300
+	width: 270
+	height: 234
+	opacity: 0.8
+	scale: 0.88
+	animationOptions:
+		time: 0.8
+		delay: 2.5
+		curve: "ease-out"
+
+onboard_ln = new Layer
+	parent: bg
+	image: "images/lg.png"
+onboard_ln.states.default =
+	x: 294
+	y: 1190
+	width: 270
+	height: 234
+	opacity: 0.4
+	scale: 0.45
+	animationOptions:
+		time: 0.4
+		#curve: "ease-in"
+
+onboard_ln.states.swipe =
+	x: 294
+	y: 1220
+	width: 270
+	height: 234
+	opacity: 1
+	scale: 0.6
+	animationOptions:
+		time: 0.8
+		delay: 2.5
+		curve: "ease-out"
+onboard_ln.states.switchInstant "default"
+onboard_8.x = 295
+onboard_8.animate("default")
+onboard_8.onStateSwitchEnd ->
+	#print onboard_8.states.current.name
+	onboard_8.states.next()
+	onboard_ln.states.next()
+
+bg.on Events.Click, (event) ->
+	bg.scale = 0
+	bg.opacity = 0
+###
 onboardBG = new Layer
 	parent: layerBG
 	x: 294
@@ -3740,7 +3807,7 @@ onboard_8.states.swipe =
 		time: 0.8
 		delay: 2.5
 		curve: "ease-out"
-###
+
 onboard_8.states.default2 =
 	x: 294
 	y: 1260
@@ -3760,7 +3827,7 @@ onboard_8.states.up =
 	animationOptions:
 		time: 0.5
 		#curve: "ease-in"
-###
+
 onboard_8.states.switchInstant "default"
 
 onboard_ln = new Layer
@@ -3788,7 +3855,7 @@ onboard_ln.states.swipe =
 		time: 0.8
 		delay: 2.5
 		curve: "ease-out"
-###
+
 onboard_ln.states.default2 =
 	x: 294
 	y: 1190
@@ -3809,10 +3876,10 @@ onboard_ln.states.up =
 		time: 0.5
 		#curve: "ease-out"
 		#curve: "ease-out"
-###
+
 onboard_ln.states.switchInstant "default"
 
-###
+
 l8 = new Layer
 	parent: layerBG
 	image: "images/8.png"
@@ -3890,20 +3957,42 @@ l8_bg.draggable.constraints =
  y: 1260
  width: 270
  height: 234
-###
+
 
 onboard_8.x = 295
 onboard_8.animate("default")
 onboard_8.onStateSwitchEnd ->
 	#print onboard_8.states.current.name
-	if (bg.scale is 1)
-		onboard_8.states.next()
-		onboard_ln.states.next()
+	onboard_8.states.next()
+	onboard_ln.states.next()
 
 
-bg.on Events.TouchStart, (event) ->
+bg.on Events.Click, (event) ->
 	bg.scale = 0
+	onboard_8.states.default =
+		opacity: 0
+	onboard_8.states.swipe =
+		opacity: 0
+	onboard_ln.states.default =
+		opacity: 0
+	onboard_ln.states.swipe =
+		opacity: 0
+
 	#onboardBG.scale = 0
-	#onboardBG.opacity = 0
-	onboardBG.placebefore(onboard_8)
-	onboardBG.placebefore(onboard_ln)
+	#onboardBG.opacity = 0   l8 l8_ln l8_bg
+	# l8_circle_parent l8_circle_white l8_circle_black l8_circle
+	onboardBG.placeBefore (onboard_8)
+	onboardBG.placeBefore (onboard_ln)
+	l8.placeBefore (onboardBG)
+	l8_ln.placeBefore (onboardBG)
+	l8_circle_parent.placeBefore (onboardBG)
+	l8_circle_white.placeBefore (onboardBG)
+	l8_circle_black.placeBefore (onboardBG)
+	l8_circle.placeBefore (onboardBG)
+	l8_bg.placeBefore (onboardBG)
+	onboardBG.scale = 0
+	onboardBG.opacity = 0
+	#onboard_ln.placebefore (onboardBG)
+	#onboardBG.placebefore(onboard_8)
+	#onboardBG.placebefore(onboard_ln)
+###
