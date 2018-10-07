@@ -69,7 +69,7 @@ degBG = new Layer
 	width: 270
 	height: 96
 	borderRadius: 48
-	backgroundColor : "#333333"
+	backgroundColor : "rgba(255,255,255,0.20)"
 rad = new Layer
 	parent: layerBG
 	parent: degBG
@@ -98,15 +98,14 @@ deg_margin = new Layer
 	opacity: 0
 
 degBG.states.default =
-	backgroundColor: "#333333"
+	backgroundColor: "rgba(255,255,255,0.20)"
 	animationOptions:
-		time: 0.15
-		curve: "ease-in"
-degBG.states.tap =
-	backgroundColor: "#808080"
-	animationOptions:
-		time: 0.4
+		time: 0.3
 		curve: "ease-out"
+degBG.states.tap =
+	backgroundColor: "rgba(255,255,255,0.30)"
+	animationOptions:
+		time: 0
 
 rad.states.default =
 	opacity: 0.8
@@ -199,6 +198,7 @@ memoryBG.states.create =
 	scale: 1
 	x: 342 + 132
 	y: 168
+	backgroundColor : "rgba(255,255,255,0.35)"
 	animationOptions:
 		time: time
 		curve: "ease-in-out"
@@ -212,6 +212,10 @@ memoryBG.states.default =
 	animationOptions:
 		time: 0.6 * time
 		curve: "ease-in-out"
+memoryBG.states.tap =
+	backgroundColor : "rgba(255,255,255,0.45)"
+	animationOptions:
+		time: 0
 memory.states.create =
 	scale: 1
 	opacity: 0.9
@@ -239,6 +243,9 @@ memoryBG2.states.default =
 	animationOptions:
 		time: 0.8 * time
 		curve: "ease-in-out"
+
+
+
 #
 # minus
 minusBG = new Layer
@@ -355,16 +362,14 @@ saveMargin.onTap ->
 	memoryBG2.states.switch "create"
 	memory_margin.states.switch "create"
 ###
-memory_margin.onLongPress ->
-	#print "Click"
-	minusBG.states.switch "tap"
-	minusMargin.states.switch "tap"
+
+
 
 minusMargin.onTap ->
 	minusBG.states.switch "default"
 	memory_margin.states.switch "default"
 	minusMargin.states.switch "default"
-	memoryBG.states.next()
+	memoryBG.animate("default")
 	memory.states.next()
 	memoryBG2.states.next()
 
@@ -644,10 +649,20 @@ textLayer2.input.style.color = "#FFF"
 textLayer2.input.placeholder = "0"
 textLayer2.backgroundColor = "rgba(255, 255, 255, 0)"
 
+memory_margin.onLongPress ->
+	#print "Click"
+	minusBG.states.switch "tap"
+	minusMargin.states.switch "tap"
 
+memory_margin.on Events.TouchStart, (event) ->
+	memoryBG.states.switch "tap"
+memory_margin.on Events.TouchEnd, (event) ->
+	memoryBG.stateCycle("tap", "create")
+	textLayer.input.value = textLayer.input.value + "25472311"
+	textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
+	cursorBlack.opacity = 1
 
-
-rounding_margin.onClick ->
+rounding_margin.on Events.TouchStart, (event) ->
 	roundingBG.states.next()
 	rounding.states.next()
 
@@ -814,7 +829,7 @@ l_sqrt_bg.on Events.Click, (event) ->
 		l_sqrt_circle_parent.animate("tap")
 		l_sqrt_circle_white.animate("tap")
 		l_sqrt_circle.animate("tap")
-		textLayer.input.value = textLayer.input.value + "√"
+		textLayer.input.value = textLayer.input.value + "√("
 		textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
 		cursorBlack.opacity = 1
 		l_sqrt_circle_parent.onStateSwitchEnd ->
@@ -3637,7 +3652,7 @@ minus_bg = new Layer
 minus_bg.on Events.Click, (event) ->
 	minus_circle.opacity = 0.5
 	minus_circle.animate("tap")
-	textLayer.input.value = textLayer.input.value + "-"
+	textLayer.input.value = textLayer.input.value + "−"
 	textLayer2.input.value = Math.floor(Math.random() * (2511 - (0)))
 	cursorBlack.opacity = 1
 	minus_circle.onStateSwitchEnd ->
@@ -3719,7 +3734,7 @@ plus_bg.on Events.TouchStart, (event) ->
 plus_bg.on Events.TouchEnd, (event) ->
 	plus.stateCycle("tap", "default")
 
-
+###
 bg = new Layer
 	parent: layerBG
 	x: 0
@@ -3728,7 +3743,16 @@ bg = new Layer
 	height: 2436
 	opacity: 1
 	image: "images/iPhone-X-onboarding.png"
-
+bg_image = new Layer
+	parent: layerBG
+	x: 0
+	y: 0
+	width: 1126
+	height: 2436
+	opacity: 1
+	#backgroundColor: "rgba(0, 0, 0, 1)"
+	image: "images/iPhone-X-onboarding.png"
+bg.placeBefore (bg_image)
 onboard_8 = new Layer
 	parent: bg
 	image: "images/8.png"
@@ -3794,6 +3818,8 @@ onboard_8.onStateSwitchEnd ->
 bg.on Events.Click, (event) ->
 	bg.scale = 0
 	bg.opacity = 0
+	bg_image.opacity = 0
+###
 ###
 onboardBG = new Layer
 	parent: layerBG
