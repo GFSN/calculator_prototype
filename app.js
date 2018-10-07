@@ -163,7 +163,7 @@ deg.states.tap = {
 };
 
 deg_margin.on(Events.TouchStart, function(event) {
-  return degBG.animate("tap");
+  return degBG.states.switchInstant("tap");
 });
 
 deg_margin.on(Events.TouchEnd, function(event) {
@@ -387,7 +387,7 @@ save = new Layer({
 save.states["default"] = {
   backgroundColor: "rgba(255,255,255,0.20)",
   animationOptions: {
-    time: 0.15,
+    time: 0.3,
     curve: "ease-in"
   }
 };
@@ -395,7 +395,7 @@ save.states["default"] = {
 save.states.tap = {
   backgroundColor: "rgba(255,255,255,0.35)",
   animationOptions: {
-    time: 0.23,
+    time: 0,
     curve: "ease-out"
   }
 };
@@ -743,7 +743,7 @@ memory_margin.onLongPress(function() {
 });
 
 memory_margin.on(Events.TouchStart, function(event) {
-  return memoryBG.states["switch"]("tap");
+  return memoryBG.states.switchInstant("tap");
 });
 
 memory_margin.on(Events.TouchEnd, function(event) {

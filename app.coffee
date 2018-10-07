@@ -130,7 +130,7 @@ deg.states.tap =
 		curve: "ease-out"
 
 deg_margin.on Events.TouchStart, (event) ->
-	degBG.animate("tap")
+	degBG.states.switchInstant "tap"
 deg_margin.on Events.TouchEnd, (event) ->
 	degBG.stateCycle("tap", "default")
 	rad.states.next()
@@ -321,12 +321,12 @@ save = new Layer
 save.states.default =
 	backgroundColor: "rgba(255,255,255,0.20)"
 	animationOptions:
-		time: 0.15
+		time: 0.3
 		curve: "ease-in"
 save.states.tap =
 	backgroundColor: "rgba(255,255,255,0.35)"
 	animationOptions:
-		time: 0.23
+		time: 0
 		curve: "ease-out"
 
 
@@ -654,8 +654,9 @@ memory_margin.onLongPress ->
 	minusBG.states.switch "tap"
 	minusMargin.states.switch "tap"
 
+
 memory_margin.on Events.TouchStart, (event) ->
-	memoryBG.states.switch "tap"
+	memoryBG.states.switchInstant "tap"
 memory_margin.on Events.TouchEnd, (event) ->
 	memoryBG.stateCycle("tap", "create")
 	textLayer.input.value = textLayer.input.value + "25472311"
