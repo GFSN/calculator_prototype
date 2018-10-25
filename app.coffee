@@ -3735,7 +3735,7 @@ plus_bg.on Events.TouchStart, (event) ->
 plus_bg.on Events.TouchEnd, (event) ->
 	plus.stateCycle("tap", "default")
 
-
+###
 bg = new Layer
 	parent: layerBG
 	x: 0
@@ -3744,6 +3744,7 @@ bg = new Layer
 	height: 2436
 	opacity: 1
 	image: "images/iPhone_X_onboarding_1.png"
+	###
 ###
 bg = new Layer
 	parent: layerBG
